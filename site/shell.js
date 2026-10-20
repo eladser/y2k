@@ -131,6 +131,12 @@ const I = {
   flag: '<svg viewBox="0 0 18 16"><path d="M2 3c2-1 4 0 6 1v5C6 8 4 7 2 8z" fill="#e8402a"/><path d="M9 4c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#4caf3a"/><path d="M2 9c2-1 4 0 6 1v5c-2-1-4-2-6-1z" fill="#2b62d6"/><path d="M9 10c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#f2c230"/></svg>',
   dun: '<svg viewBox="0 0 32 32"><rect x="2" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="4" y="8" width="8" height="5" fill="#008080"/><rect x="18" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="20" y="8" width="8" height="5" fill="#008080"/><path d="M8 15v6h16v-6" fill="none" stroke="#000"/><rect x="12" y="22" width="8" height="6" rx="1" fill="#efe8b0" stroke="#000"/></svg>',
   speaker: '<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#ffd23f" stroke="#555"/></svg>',
+  images: '<svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" fill="#fff" stroke="#556"/><path d="M4 18l5-6 4 4 3-3 4 5z" fill="#3a9a3a"/><circle cx="16" cy="9" r="2" fill="#f2c230"/></svg>',
+  open: '<svg viewBox="0 0 24 24"><path d="M2 7h7l2 2h11v11H2z" fill="#f2d36b" stroke="#8a6a1a"/></svg>',
+  find: '<svg viewBox="0 0 24 24"><circle cx="8" cy="14" r="5" fill="#9cc8f0" stroke="#335" stroke-width="2"/><circle cx="16" cy="14" r="5" fill="#9cc8f0" stroke="#335" stroke-width="2"/><path d="M12 13h0" stroke="#335" stroke-width="3"/></svg>',
+  stopsign: '<svg viewBox="0 0 24 24"><path d="M8 2h8l6 6v8l-6 6H8l-6-6V8z" fill="#d8361b" stroke="#801"/><text x="12" y="15" font-size="6" font-family="Arial" font-weight="bold" fill="#fff" text-anchor="middle">STOP</text></svg>',
+  key: '<svg viewBox="0 0 24 16"><circle cx="6" cy="8" r="4" fill="none" stroke="#606060" stroke-width="2"/><path d="M10 8h6m3 0h3M16 8v3M21 8v3" stroke="#606060" stroke-width="2"/></svg>',
+  comet: '<svg viewBox="0 0 36 36"><g class="meteor"><path d="M4 4l16 16" stroke="#9cf" stroke-width="2" opacity=".6"/><circle cx="21" cy="21" r="3" fill="#fff"/></g><circle cx="8" cy="28" r="1" fill="#fff"/><circle cx="28" cy="8" r="1" fill="#fff"/></svg>',
   ffx: '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2a6fc9"/><path d="M3 9c2-3 6-4 10-2-2 0-3 2-2 4-3 1-6 0-8-2z" fill="#f2862e"/></svg>',
   ffBack: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#5f9e2f" stroke="#3d6d1b"/><circle cx="16" cy="11" r="10" fill="#9fd35f" opacity=".5"/><path d="M18 8 10 16l8 8v-5h6v-6h-6z" fill="#fff"/></svg>',
   ffFwd: '<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="#b8b8b8" stroke="#8a8a8a"/><path d="M11 7l6 6-6 6v-4H7v-4h4z" fill="#fff"/></svg>',
@@ -164,6 +170,17 @@ const CHROME = {
     <div class="addr"><span>Address</span><div class="fld2 sunk">${I.page}${e.url}</div><span>Links</span></div>
     <div class="view sunk"><div class="spot"></div></div>
     <div class="sb"><span class="msg thin-sunk">${I.page}<b class="txt">Done</b></span><span class="prog thin-sunk"><i></i></span><span class="zone thin-sunk">${I.globe}Internet</span></div>`,
+  nn3: e => `
+    <div class="tb98 tb95">${I.page}<span class="t">${e.title}</span><span class="wb"><i class="w98">_</i><i class="w98">&#9633;</i><i class="w98">&times;</i></span></div>
+    <div class="menu"><span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Bookmarks</span><span>Options</span><span>Directory</span><span>Window</span><span>Help</span></div>
+    <div class="bar">
+      <span class="b">${I.back}Back</span><span class="b">${I.fwd}Forward</span><span class="b">${I.home}Home</span><span class="b">${I.refresh}Reload</span><span class="b">${I.images}Images</span><span class="b">${I.open}Open</span><span class="b">${I.print}Print</span><span class="b">${I.find}Find</span><span class="b">${I.stopsign}Stop</span>
+      <span class="throb">${I.comet}</span>
+    </div>
+    <div class="addr"><span>Location:</span><div class="fld2 sunk">${e.url}</div></div>
+    <div class="dirs"><span class="w98">What's New?</span><span class="w98">What's Cool?</span><span class="w98">Destinations</span><span class="w98">Net Search</span><span class="w98">People</span><span class="w98">Software</span></div>
+    <div class="view sunk"><div class="spot"></div></div>
+    <div class="sb"><span class="key thin-sunk">${I.key}</span><span class="msg thin-sunk"><b class="txt">Document: Done</b></span><span class="prog thin-sunk"><i></i></span></div>`,
   ff2: e => `
     <div class="tbv">${I.ffx}<span class="t">${e.title}</span><span class="caps"><i>&#8211;</i><i>&#9633;</i><i class="x">&#10005;</i></span></div>
     <div class="ff2">
@@ -187,6 +204,7 @@ const ICONS98 = `<div class="icons98" aria-hidden="true">
 const clock = () => new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 const TASK = {
   vista: e => `<div class="task-vista"><span class="orb">${I.flag}</span><span class="job">${I.ffx}${e.tab}</span><span class="tray" id="clock">${clock()}</span></div>`,
+  win95: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk">${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon">${dialed() ? I.modem : ''}</span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
@@ -214,7 +232,7 @@ function desk(e) {
   const d = $('#desk');
   d.dataset.os = e.os;
   const win = $('#win');
-  win.className = `win ${{ ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', now: 'chrome-now' }[e.chrome]}`;
+  win.className = `win ${{ nn3: 'ie5 w98 nn3', ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', now: 'chrome-now' }[e.chrome]}`;
   win.innerHTML = CHROME[e.chrome](e);
   $('.popup')?.remove();
   hangup98?.();
@@ -231,7 +249,7 @@ function desk(e) {
   win.querySelector('.view').append(frame);
   $('#task').innerHTML = TASK[e.os]?.(e) ?? '';
   $('.icons98')?.remove();
-  if (e.os === 'win98') $('.wall').insertAdjacentHTML('afterbegin', ICONS98);
+  if (e.os === 'win98' || e.os === 'win95') $('.wall').insertAdjacentHTML('afterbegin', ICONS98);
   d.classList.remove('desk-in');
   void d.offsetWidth;
   d.classList.add('desk-in');

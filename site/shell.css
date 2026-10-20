@@ -440,3 +440,19 @@ body.dialing98 #win { visibility: hidden; }
   background: linear-gradient(rgba(255, 255, 255, .28), rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .02)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25), 0 0 0 1px #000; }
 .task-vista .job svg { width: 16px; height: 16px; flex: none; }
 .task-vista .tray { margin-left: auto; height: 100%; display: flex; align-items: center; padding: 0 14px; background: rgba(255, 255, 255, .05); box-shadow: inset 1px 0 rgba(255, 255, 255, .12); }
+
+/* ---------- Windows 95 + Netscape Navigator 3, 1996 ---------- */
+
+[data-os="win95"] .wall { background: #008080; }
+.tb95 { background: #000080; }
+.nn3 .bar svg { filter: none; }
+.nn3 .bar .throb { width: 44px; background: #000033; overflow: hidden; position: relative; }
+.nn3 .bar .throb svg { width: 36px; height: 36px; }
+.nn3 .bar .throb .meteor { animation: meteor 1.6s linear infinite; }
+@keyframes meteor { from { transform: translate(-14px, -14px); } to { transform: translate(14px, 14px); } }
+.nn3 .addr .fld2 { padding-left: 4px; }
+.nn3 .dirs { display: flex; gap: 4px; height: 26px; align-items: center; padding: 0 4px; border-top: 1px solid #808080; box-shadow: inset 0 1px #fff; }
+.nn3 .dirs span { padding: 2px 8px; font-size: 11px; }
+.nn3 .sb .key { width: 30px; justify-content: center; }
+.nn3 .sb .prog { width: 160px; }
+@media (prefers-reduced-motion: reduce) { .nn3 .bar .throb .meteor { animation: none; } }

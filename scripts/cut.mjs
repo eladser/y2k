@@ -46,6 +46,13 @@ if (era === '2007') {
   ff(['-framerate', '10', '-i', `${TMP}/spin%d.png`, '-vf', 'split[a][b];[a]palettegen=max_colors=16[p];[b][p]paletteuse', '-loop', '0', `${OUT}/spinner.gif`]);
   console.log('spinner.gif');
 }
+// GIF89a: a plane crossing the sky, and the blinking barrier every page under construction had
+if (era === '1996') {
+  const anim = (frames, fps, out) => ff(['-framerate', fps, '-i', `${TMP}/${frames}%d.png`, '-vf', 'split[a][b];[a]palettegen=max_colors=32[p];[b][p]paletteuse', '-loop', '0', `${OUT}/${out}`]);
+  anim('plane', '5', 'plane.gif');
+  anim('cons', '2', 'construction.gif');
+  console.log('plane.gif, construction.gif');
+}
 // frames were only needed to build the animations
-for (const f of readdirSync(OUT)) if (/^(new\d|spin\d)\.png$/.test(f)) rmSync(`${OUT}/${f}`);
+for (const f of readdirSync(OUT)) if (/^(new\d|spin\d|plane\d|cons\d)\.png$/.test(f)) rmSync(`${OUT}/${f}`);
 ab('close');

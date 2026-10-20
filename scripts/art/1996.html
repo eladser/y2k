@@ -1,0 +1,83 @@
+<!doctype html>
+<!-- Art board for the 1996 site. Everything sits on Netscape's default grey, because that is
+     what the transparent GIFs of the time were matted against. -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 20px; background: #c0c0c0; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+  [data-out] { position: relative; flex: none; overflow: hidden; background: #c0c0c0; }
+
+  #logo { width: 420px; height: 70px; }
+  #logo .w { position: absolute; left: 10px; top: 4px; font: bold italic 46px/1 'Times New Roman', serif; color: #000080; letter-spacing: 1px;
+    text-shadow: 3px 3px 0 #808080; transform: skewX(-6deg); }
+  #logo .w b { color: #c00000; }
+  #logo .s { position: absolute; left: 14px; top: 52px; font: bold 12px Arial, sans-serif; letter-spacing: 12px; color: #000080; }
+
+  .plane { width: 160px; height: 44px; }
+  .plane svg { position: absolute; top: 8px; width: 56px; height: 24px; transform: scaleX(-1); }
+  .plane .c { position: absolute; top: 26px; width: 40px; height: 12px; border-radius: 50%; background: #fff; box-shadow: 14px -4px 0 2px #fff, 28px 0 0 #fff; }
+
+  #routes { width: 420px; height: 210px; background: #000080; }
+  #routes svg { position: absolute; inset: 0; }
+
+  .digit { width: 15px; height: 20px; background: #000; display: grid; place-items: center; font: bold 16px/1 'Courier New', monospace; color: #fff; border-right: 1px solid #555; }
+
+  .ball { width: 14px; height: 14px; }
+  .ball i { position: absolute; inset: 1px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff 0 12%, #ff4040 30%, #900000 100%); }
+
+  #rule { width: 500px; height: 6px; background: linear-gradient(#e8e8e8 0 33%, #808080 33% 66%, #404040 66%); }
+
+  .cons { width: 110px; height: 60px; }
+  .cons .b { position: absolute; left: 6px; right: 6px; top: 22px; height: 14px; background: repeating-linear-gradient(-45deg, #000 0 8px, #ffcc00 8px 16px); border: 1px solid #000; }
+  .cons .l { position: absolute; top: 36px; width: 4px; height: 20px; background: #444; }
+  .cons .lamp { position: absolute; top: 13px; width: 10px; height: 10px; border-radius: 50%; }
+  .cons .t { position: absolute; left: 0; right: 0; top: 2px; text-align: center; font: bold 9px Arial, sans-serif; color: #000; white-space: nowrap; }
+
+  #nn { width: 88px; height: 31px; background: #000; color: #fff; font: bold 11px/1.1 Arial, sans-serif; display: grid; place-items: center; text-align: center; border: 1px solid #fff; box-sizing: border-box; }
+  #nn b { color: #00ffff; display: block; font-size: 13px; }
+
+  #mail { width: 32px; height: 24px; }
+</style>
+</head>
+<body>
+
+<div id="logo" data-out="logo.gif"><div class="w">HALCYON <b>&#9992;</b></div><div class="s">AIRWAYS</div></div>
+
+<div class="plane" data-out="plane1.png"><span class="c" style="left:90px"></span><svg viewBox="0 0 56 24" style="left:0px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+<div class="plane" data-out="plane2.png"><span class="c" style="left:78px"></span><svg viewBox="0 0 56 24" style="left:20px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+<div class="plane" data-out="plane3.png"><span class="c" style="left:66px"></span><svg viewBox="0 0 56 24" style="left:40px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+<div class="plane" data-out="plane4.png"><span class="c" style="left:54px"></span><svg viewBox="0 0 56 24" style="left:60px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+<div class="plane" data-out="plane5.png"><span class="c" style="left:42px"></span><svg viewBox="0 0 56 24" style="left:80px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+<div class="plane" data-out="plane6.png"><span class="c" style="left:30px"></span><svg viewBox="0 0 56 24" style="left:100px"><path d="M1 13l10-1 13-7h6l-7 7 22-1 6-7h4l-3 8 9 1c3 .5 3 2 0 2.5l-9 1 3 8h-4l-6-7-22-1 7 7h-6L11 15z" fill="#fff" stroke="#000080"/></svg></div>
+
+<div id="routes" data-out="routes.gif">
+  <svg viewBox="0 0 420 210" font-family="Arial" font-size="12" font-weight="bold">
+    <g stroke="#ffff00" stroke-width="2" fill="none">
+      <path d="M300 140 Q 220 60 120 60"/><path d="M300 140 Q 230 100 150 95"/><path d="M300 140 Q 260 120 205 125"/>
+      <path d="M300 140 Q 285 150 260 160"/><path d="M300 140 Q 170 10 40 70"/>
+    </g>
+    <g fill="#ffffff"><circle cx="300" cy="140" r="7" fill="#ff0000" stroke="#fff" stroke-width="2"/>
+      <circle cx="120" cy="60" r="5"/><circle cx="150" cy="95" r="5"/><circle cx="205" cy="125" r="5"/><circle cx="260" cy="160" r="5"/><circle cx="40" cy="70" r="5"/></g>
+    <g fill="#ffffff"><text x="308" y="145">TEL AVIV</text><text x="96" y="50">LONDON</text><text x="124" y="114">PARIS</text>
+      <text x="186" y="144">ROME</text><text x="232" y="180">ATHENS</text><text x="12" y="92">NEW YORK</text></g>
+    <text x="10" y="200" fill="#c0c0ff" font-size="10" font-weight="normal">HALCYON AIRWAYS ROUTE MAP - SUMMER 1996</text>
+  </svg>
+</div>
+
+<div class="digit" data-out="d0.gif">0</div><div class="digit" data-out="d1.gif">1</div><div class="digit" data-out="d2.gif">2</div>
+<div class="digit" data-out="d3.gif">3</div><div class="digit" data-out="d4.gif">4</div><div class="digit" data-out="d5.gif">5</div>
+<div class="digit" data-out="d6.gif">6</div><div class="digit" data-out="d7.gif">7</div><div class="digit" data-out="d8.gif">8</div>
+<div class="digit" data-out="d9.gif">9</div>
+
+<div class="ball" data-out="ball.gif"><i></i></div>
+<div id="rule" data-out="rule.gif"></div>
+
+<div class="cons" data-out="cons1.png"><div class="t">UNDER CONSTRUCTION</div><div class="b"></div><span class="l" style="left:18px"></span><span class="l" style="right:18px"></span><span class="lamp" style="left:3px;background:#ff8000"></span><span class="lamp" style="right:3px;background:#602000"></span></div>
+<div class="cons" data-out="cons2.png"><div class="t">UNDER CONSTRUCTION</div><div class="b"></div><span class="l" style="left:18px"></span><span class="l" style="right:18px"></span><span class="lamp" style="left:3px;background:#602000"></span><span class="lamp" style="right:3px;background:#ff8000"></span></div>
+
+<div id="nn" data-out="netscape.gif"><span>Netscape<b>NOW!</b></span></div>
+<div id="mail" data-out="mail.gif"><svg width="32" height="24"><rect x="1" y="3" width="30" height="20" fill="#fff" stroke="#000"/><path d="M1 3 16 15 31 3" fill="none" stroke="#000"/><rect x="24" y="5" width="5" height="6" fill="#c00"/></svg></div>
+
+</body>
+</html>

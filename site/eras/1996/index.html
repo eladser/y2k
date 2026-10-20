@@ -1,0 +1,121 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+<TITLE>Halcyon Airways Home Page</TITLE>
+<META NAME="keywords" CONTENT="Halcyon, airline, airways, flights, fares, travel, London, Paris, Rome, Athens, New York, Israel">
+<SCRIPT SRC="../dialup.js" DATA-RATE="2400"></SCRIPT>
+<SCRIPT LANGUAGE="JavaScript">
+<!-- hide this script from old browsers
+
+// the scrolling message in the status bar, on every site in 1996
+var msg = "Welcome to Halcyon Airways!     Fly with us to London, Paris, Rome, Athens and New York.     Call 1-800-HALCYON to book.     ";
+var pos = 0;
+
+function scroller() {
+  window.status = msg.substring(pos, msg.length) + msg.substring(0, pos);
+  pos = (pos + 1) % msg.length;
+  // not 1996: browsers stopped drawing window.status long ago, so the text is also
+  // sent to the Netscape window drawn around this page
+  if (top != self && window.replayDone) top.postMessage({ status: window.status }, location.protocol + "//" + location.host);
+  setTimeout("scroller()", 150);
+}
+
+function mailWarning() {
+  alert("This form is being submitted using e-mail.\nSubmitting this form will reveal your e-mail address to the recipient, and will send the form data without encryption.\n\n(This copy of the page can't send e-mail, so nothing was sent.)");
+  return false;
+}
+
+// end hiding -->
+</SCRIPT>
+<STYLE>
+/* not 1996: browsers dropped BLINK, so the page brings it back itself */
+BLINK { animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { BLINK { animation: none; } }
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#C0C0C0" TEXT="#000000" LINK="#0000EE" VLINK="#551A8B" ALINK="#FF0000" onLoad="scroller()">
+
+<CENTER>
+<IMG SRC="img/logo.gif" WIDTH="420" HEIGHT="70" ALT="HALCYON AIRWAYS"><BR>
+<IMG SRC="img/plane.gif" WIDTH="160" HEIGHT="44" ALT="">
+<H2>Welcome to Halcyon Airways on the World Wide Web!</H2>
+<BLINK><FONT COLOR="#CC0000"><B>NEW!</B></FONT></BLINK> Our fares and schedules are now on the Internet!
+</CENTER>
+
+<P><IMG SRC="img/rule.gif" WIDTH="500" HEIGHT="6" ALT="----"></P>
+
+<H3><IMG SRC="img/ball.gif" WIDTH="14" HEIGHT="14" ALT="*"> Where We Fly</H3>
+<P>Click on a city to see our flights.</P>
+<P><IMG SRC="img/routes.gif" WIDTH="420" HEIGHT="210" BORDER="0" USEMAP="#routes" ALT="Route map"></P>
+<MAP NAME="routes">
+<AREA SHAPE="circle" COORDS="120,60,14" HREF="#london" ALT="London">
+<AREA SHAPE="circle" COORDS="150,95,14" HREF="#paris" ALT="Paris">
+<AREA SHAPE="circle" COORDS="205,125,14" HREF="#rome" ALT="Rome">
+<AREA SHAPE="circle" COORDS="260,160,14" HREF="#athens" ALT="Athens">
+<AREA SHAPE="circle" COORDS="40,70,14" HREF="#newyork" ALT="New York">
+<AREA SHAPE="default" NOHREF>
+</MAP>
+
+<H3><IMG SRC="img/ball.gif" WIDTH="14" HEIGHT="14" ALT="*"> Summer Fares</H3>
+<TABLE BORDER="1" CELLPADDING="4" CELLSPACING="0">
+<TR><TH>From Tel Aviv to</TH><TH>Round Trip</TH><TH>Flights</TH></TR>
+<TR><TD><A HREF="#london">London</A></TD><TD>$449</TD><TD>Daily</TD></TR>
+<TR><TD><A HREF="#paris">Paris</A></TD><TD>$429</TD><TD>Mon, Wed, Fri</TD></TR>
+<TR><TD><A HREF="#rome">Rome</A></TD><TD>$389</TD><TD>Tue, Thu, Sun</TD></TR>
+<TR><TD><A HREF="#athens">Athens</A></TD><TD>$219</TD><TD>Daily</TD></TR>
+<TR><TD><A HREF="#newyork">New York</A></TD><TD>$799</TD><TD>Mon, Thu</TD></TR>
+</TABLE>
+<P><FONT SIZE="-1">Fares are per person. Some restrictions apply. Prices may change without notice.</FONT></P>
+
+<H3><IMG SRC="img/ball.gif" WIDTH="14" HEIGHT="14" ALT="*"> Flight Times</H3>
+<DL>
+<DT><A NAME="london"><B>London (Heathrow)</B></A>
+<DD>HA 214 departs Tel Aviv 8:40 AM, arrives 12:15 PM. Daily.
+<DT><A NAME="paris"><B>Paris (Charles de Gaulle)</B></A>
+<DD>HA 324 departs Tel Aviv 9:15 AM, arrives 12:40 PM. Monday, Wednesday and Friday.
+<DT><A NAME="rome"><B>Rome (Fiumicino)</B></A>
+<DD>HA 382 departs Tel Aviv 10:30 AM, arrives 1:10 PM. Tuesday, Thursday and Sunday.
+<DT><A NAME="athens"><B>Athens</B></A>
+<DD>HA 126 departs Tel Aviv 7:00 AM, arrives 8:55 AM. Daily.
+<DT><A NAME="newyork"><B>New York (JFK)</B></A>
+<DD>HA 101 departs Tel Aviv 11:15 PM, arrives 5:20 AM the next day. Monday and Thursday.
+</DL>
+
+<H3><IMG SRC="img/ball.gif" WIDTH="14" HEIGHT="14" ALT="*"> How to Book</H3>
+<P>Call our reservations center at <B>1-800-HALCYON</B>, 24 hours a day, or see your travel agent.
+Booking on the Internet is coming in 1997!</P>
+<P><IMG SRC="img/construction.gif" WIDTH="110" HEIGHT="60" ALT="Under construction"></P>
+
+<H3><A NAME="comments"></A><IMG SRC="img/ball.gif" WIDTH="14" HEIGHT="14" ALT="*"> Send Us Your Comments</H3>
+<FORM ACTION="mailto:webmaster@halcyonair.com" METHOD="POST" ENCTYPE="text/plain" onSubmit="return mailWarning()">
+<PRE>
+Your name:   <INPUT TYPE="text" NAME="name" SIZE="30">
+Your e-mail: <INPUT TYPE="text" NAME="email" SIZE="30">
+</PRE>
+Comments:<BR>
+<TEXTAREA NAME="comments" ROWS="4" COLS="50"></TEXTAREA><BR>
+<INPUT TYPE="submit" VALUE="Send"> <INPUT TYPE="reset" VALUE="Clear">
+</FORM>
+
+<P><IMG SRC="img/rule.gif" WIDTH="500" HEIGHT="6" ALT="----"></P>
+
+<CENTER>
+You are visitor number
+<IMG NAME="c1" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT="[counter]"><IMG NAME="c2" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT=""><IMG NAME="c3" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT=""><IMG NAME="c4" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT=""><IMG NAME="c5" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT=""><IMG NAME="c6" SRC="img/d0.gif" WIDTH="15" HEIGHT="20" ALT="">
+since June 1, 1996.
+<P>
+<A HREF="#top"><IMG SRC="img/netscape.gif" WIDTH="88" HEIGHT="31" BORDER="0" ALT="Netscape Now!"></A><BR>
+<FONT SIZE="-1">This page is best viewed with Netscape Navigator 2.0 or later at 640 x 480.</FONT>
+</CENTER>
+
+<HR>
+<ADDRESS>
+<A HREF="#comments"><IMG SRC="img/mail.gif" WIDTH="32" HEIGHT="24" BORDER="0" ALIGN="middle" ALT="Mail"></A>
+webmaster@halcyonair.com<BR>
+Last modified: June 14, 1996
+</ADDRESS>
+
+<SCRIPT SRC="counter.js"></SCRIPT>
+</BODY>
+</HTML>

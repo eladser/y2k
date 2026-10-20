@@ -3,7 +3,88 @@ import { FILM, PHOTOS, LOOK } from './eras/2026/prompts.js';
 // One row per departure on the board. `kbps` is effective throughput in KB/s, `page` the
 // typical page weight that year in KB. Both get filled from sourced numbers only.
 export const ERAS = [
-  { year: 1996, browser: 'NETSCAPE NAVIGATOR 3', short: 'NETSCAPE 3', os: 'win95', conn: '28.8K MODEM', kbps: 3.6, page: 14.1, built: false },
+  {
+    year: 1996, browser: 'NETSCAPE NAVIGATOR 3', short: 'NETSCAPE 3', os: 'win95', chrome: 'nn3', conn: '28.8K MODEM', kbps: 3.6, page: 14.1, built: true,
+    url: 'http://www.halcyonair.com/',
+    title: 'Netscape - [Halcyon Airways Home Page]',
+    stack: 'HTML 3.2 · Netscape extensions · JavaScript 1.0 · a CGI counter',
+    xray: [
+      {
+        name: 'The status bar ticker',
+        sel: null,
+        then: 'A message crawling along the bottom of the window, written into window.status ten times a second. It was in every JavaScript tutorial of 1996. Watch the status bar of this Netscape window once the page has loaded.',
+        now: 'Browsers stopped letting pages write there, because a fake status line could hide where a link really went. The bottom of the window now only shows real link targets.',
+        code: `var msg = "Welcome to Halcyon Airways!     Fly with us...";
+var pos = 0;
+
+function scroller() {
+  window.status = msg.substring(pos, msg.length) +
+                  msg.substring(0, pos);
+  pos = (pos + 1) % msg.length;
+  setTimeout("scroller()", 150);
+}
+
+<BODY onLoad="scroller()">`,
+      },
+      {
+        name: 'Image map',
+        sel: 'img[usemap]',
+        then: 'One GIF of the route map, and invisible circles drawn over it in HTML. Each circle is a link. Click a city on the map to try it.',
+        now: 'An SVG map where every city is a real element with its own link, so it scales, reads aloud, and stays sharp.',
+        code: `<IMG SRC="img/routes.gif" WIDTH="420" HEIGHT="210"
+     BORDER="0" USEMAP="#routes">
+<MAP NAME="routes">
+<AREA SHAPE="circle" COORDS="120,60,14" HREF="#london">
+<AREA SHAPE="circle" COORDS="150,95,14" HREF="#paris">
+<AREA SHAPE="default" NOHREF>
+</MAP>`,
+      },
+      {
+        name: 'Animated GIF',
+        sel: 'img[src*="plane"]',
+        then: 'Netscape 2 learned to play GIF89a animations in 1995, and the web filled up with spinning globes and flying envelopes. Six frames, 32 colors, looping forever.',
+        now: 'CSS and SVG animation, video, or Lottie. And prefers-reduced-motion, so anyone who finds it distracting can turn it off.',
+        code: `<IMG SRC="img/plane.gif" WIDTH="160" HEIGHT="44" ALT="">
+
+GIF89a, 160 x 44, 6 frames at 5 fps,
+NETSCAPE2.0 application extension: loop forever`,
+      },
+      {
+        name: 'Hit counter',
+        sel: 'img[name="c1"]',
+        then: 'The counter was an image from a CGI program on the server, which added one to a file and drew the digits. The number on this page is real: it counts visits to this 1996 page.',
+        now: 'Analytics, out of sight. Public counters went away, mostly because the number was embarrassing.',
+        code: `You are visitor number
+<IMG SRC="/cgi-bin/Count.cgi?df=halcyon.dat&dd=A&ft=0">
+since June 1, 1996.`,
+      },
+      {
+        name: 'The mailto form',
+        sel: 'form',
+        then: 'No server code needed: the form was e-mailed to the webmaster by the visitor\'s own mail program, and Netscape warned you first. The webmaster then copied the answers out of the e-mail by hand.',
+        now: 'The form posts to the server with fetch, the server validates it and stores it, and nobody\'s mail client gets involved.',
+        code: `<FORM ACTION="mailto:webmaster@halcyonair.com"
+      METHOD="POST" ENCTYPE="text/plain">
+Your name: <INPUT TYPE="text" NAME="name" SIZE="30">
+<TEXTAREA NAME="comments" ROWS="4" COLS="50"></TEXTAREA>
+<INPUT TYPE="submit" VALUE="Send">
+</FORM>`,
+      },
+      {
+        name: 'Netscape extensions',
+        sel: 'blink',
+        then: 'HTML had no way to style text, so Netscape invented its own tags: <FONT>, <CENTER> and the famous <BLINK>. Internet Explorer answered with <MARQUEE>. Pages were built for one browser and said so at the bottom.',
+        now: 'Styling lives in CSS, and HTML only says what things are. Firefox dropped <BLINK> in 2013; this one blinks because the page brings its own CSS.',
+        code: `<CENTER>
+<BLINK><FONT COLOR="#CC0000"><B>NEW!</B></FONT></BLINK>
+Our fares and schedules are now on the Internet!
+</CENTER>
+
+This page is best viewed with Netscape Navigator 2.0
+or later at 640 x 480.`,
+      },
+    ],
+  },
   {
     year: 1999, browser: 'INTERNET EXPLORER 5', short: 'IE 5', os: 'win98', chrome: 'ie5', conn: '56K MODEM', kbps: 4.25, page: 44, built: true, dialup: true,
     url: 'http://www.halcyonair.com/',

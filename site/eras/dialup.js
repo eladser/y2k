@@ -1,8 +1,9 @@
-// Not 1999 code. This file replays the page the way it arrived over a 56K modem: text first,
+// Not period code. This file replays a page the way it arrived over a modem: text first,
 // pictures one at a time as their bytes come in, each with its ALT text standing in until then.
 // The status bar messages go to the IE5 window drawn around this page.
 (() => {
-  const RATE = 3000; // bytes per second; two frames share one 34 kbps line
+  // bytes per second, set per page: 1999's two frames share one 34 kbps line, 1996 had 28.8K
+  const RATE = Number(document.currentScript?.dataset.rate) || 3000;
   const host = 'http://www.halcyonair.com/';
   // one status bar, two frames: only the content frame reports, so they don't overwrite each other
   const say = (status, progress) => top !== self && window.name !== 'top' && top.postMessage({ status, progress }, location.origin);
@@ -11,9 +12,16 @@
   let seen = false;
   try { seen = !!sessionStorage.getItem(key); } catch { /* fine */ }
 
+  // pages that want the status bar afterwards (1996's scrolling message) wait for this
+  const finished = () => {
+    say('Done', 0);
+    window.replayDone = true;
+    dispatchEvent(new Event('replaydone'));
+  };
+
   addEventListener('DOMContentLoaded', () => {
     const imgs = [...document.images].filter(i => !/spacer.gif$/.test(i.src));
-    if (seen || reduce || !imgs.length) return say('Done', 0);
+    if (seen || reduce || !imgs.length) return finished();
 
     const css = document.createElement('style');
     css.textContent = '.ph{display:inline-block;vertical-align:top;box-sizing:border-box;overflow:hidden;padding:2px 3px;border:1px solid #808080;background:#fff;color:#000;font:10px Arial,sans-serif;text-align:left}';
@@ -34,9 +42,8 @@
 
     const next = k => {
       if (k >= imgs.length) {
-        say('Done', 0);
         try { sessionStorage.setItem(key, '1'); } catch { /* fine */ }
-        return;
+        return finished();
       }
       const img = imgs[k], bytes = size(img), ms = (bytes / RATE) * 1000;
       const jpg = /\.jpg$/.test(img.src) && bytes > 4000;
