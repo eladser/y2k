@@ -51,19 +51,20 @@
     const p = new URLSearchParams(location.search);
     const to = p.get('to');
     if (!CITIES.some(c => c.code === to)) return null;
-    const date = /^\d{4}-\d\d-\d\d$/.test(p.get('date')) ? p.get('date') : inTwoWeeks();
+    const ok = /^\d{4}-\d\d-\d\d$/.test(p.get('date')) && !isNaN(new Date(p.get('date')));
+    const date = ok ? p.get('date') : inTwoWeeks();
     return { to, date, pax: Math.min(4, Math.max(1, parseInt(p.get('pax'), 10) || 1)) };
   }
 
   function useTheme() {
-    const [theme, setTheme] = useState(() => store.get('theme'));
+    const [theme, setTheme] = useState(() => store.get('halcyon2020.theme'));
     useEffect(() => {
       if (theme) document.documentElement.dataset.theme = theme;
     }, [theme]);
     const dark = theme ? theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
     const toggle = () => {
       const t = dark ? 'light' : 'dark';
-      store.set('theme', t);
+      store.set('halcyon2020.theme', t);
       setTheme(t);
     };
     return [dark, toggle];
@@ -107,7 +108,7 @@
     return h(React.Fragment, null,
       h(CovidBar),
       h(Header, { dark, toggleTheme, home }),
-      city ? h(Results, { city, query, home }) : h(Home, { search }),
+      city ? h(Results, { key: [city.code, query.date, query.pax].join(), city, query, home }) : h(Home, { search }),
       h(Footer),
       h(Consent),
       h(Chat));
@@ -213,8 +214,6 @@
     useEffect(() => {
       if (shut) return;
       let live = true;
-      setFlights(null);
-      setError(null);
       (async () => {
         try {
           // the fares API took a second or two; the skeletons are what you looked at meanwhile
@@ -264,6 +263,10 @@
     const [done, setDone] = useState(false);
     const [manage, setManage] = useState(false);
     const [prefs, setPrefs] = useState({ analytics: false, marketing: false });
+    const dlg = useRef(null);
+    useEffect(() => {
+      if (manage) dlg.current.focus();
+    }, [manage]);
     if (done) return null;
     const flip = k => setPrefs(p => Object.assign({}, p, { [k]: !p[k] }));
     const row = (k, title, text) => h('label', { className: 'toggle' },
@@ -277,7 +280,8 @@
           h('button', { className: 'pill ghost', type: 'button', onClick: () => setManage(true) }, 'Manage'),
           h('button', { className: 'pill', type: 'button', onClick: () => setDone(true) }, 'Accept all'))),
       manage && h('div', { className: 'modal' },
-        h('div', { className: 'card', role: 'dialog', 'aria-modal': true, 'aria-label': 'Cookie preferences' },
+        h('div', { className: 'card', role: 'dialog', 'aria-modal': true, 'aria-label': 'Cookie preferences', tabIndex: -1, ref: dlg,
+          onKeyDown: e => { if (e.key === 'Escape') setManage(false); } },
           h('h3', null, 'Cookie preferences'),
           row(null, 'Strictly necessary', 'Keeps you signed in and remembers your booking. Always on.'),
           row('analytics', 'Analytics', 'Counts visits so we can see which pages work.'),
@@ -298,6 +302,7 @@
     const [nudge, setNudge] = useState(false);
     const [log, setLog] = useState([['bot', "Hi, I'm Hal 👋 Halcyon's virtual assistant. What can I help you with?"]]);
     const box = useRef(null);
+    const btn = useRef(null);
     useEffect(() => {
       const t = setTimeout(() => setNudge(true), 6000);
       return () => clearTimeout(t);
@@ -315,14 +320,15 @@
     };
 
     return h('div', { className: 'chat' },
-      open && h('div', { className: 'panel card', role: 'dialog', 'aria-label': 'Chat with Halcyon' },
+      open && h('div', { className: 'panel card', role: 'dialog', 'aria-label': 'Chat with Halcyon',
+        onKeyDown: e => { if (e.key === 'Escape') { setOpen(false); btn.current.focus(); } } },
         h('div', { className: 'head' },
           h('strong', null, 'Halcyon support'),
           h('span', null, 'Usually replies in a few minutes')),
         h('div', { className: 'log', ref: box, 'aria-live': 'polite' }, log.map(([who, t], i) => h('p', { key: i, className: who }, t))),
-        h('div', { className: 'chips' }, Object.keys(ANSWERS).map(q => h('button', { key: q, type: 'button', onClick: () => ask(q) }, q)))),
+        h('div', { className: 'chips' }, Object.keys(ANSWERS).map((q, i) => h('button', { key: q, type: 'button', autoFocus: i === 0, onClick: () => ask(q) }, q)))),
       !open && nudge && h('button', { className: 'nudge card', type: 'button', onClick: toggle }, 'Hi there 👋 Need help with a booking?'),
-      h('button', { className: 'bubble', type: 'button', 'aria-label': open ? 'Close chat' : 'Open chat', onClick: toggle }, h(Icon, { name: open ? 'x' : 'chat' })));
+      h('button', { className: 'bubble', type: 'button', ref: btn, 'aria-label': open ? 'Close chat' : 'Open chat', onClick: toggle }, h(Icon, { name: open ? 'x' : 'chat' })));
   }
 
   ReactDOM.render(h(App), document.getElementById('root'));

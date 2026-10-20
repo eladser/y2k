@@ -35,7 +35,8 @@ table.results .fare { font-weight: bold; color: #e8892b; }
 var CITIES = { ATH: ["Athens", 149, 2], BCN: ["Barcelona", 259, 5], LHR: ["London", 249, 5], CDG: ["Paris", 239, 5], FCO: ["Rome", 219, 4], JFK: ["New York", 569, 11], YYZ: ["Toronto", 619, 12] };
 function param(name) {
   var m = new RegExp("[?&]" + name + "=([^&]*)").exec(location.search);
-  return m ? decodeURIComponent(m[1].replace(/\+/g, " ")) : "";
+  if (!m) return "";
+  try { return decodeURIComponent(m[1].replace(/\+/g, " ")); } catch (e) { return ""; }
 }
 var to = CITIES.hasOwnProperty(param("to")) ? param("to") : "LHR";
 var adults = parseInt(param("adults"), 10) || 1;

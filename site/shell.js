@@ -462,6 +462,7 @@ function spot(x) {
   hits[0].scrollIntoView({ block: 'nearest', behavior: reduce ? 'auto' : 'smooth' });
   el.dataset.label = lit.name;
   const track = () => {
+    if (!hits.every(n => n.isConnected)) return spot(x);
     const r = hits.map(n => n.getBoundingClientRect());
     const box = { l: Math.min(...r.map(q => q.left)), t: Math.min(...r.map(q => q.top)), r: Math.max(...r.map(q => q.right)), b: Math.max(...r.map(q => q.bottom)) };
     Object.assign(el.style, { left: `${box.l}px`, top: `${box.t}px`, width: `${box.r - box.l}px`, height: `${box.b - box.t}px` });
