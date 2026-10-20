@@ -1,0 +1,122 @@
+<!doctype html>
+<HTML>
+<HEAD>
+<META CHARSET="utf-8">
+<META NAME="viewport" CONTENT="width=device-width, initial-scale=1">
+<TITLE>HALCYON AIRWAYS :: The Sky. Redefined.</TITLE>
+<LINK REL="stylesheet" HREF="flash.css">
+<SCRIPT TYPE="module" SRC="flash.js"></SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#000000" TEXT="#9FD8FF">
+
+<!-- in 2001 this was an OBJECT/EMBED pair pointing at halcyon.swf (see X-ray).
+     it is HTML, SVG and the Web Animations API now, laid out on the same 760x440 stage -->
+<DIV ID="stage">
+
+  <DIV ID="enter" CLASS="scene on">
+    <DIV CLASS="logo-s">HALCYON</DIV>
+    <DIV CLASS="px dim">AIRWAYS &middot; EST. 1971</DIV>
+    <BUTTON ID="go" CLASS="px enter" TYPE="button">ENTER SITE &raquo;</BUTTON>
+    <DIV CLASS="px dim small">HIGH BANDWIDTH &middot; FLASH 5 &middot; SOUND ON</DIV>
+    <DIV CLASS="px dim small foot">BEST VIEWED AT 1024X768 IN INTERNET EXPLORER 5 OR LATER</DIV>
+  </DIV>
+
+  <DIV ID="loader" CLASS="scene">
+    <DIV CLASS="px" ID="ld-pct">LOADING 0%</DIV>
+    <DIV CLASS="bar"><DIV ID="ld-bar"></DIV></DIV>
+    <DIV CLASS="px dim small" ID="ld-bytes">0 OF 0 KB</DIV>
+  </DIV>
+
+  <DIV ID="intro" CLASS="scene">
+    <svg id="runway" viewBox="0 0 760 440" aria-hidden="true"></svg>
+    <svg id="hud" viewBox="0 0 760 440" aria-hidden="true">
+      <circle class="ring r1" cx="380" cy="210" r="120"/>
+      <circle class="ring r2" cx="380" cy="210" r="96"/>
+      <circle class="ring r3" cx="380" cy="210" r="146"/>
+      <path class="cross" d="M380 50v40M380 330v40M220 210h40M500 210h40"/>
+    </svg>
+    <DIV CLASS="px read" ID="read1">LAT 32.79N &nbsp;LON 34.98E</DIV>
+    <DIV CLASS="px read" ID="read2">ALT 35000 &nbsp;HDG 270 &nbsp;GS 488KT</DIV>
+    <svg id="plane" viewBox="0 0 120 40" aria-hidden="true"><path d="M2 22l18-2 22-12h10L40 19l38-3 10-12h7l-5 13 18 2c6 1 6 4 0 5l-18 2 5 13h-7L78 27l-38-3 12 11H42L20 23z"/></svg>
+    <DIV ID="word"></DIV>
+    <DIV CLASS="px" ID="sub">A &nbsp;I &nbsp;R &nbsp;W &nbsp;A &nbsp;Y &nbsp;S</DIV>
+    <DIV CLASS="px" ID="tag"></DIV>
+    <DIV ID="flash"></DIV>
+  </DIV>
+
+  <DIV ID="main" CLASS="scene">
+    <DIV CLASS="top">
+      <DIV CLASS="logo-m">HALCYON<SPAN>AIRWAYS</SPAN></DIV>
+      <BUTTON ID="eq" TYPE="button" CLASS="px" TITLE="Sound on/off">SOUND <I></I><I></I><I></I><I></I><I></I></BUTTON>
+    </DIV>
+    <DIV CLASS="nav">
+      <BUTTON TYPE="button" DATA-GO="home" DATA-SAY="MAIN SCREEN">HOME</BUTTON>
+      <BUTTON TYPE="button" DATA-GO="flights" DATA-SAY="SEARCH SCHEDULES AND FARES">FLIGHTS</BUTTON>
+      <BUTTON TYPE="button" DATA-GO="dest" DATA-SAY="WHERE WE FLY">DESTINATIONS</BUTTON>
+      <BUTTON TYPE="button" DATA-GO="fleet" DATA-SAY="OUR AIRCRAFT">FLEET</BUTTON>
+      <BUTTON TYPE="button" DATA-GO="club" DATA-SAY="FREQUENT FLYER PROGRAM">HALCYON CLUB</BUTTON>
+      <DIV CLASS="px say" ID="say">&raquo; SELECT A SECTION</DIV>
+    </DIV>
+    <DIV CLASS="panel">
+      <DIV CLASS="px ptitle" ID="ptitle">&raquo; WELCOME ABOARD</DIV>
+      <DIV CLASS="corner c1"></DIV><DIV CLASS="corner c2"></DIV><DIV CLASS="corner c3"></DIV><DIV CLASS="corner c4"></DIV>
+
+      <DIV CLASS="sec on" ID="s-home">
+        <CANVAS ID="globe" WIDTH="440" HEIGHT="440"></CANVAS>
+        <DIV CLASS="deps">
+          <DIV CLASS="px hd">NEXT DEPARTURES</DIV>
+          <DIV CLASS="px dep"><B>HA 214</B> LONDON <SPAN>08:40</SPAN></DIV>
+          <DIV CLASS="px dep"><B>HA 101</B> NEW YORK <SPAN>11:15</SPAN></DIV>
+          <DIV CLASS="px dep"><B>HA 330</B> TOKYO <SPAN>13:05</SPAN></DIV>
+          <DIV CLASS="px dep"><B>HA 077</B> PARIS <SPAN>16:50</SPAN></DIV>
+          <P CLASS="copy"><B>NEW:</B> non-stop to Tokyo every day from June 2001. Book online and save up to 10% on your fare.</P>
+        </DIV>
+      </DIV>
+
+      <DIV CLASS="sec" ID="s-flights">
+        <FORM ID="search" AUTOCOMPLETE="off">
+          <LABEL CLASS="px">FROM<SELECT NAME="from"><OPTION>TEL AVIV<OPTION>LONDON<OPTION>NEW YORK<OPTION>PARIS</SELECT></LABEL>
+          <LABEL CLASS="px">TO<SELECT NAME="to"><OPTION>LONDON<OPTION SELECTED>TOKYO<OPTION>NEW YORK<OPTION>PARIS</SELECT></LABEL>
+          <LABEL CLASS="px">DEPART<SELECT NAME="day"><OPTION>MON 18 JUN<OPTION>TUE 19 JUN<OPTION>WED 20 JUN</SELECT></LABEL>
+          <LABEL CLASS="px">ADULTS<SELECT NAME="pax"><OPTION>1<OPTION>2<OPTION>3<OPTION>4</SELECT></LABEL>
+          <BUTTON CLASS="px find" TYPE="submit">SEARCH &raquo;</BUTTON>
+        </FORM>
+        <DIV CLASS="px wire" ID="wire"></DIV>
+        <DIV ID="results"></DIV>
+      </DIV>
+
+      <DIV CLASS="sec" ID="s-dest">
+        <DIV CLASS="cities" ID="cities"></DIV>
+      </DIV>
+
+      <DIV CLASS="sec" ID="s-fleet">
+        <svg id="jet" viewBox="0 0 520 170" aria-hidden="true">
+          <path class="body" d="M30 96c0-14 20-22 60-22h330c30 0 52 10 62 22-10 8-32 14-62 14H90c-40 0-60-4-60-14z"/>
+          <path class="wing" d="M220 100l70 0 -60 58h-28z"/>
+          <path class="wing" d="M240 80l40 0 -40 -40h-18z"/>
+          <path class="tail" d="M58 76 30 26h22l42 50z"/>
+          <path class="win" d="M120 88h300"/>
+        </svg>
+        <DIV CLASS="px spec" STYLE="--x:96px;--y:40px">RANGE 11,000 KM</DIV>
+        <DIV CLASS="px spec" STYLE="--x:300px;--y:20px">SEATS 218</DIV>
+        <DIV CLASS="px spec" STYLE="--x:330px;--y:190px">CRUISE MACH 0.80</DIV>
+        <DIV CLASS="px spec" STYLE="--x:40px;--y:200px">BOEING 767-300ER &middot; 6 IN SERVICE</DIV>
+      </DIV>
+
+      <DIV CLASS="sec" ID="s-club">
+        <DIV CLASS="soon">
+          <DIV CLASS="px">HALCYON CLUB</DIV>
+          <DIV CLASS="px blink">UNDER CONSTRUCTION</DIV>
+          <P CLASS="copy">Our new frequent flyer area opens this fall. Check back soon!</P>
+        </DIV>
+      </DIV>
+    </DIV>
+    <DIV CLASS="px bottom">&copy; 2001 HALCYON AIRWAYS. ALL RIGHTS RESERVED. &nbsp;&middot;&nbsp; PRIVACY &nbsp;&middot;&nbsp; SITE MAP</DIV>
+  </DIV>
+
+  <BUTTON ID="skip" CLASS="px" TYPE="button">SKIP INTRO &raquo;</BUTTON>
+  <DIV ID="scan"></DIV>
+</DIV>
+
+</BODY>
+</HTML>
