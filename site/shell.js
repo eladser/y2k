@@ -1,4 +1,5 @@
 import { ERAS, NOTE, SOURCES } from './eras.js';
+import { build, play, LENGTH } from './modem.js';
 
 const $ = s => document.querySelector(s);
 const body = document.body;
@@ -124,6 +125,13 @@ const I = {
   reload: '<svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-2.3-5.7M20 4v5h-5"/></svg>',
   lock: '<svg viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>',
   star: '<svg viewBox="0 0 24 24"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg>',
+  mail: '<svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" fill="#fff" stroke="#556"/><path d="m3 6 9 7 9-7" fill="none" stroke="#556"/><circle cx="18" cy="17" r="3.5" fill="#d8361b"/></svg>',
+  print: '<svg viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="7" fill="#fff" stroke="#556"/><rect x="3" y="10" width="18" height="8" fill="#b8b8b0" stroke="#556"/><rect x="6" y="15" width="12" height="6" fill="#fff" stroke="#556"/><circle cx="18" cy="13" r="1" fill="#2f9a1f"/></svg>',
+  throb: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="#1c5fbf"/><path d="M7 13c5-2 6 3 10 2s4-4 7-3M9 21c3-1 5 1 8 0s5-3 7-2" stroke="#7fd36b" stroke-width="2.4" fill="none"/><ellipse cx="16" cy="16" rx="15" ry="5" fill="none" stroke="#f2c230" stroke-width="1.6" transform="rotate(-20 16 16)"/></svg>',
+  flag: '<svg viewBox="0 0 18 16"><path d="M2 3c2-1 4 0 6 1v5C6 8 4 7 2 8z" fill="#e8402a"/><path d="M9 4c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#4caf3a"/><path d="M2 9c2-1 4 0 6 1v5c-2-1-4-2-6-1z" fill="#2b62d6"/><path d="M9 10c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#f2c230"/></svg>',
+  dun: '<svg viewBox="0 0 32 32"><rect x="2" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="4" y="8" width="8" height="5" fill="#008080"/><rect x="18" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="20" y="8" width="8" height="5" fill="#008080"/><path d="M8 15v6h16v-6" fill="none" stroke="#000"/><rect x="12" y="22" width="8" height="6" rx="1" fill="#efe8b0" stroke="#000"/></svg>',
+  speaker: '<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#ffd23f" stroke="#555"/></svg>',
+  modem: '<svg viewBox="0 0 16 16"><rect x="1" y="3" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="9" y="8" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="2" y="4" width="4" height="2" fill="#0f0"/><rect x="10" y="9" width="4" height="2" fill="#0f0"/></svg>',
 };
 
 const CHROME = {
@@ -137,15 +145,32 @@ const CHROME = {
     </div>
     <div class="addr"><span>Address</span><div class="fld2">${I.page}${e.url}</div><span class="go"><i></i>Go</span><span>Links &raquo;</span></div>
     <div class="view"><div class="spot"></div></div>
-    <div class="sb"><span>${I.page}Done</span><span class="zone">${I.globe}Internet</span></div>`,
+    <div class="sb"><span>${I.page}<b class="txt">Done</b></span><span class="zone">${I.globe}Internet</span></div>`,
+  ie5: e => `
+    <div class="tb98">${I.page}<span class="t">${e.title}</span><span class="wb"><i class="w98">_</i><i class="w98">&#9633;</i><i class="w98">&times;</i></span></div>
+    <div class="menu"><span>File</span><span>Edit</span><span>View</span><span>Favorites</span><span>Tools</span><span>Help</span></div>
+    <div class="bar">
+      <span class="b">${I.back}Back</span><span class="b">${I.fwd}Forward</span><span class="b">${I.stop}Stop</span><span class="b">${I.refresh}Refresh</span><span class="b">${I.home}Home</span><i class="sep"></i>
+      <span class="b">${I.search}Search</span><span class="b">${I.fav}Favorites</span><span class="b">${I.hist}History</span><i class="sep"></i><span class="b">${I.mail}Mail</span><span class="b">${I.print}Print</span>
+      <span class="throb">${I.throb}</span>
+    </div>
+    <div class="addr"><span>Address</span><div class="fld2 sunk">${I.page}${e.url}</div><span>Links</span></div>
+    <div class="view sunk"><div class="spot"></div></div>
+    <div class="sb"><span class="msg thin-sunk">${I.page}<b class="txt">Done</b></span><span class="prog thin-sunk"><i></i></span><span class="zone thin-sunk">${I.globe}Internet</span></div>`,
   now: e => `
     <div class="tabs"><span class="dots"><i></i><i></i><i></i></span><div class="tab"><i class="fav"></i><span>${e.title}</span><span class="x">&times;</span></div></div>
     <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni">${I.lock}${e.url}</div>${I.star}</div>
     <div class="view"><div class="spot"></div></div>`,
 };
 
+const ICONS98 = `<div class="icons98" aria-hidden="true">
+  <span><svg viewBox="0 0 32 32"><rect x="4" y="4" width="24" height="17" fill="#c0c0c0" stroke="#000"/><rect x="7" y="7" width="18" height="11" fill="#008080"/><rect x="10" y="22" width="12" height="3" fill="#c0c0c0" stroke="#000"/><rect x="4" y="25" width="24" height="4" fill="#c0c0c0" stroke="#000"/></svg>My Computer</span>
+  <span><svg viewBox="0 0 32 32"><path d="M8 9h16l-2 20H10z" fill="#e8e8e8" stroke="#000"/><path d="M6 7h20v3H6z" fill="#c0c0c0" stroke="#000"/><path d="M12 13v13M16 13v13M20 13v13" stroke="#808080"/></svg>Recycle Bin</span>
+  <span>${'<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11" fill="#1c5fbf"/><path d="M7 13c5-2 6 3 10 2s4-4 7-3M9 21c3-1 5 1 8 0s5-3 7-2" stroke="#7fd36b" stroke-width="2.4" fill="none"/></svg>'}The Internet</span>
+</div>`;
 const clock = () => new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 const TASK = {
+  win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon"></span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
 setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20000);
@@ -172,10 +197,15 @@ function desk(e) {
   const d = $('#desk');
   d.dataset.os = e.os;
   const win = $('#win');
-  win.className = `win ${e.chrome === 'ie6' ? 'ie6' : 'chrome-now'}`;
+  win.className = `win ${{ ie5: 'ie5 w98', ie6: 'ie6', now: 'chrome-now' }[e.chrome]}`;
   win.innerHTML = CHROME[e.chrome](e);
+  $('.popup')?.remove();
+  hangup98?.();
   frame = document.createElement('iframe');
-  frame.src = `eras/${e.year}/index.html`;
+  const src = `eras/${e.year}/index.html`;
+  // 1999 starts offline: the page only loads once Dial-Up Networking has connected
+  if (e.dialup && !dialed()) dun(() => (frame.src = src));
+  else frame.src = src;
   frame.title = `Halcyon Airways homepage, ${e.year}`;
   frame.addEventListener('load', () => {
     frame.contentWindow.postMessage({ sound }, location.origin);
@@ -183,9 +213,104 @@ function desk(e) {
   });
   win.querySelector('.view').append(frame);
   $('#task').innerHTML = TASK[e.os]?.(e) ?? '';
+  $('.icons98')?.remove();
+  if (e.os === 'win98') $('.wall').insertAdjacentHTML('afterbegin', ICONS98);
   d.classList.remove('desk-in');
   void d.offsetWidth;
   d.classList.add('desk-in');
+}
+
+/* ---------- Dial-Up Networking ---------- */
+
+let hangup98 = null;
+const dialed = () => { try { return !!sessionStorage.getItem('halcyon.dialed'); } catch { return false; } };
+
+function dun(done) {
+  body.classList.add('dialing98');
+  const box = document.createElement('div');
+  box.className = 'dun w98';
+  box.setAttribute('role', 'dialog');
+  box.setAttribute('aria-label', 'Connect To');
+  box.innerHTML = `<div class="tb98">${I.modem}<span class="t">Connect To</span><span class="wb"><i class="w98">?</i><i class="w98">&times;</i></span></div>
+    <div class="body">
+      <div class="head">${I.dun}<span>Halcyon Online</span></div>
+      <div class="dr"><span>User name:</span><span class="fv sunk">guest</span></div>
+      <div class="dr"><span>Password:</span><span class="fv sunk">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</span></div>
+      <div class="chk"><i class="sunk">&#10003;</i>Save password</div>
+      <div class="dr"><span>Phone number:</span><span class="fv sunk">555-1999</span></div>
+      <div class="dr"><span>Dialing from:</span><span class="fv sunk">New Location</span></div>
+      <div class="btns"><button type="button" class="w98 c">Connect</button><button type="button" class="w98 o">Work Offline</button></div>
+    </div>`;
+  $('.wall').append(box);
+  const timers = [];
+  let snd = null;
+  const stop = () => {
+    timers.forEach(clearTimeout);
+    try { snd?.src.stop(); } catch { /* already over */ }
+    box.remove();
+    body.classList.remove('dialing98');
+    hangup98 = null;
+  };
+  const finish = () => {
+    stop();
+    done();
+  };
+  hangup98 = stop;
+  box.querySelector('.o').addEventListener('click', finish);
+  box.querySelector('.c').addEventListener('click', () => {
+    wake();
+    snd = play(ac, build(ac.sampleRate), !sound);
+    const b = box.querySelector('.body');
+    b.innerHTML = `<div class="head">${I.dun}<span>Connecting to Halcyon Online</span></div><div class="status"><b>Status:</b><span class="st">Dialing...</span></div><div class="btns"><button type="button" class="w98 x">Cancel</button></div>`;
+    b.querySelector('.x').addEventListener('click', finish);
+    b.querySelector('.x').focus();
+    const st = t => (b.querySelector('.st').textContent = t);
+    timers.push(setTimeout(() => st('Verifying user name and password...'), 3400));
+    timers.push(setTimeout(() => st('Logging on to network...'), 7350));
+    timers.push(setTimeout(() => st('Connected at 53,333 bps.'), LENGTH * 1000));
+    timers.push(setTimeout(() => {
+      try { sessionStorage.setItem('halcyon.dialed', '1'); } catch { /* fine */ }
+      const m = $('#modemicon');
+      if (m) m.innerHTML = I.modem;
+      finish();
+    }, LENGTH * 1000 + 900));
+  });
+  box.querySelector('.c').focus();
+}
+
+/* ---------- messages from the era pages: status bar text, progress, popups ---------- */
+
+addEventListener('message', ev => {
+  if (ev.origin !== location.origin || !ev.data || typeof ev.data !== 'object') return;
+  const { status, progress, popup, closePopup } = ev.data;
+  if (closePopup) $(".popup")?.remove();
+  if (typeof status === 'string') {
+    const t = $('#win .sb .txt');
+    if (t) t.textContent = status;
+  }
+  if (typeof progress === 'number') $('#win .sb .prog')?.style.setProperty('--p', `${Math.round(Math.min(1, Math.max(0, progress)) * 100)}%`);
+  if (popup) openPopup(popup);
+});
+
+function openPopup({ src, title = '', w = 420, h = 360 }) {
+  const url = new URL(src, frame?.contentWindow?.location.href ?? location.href);
+  // only our own era pages, never an arbitrary URL handed over in a message
+  if (url.origin !== location.origin || !url.pathname.includes('/eras/')) return;
+  $('.popup')?.remove();
+  const p = document.createElement('div');
+  p.className = 'popup w98';
+  const box = $('#win').getBoundingClientRect(), wall = $('.wall').getBoundingClientRect();
+  Object.assign(p.style, { width: `${w}px`, height: `${h}px`, left: `${box.left - wall.left + 90}px`, top: `${box.top - wall.top + 70}px` });
+  p.innerHTML = `<div class="tb98">${I.page}<span class="t"></span><span class="wb"><i class="w98 x" role="button" tabindex="0" aria-label="Close">&times;</i></span></div>`;
+  p.querySelector('.t').textContent = title;
+  const f = document.createElement('iframe');
+  f.src = url.href;
+  f.title = title;
+  p.append(f);
+  const close = () => p.remove();
+  p.querySelector('.x').addEventListener('click', close);
+  p.querySelector('.x').addEventListener('keydown', k => k.key === 'Enter' && close());
+  $('.wall').append(p);
 }
 
 function step(dir) {

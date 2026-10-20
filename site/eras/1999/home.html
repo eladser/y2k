@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Halcyon Airways - Home</TITLE>
+<SCRIPT LANGUAGE="JavaScript" SRC="halcyon.js"></SCRIPT>
+<SCRIPT SRC="dialup.js"></SCRIPT>
+<STYLE TYPE="text/css">
+<!--
+BODY, TD, SELECT, INPUT { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; }
+A { color: #003399; }
+A:hover { color: #FF6600; }
+.small { font-size: 10px; color: #666666; }
+.box { border: 1px solid #003399; }
+.menu { position: absolute; visibility: hidden; z-index: 10; width: 150px; background-color: #FFFFFF; border: 1px solid #003399; }
+.menu A { display: block; padding: 3px 6px; text-decoration: none; }
+.menu A:hover { background-color: #FFCC66; color: #003366; }
+-->
+</STYLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" TEXT="#000000" LINK="#003399" VLINK="#663399" MARGINWIDTH="0" MARGINHEIGHT="0" TOPMARGIN="0" LEFTMARGIN="0">
+
+<TABLE WIDTH="760" BORDER="0" CELLPADDING="0" CELLSPACING="0" ALIGN="center">
+<TR>
+<!-- left column -->
+<TD WIDTH="160" VALIGN="top" BGCOLOR="#EEEEFF">
+  <DIV STYLE="position: relative;">
+  <!-- fly-out menus, positioned against this column -->
+<DIV ID="menu1" CLASS="menu" STYLE="left: 150px; top: 38px;" onMouseOver="showMenu('menu1')" onMouseOut="hideSoon()">
+  <A HREF="#book">Arrivals &amp; Departures</A><A HREF="#book">Route Map</A><A HREF="#book">Timetable (PDF, 220K)</A>
+</DIV>
+<DIV ID="menu2" CLASS="menu" STYLE="left: 150px; top: 54px;" onMouseOver="showMenu('menu2')" onMouseOut="hideSoon()">
+  <A HREF="#book">Baggage Allowance</A><A HREF="#book">Passports &amp; Visas</A><A HREF="#book">Airport Guide</A>
+</DIV>
+<DIV ID="menu3" CLASS="menu" STYLE="left: 150px; top: 70px;" onMouseOver="showMenu('menu3')" onMouseOut="hideSoon()">
+  <A HREF="#book">Kosher &amp; Special Meals</A><A HREF="#book">Travelling with Children</A><A HREF="#book">Wheelchair Assistance</A>
+</DIV>
+  </DIV>
+  <IMG SRC="img/spacer.gif" WIDTH="160" HEIGHT="10" ALT=""><BR>
+  <IMG SRC="img/hd_quick.gif" WIDTH="160" HEIGHT="22" ALT="Quick Links"><BR>
+  <TABLE WIDTH="160" BORDER="0" CELLPADDING="5" CELLSPACING="0" CLASS="box" BGCOLOR="#FFFFFF">
+  <TR><TD>
+    <IMG SRC="img/bullet.gif" WIDTH="9" HEIGHT="9" ALT=""> <A HREF="#" onMouseOver="showMenu('menu1')" onMouseOut="hideSoon()">Flight Schedules</A><BR>
+    <IMG SRC="img/bullet.gif" WIDTH="9" HEIGHT="9" ALT=""> <A HREF="#" onMouseOver="showMenu('menu2')" onMouseOut="hideSoon()">Travel Information</A><BR>
+    <IMG SRC="img/bullet.gif" WIDTH="9" HEIGHT="9" ALT=""> <A HREF="#" onMouseOver="showMenu('menu3')" onMouseOut="hideSoon()">Special Services</A><BR>
+    <IMG SRC="img/bullet.gif" WIDTH="9" HEIGHT="9" ALT=""> <A HREF="#club">Halcyon Club</A><BR>
+    <IMG SRC="img/bullet.gif" WIDTH="9" HEIGHT="9" ALT=""> <A HREF="javascript:openWin('y2k.html','Halcyon Airways - Y2K Readiness',440,380)">Y2K Readiness</A>
+  </TD></TR>
+  </TABLE>
+
+  <A NAME="book"></A>
+  <IMG SRC="img/spacer.gif" WIDTH="160" HEIGHT="10" ALT=""><BR>
+  <IMG SRC="img/hd_book.gif" WIDTH="160" HEIGHT="22" ALT="Book a Flight"><BR>
+  <FORM NAME="booking" ACTION="results.html" METHOD="GET" onSubmit="return checkForm(this)">
+  <TABLE WIDTH="160" BORDER="0" CELLPADDING="4" CELLSPACING="0" CLASS="box" BGCOLOR="#FFFFFF">
+  <TR><TD>
+    <B>From:</B><BR>
+    <SELECT NAME="from"><OPTION VALUE="TLV" SELECTED>Tel Aviv<OPTION VALUE="LHR">London<OPTION VALUE="CDG">Paris<OPTION VALUE="JFK">New York</SELECT><BR>
+    <B>To:</B><BR>
+    <SELECT NAME="to"><OPTION VALUE="TLV">Tel Aviv<OPTION VALUE="LHR" SELECTED>London<OPTION VALUE="CDG">Paris<OPTION VALUE="JFK">New York<OPTION VALUE="FCO">Rome<OPTION VALUE="ATH">Athens</SELECT><BR>
+    <B>Depart:</B><BR>
+    <SELECT NAME="mon"><OPTION>Jan<OPTION>Feb<OPTION SELECTED>Mar<OPTION>Apr<OPTION>May<OPTION>Jun<OPTION>Jul<OPTION>Aug<OPTION>Sep<OPTION>Oct<OPTION>Nov<OPTION>Dec</SELECT>
+    <SELECT NAME="day"><OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>11<OPTION>12<OPTION>13<OPTION SELECTED>14<OPTION>15<OPTION>16<OPTION>17<OPTION>18<OPTION>19<OPTION>20<OPTION>21<OPTION>22<OPTION>23<OPTION>24<OPTION>25<OPTION>26<OPTION>27<OPTION>28<OPTION>29<OPTION>30<OPTION>31</SELECT><BR>
+    <B>Return:</B><BR>
+    <SELECT NAME="ret"><OPTION VALUE="">One way<OPTION>Jan<OPTION>Feb<OPTION>Mar<OPTION SELECTED>Apr<OPTION>May<OPTION>Jun<OPTION>Jul<OPTION>Aug<OPTION>Sep<OPTION>Oct<OPTION>Nov<OPTION>Dec</SELECT>
+    <SELECT NAME="retday"><OPTION VALUE="">--<OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION SELECTED>5<OPTION>6<OPTION>7<OPTION>8<OPTION>9<OPTION>10<OPTION>11<OPTION>12<OPTION>13<OPTION>14<OPTION>15<OPTION>16<OPTION>17<OPTION>18<OPTION>19<OPTION>20<OPTION>21<OPTION>22<OPTION>23<OPTION>24<OPTION>25<OPTION>26<OPTION>27<OPTION>28<OPTION>29<OPTION>30<OPTION>31</SELECT><BR>
+    <B>Adults:</B> <SELECT NAME="pax"><OPTION>1<OPTION>2<OPTION>3<OPTION>4<OPTION>5</SELECT><BR>
+    <INPUT TYPE="hidden" NAME="yy" VALUE="99">
+    <IMG SRC="img/spacer.gif" WIDTH="1" HEIGHT="6" ALT=""><BR>
+    <INPUT TYPE="image" SRC="img/btn_search.gif" WIDTH="72" HEIGHT="20" BORDER="0" ALT="Search">
+  </TD></TR>
+  </TABLE>
+  </FORM>
+</TD>
+
+<TD WIDTH="10"><IMG SRC="img/spacer.gif" WIDTH="10" HEIGHT="1" ALT=""></TD>
+
+<!-- center column -->
+<TD WIDTH="420" VALIGN="top">
+  <IMG SRC="img/spacer.gif" WIDTH="420" HEIGHT="12" ALT=""><BR>
+  <IMG SRC="img/welcome.gif" WIDTH="440" HEIGHT="30" ALT="Welcome to Halcyon Airways Online"><BR>
+  <P>Welcome aboard! Halcyon Airways flies to 38 cities on four continents from our hub in Tel Aviv. Now you can check schedules, see our latest fares and even book your tickets right here on the World Wide Web, 24 hours a day.</P>
+  <P><IMG SRC="img/new.gif" WIDTH="32" HEIGHT="14" ALIGN="absmiddle" ALT="New!"> <B>Introducing Halcyon e-Tickets.</B> Book on this site and your ticket waits for you at the airport. No more paper tickets to lose in the mail!</P>
+
+  <IMG SRC="img/specials.gif" WIDTH="440" HEIGHT="20" ALT="Web Specials"><BR>
+  <TABLE WIDTH="440" BORDER="0" CELLPADDING="4" CELLSPACING="1" BGCOLOR="#CCCCFF">
+  <TR BGCOLOR="#003399"><TD><FONT COLOR="#FFFFFF"><B>From Tel Aviv to</B></FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Round trip from</B></FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Travel by</B></FONT></TD></TR>
+  <TR BGCOLOR="#FFFFFF"><TD>Athens</TD><TD><B>$199</B></TD><TD>May 31</TD></TR>
+  <TR BGCOLOR="#EEEEFF"><TD>Rome</TD><TD><B>$349</B></TD><TD>May 31</TD></TR>
+  <TR BGCOLOR="#FFFFFF"><TD>Paris</TD><TD><B>$379</B></TD><TD>Jun 15</TD></TR>
+  <TR BGCOLOR="#EEEEFF"><TD>London</TD><TD><B>$399</B></TD><TD>Jun 15</TD></TR>
+  <TR BGCOLOR="#FFFFFF"><TD>New York</TD><TD><B>$699</B></TD><TD>Jun 30</TD></TR>
+  </TABLE>
+  <P CLASS="small">Fares are per person, based on round-trip travel booked on halcyonair.com. Taxes and fees not included. Restrictions apply.</P>
+
+  <A NAME="dest"></A>
+  <TABLE WIDTH="440" BORDER="0" CELLPADDING="0" CELLSPACING="0">
+  <TR>
+    <TD WIDTH="110" VALIGN="top"><IMG SRC="img/dest_tokyo.jpg" WIDTH="100" HEIGHT="66" ALT="Tokyo" BORDER="1"></TD>
+    <TD VALIGN="top"><B>Coming soon: Tokyo!</B><BR>Starting in June, fly non-stop to Tokyo three times a week on our new Boeing 767-300ER. <A HREF="#book">Book now</A> and earn double Halcyon Club miles.</TD>
+  </TR>
+  <TR><TD COLSPAN="2"><IMG SRC="img/spacer.gif" WIDTH="1" HEIGHT="10" ALT=""></TD></TR>
+  <TR>
+    <TD WIDTH="110" VALIGN="top"><IMG SRC="img/dest_lisbon.jpg" WIDTH="100" HEIGHT="66" ALT="Lisbon" BORDER="1"></TD>
+    <TD VALIGN="top"><B>Spring in Lisbon</B><BR>Hotel and flight packages from $499. Call your travel agent or <A HREF="#book">search flights</A>.</TD>
+  </TR>
+  </TABLE>
+</TD>
+
+<TD WIDTH="10"><IMG SRC="img/spacer.gif" WIDTH="10" HEIGHT="1" ALT=""></TD>
+
+<!-- right column -->
+<TD WIDTH="160" VALIGN="top" BGCOLOR="#EEEEFF">
+  <A NAME="club"></A>
+  <IMG SRC="img/spacer.gif" WIDTH="160" HEIGHT="10" ALT=""><BR>
+  <IMG SRC="img/hd_club.gif" WIDTH="160" HEIGHT="22" ALT="Halcyon Club"><BR>
+  <FORM NAME="club" onSubmit="return clubLogin(this)">
+  <TABLE WIDTH="160" BORDER="0" CELLPADDING="4" CELLSPACING="0" CLASS="box" BGCOLOR="#FFFFFF">
+  <TR><TD>
+    Member number:<BR><INPUT TYPE="text" NAME="member" SIZE="14" MAXLENGTH="10"><BR>
+    PIN:<BR><INPUT TYPE="password" NAME="pin" SIZE="6" MAXLENGTH="4"><BR>
+    <IMG SRC="img/spacer.gif" WIDTH="1" HEIGHT="6" ALT=""><BR>
+    <INPUT TYPE="image" SRC="img/btn_login.gif" WIDTH="58" HEIGHT="20" BORDER="0" ALT="Log In"><BR>
+    <SPAN CLASS="small">Not a member? <A HREF="#club">Join free</A></SPAN>
+  </TD></TR>
+  </TABLE>
+  </FORM>
+
+  <TABLE WIDTH="160" BORDER="0" CELLPADDING="4" CELLSPACING="0">
+  <TR><TD ALIGN="center">
+    <IMG SRC="img/saver.gif" WIDTH="64" HEIGHT="56" ALT="Screen saver"><BR>
+    <B>FREE Halcyon<BR>Screen Saver!</B><BR>
+    <A HREF="javascript:alert('Download size: 1.4 MB (about 6 minutes at 28.8K).\n\nThe download server is busy. Please try again later.')">Download now</A><BR><BR>
+    <A HREF="javascript:openWin('y2k.html','Halcyon Airways - Y2K Readiness',440,380)"><IMG SRC="img/badge_y2k.gif" WIDTH="88" HEIGHT="31" BORDER="0" ALT="Y2K Ready"></A><BR><BR>
+    <IMG SRC="img/badge_ie.gif" WIDTH="88" HEIGHT="31" ALT="Best viewed in Internet Explorer 4.0 or higher">
+  </TD></TR>
+  </TABLE>
+</TD>
+</TR>
+</TABLE>
+
+<A NAME="contact"></A>
+<TABLE WIDTH="760" BORDER="0" CELLPADDING="8" CELLSPACING="0" ALIGN="center">
+<TR><TD ALIGN="center" CLASS="small">
+<HR SIZE="1" NOSHADE COLOR="#CCCCFF">
+<A HREF="home.html">Home</A> | <A HREF="#book">Flights &amp; Fares</A> | <A HREF="#dest">Destinations</A> | <A HREF="#club">Halcyon Club</A> | <A HREF="javascript:openWin('y2k.html','Halcyon Airways - Y2K Readiness',440,380)">About Us</A><BR><BR>
+Reservations: 1-800-HALCYON (1-800-425-2966), 24 hours a day.<BR>
+Questions or comments about this site? Email <A HREF="#contact">webmaster@halcyonair.com</A>.<BR><BR>
+Copyright &copy; 1999 Halcyon Airways Ltd. All rights reserved. | <A HREF="#contact">Privacy Policy</A> | <A HREF="#contact">Legal</A><BR>
+Best viewed with Internet Explorer 4.0 or higher at 800 x 600. Last updated <SCRIPT>document.write(today())</SCRIPT>.
+</TD></TR>
+</TABLE>
+
+</BODY>
+</HTML>

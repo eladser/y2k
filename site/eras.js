@@ -4,7 +4,126 @@ import { FILM, PHOTOS, LOOK } from './eras/2026/prompts.js';
 // typical page weight that year in KB. Both get filled from sourced numbers only.
 export const ERAS = [
   { year: 1996, browser: 'NETSCAPE NAVIGATOR 3', short: 'NETSCAPE 3', os: 'win95', conn: '28.8K MODEM', kbps: 3.6, page: 14.1, built: false },
-  { year: 1999, browser: 'INTERNET EXPLORER 5', short: 'IE 5', os: 'win98', conn: '56K MODEM', kbps: 4.25, page: 44, built: false },
+  {
+    year: 1999, browser: 'INTERNET EXPLORER 5', short: 'IE 5', os: 'win98', chrome: 'ie5', conn: '56K MODEM', kbps: 4.25, page: 44, built: true, dialup: true,
+    url: 'http://www.halcyonair.com/',
+    title: 'Halcyon Airways - Welcome - Microsoft Internet Explorer',
+    stack: 'HTML 4.0 frames · tables and spacer GIFs · JavaScript 1.2 · DHTML · a Perl CGI',
+    xray: [
+      {
+        name: 'Dialing in',
+        sel: null,
+        then: 'Every visit started with the modem: about twenty seconds of handshake, and nobody could phone the house while you were online. The sound you heard is built live from the ITU frequencies, not a recording.',
+        now: 'The connection is there before you open the browser. Nobody thinks about it until the Wi-Fi drops.',
+        code: `; Dial-Up Networking > Halcyon Online > Properties
+AT&F1 S7=60 L2 M1
+; L2  speaker volume medium
+; M1  speaker on until the carrier locks
+ATDT 555-1999`,
+      },
+      {
+        name: 'Frames',
+        sel: 'frameset',
+        then: 'The banner and buttons lived in one frame and the content in another, so only the bottom half reloaded when you clicked. Bookmarks always pointed at the frameset, Back went back inside one frame, and search engines indexed the pieces separately.',
+        now: 'One document with a sticky header. History, bookmarks and search engines all see real pages.',
+        code: `<FRAMESET ROWS="108,*" FRAMEBORDER="0" BORDER="0">
+  <FRAME SRC="top.html" NAME="top" SCROLLING="no" NORESIZE>
+  <FRAME SRC="home.html" NAME="main">
+  <NOFRAMES>This site uses frames, but your browser
+    doesn't support them.</NOFRAMES>
+</FRAMESET>
+
+<A HREF="home.html#book" TARGET="main">...</A>`,
+      },
+      {
+        name: 'Rollover buttons',
+        sel: 'frame[name="top"]',
+        then: 'Each button was two GIFs, cut from one Photoshop file. JavaScript swapped the picture on mouseover, and the "on" states were preloaded so the first hover didn\'t flash. Dreamweaver wrote this for you as MM_swapImage().',
+        now: 'A real link with text in it, styled with :hover and :focus-visible. One element, no images, and it works with a keyboard.',
+        code: `<A HREF="home.html#book" TARGET="main"
+  onMouseOver="swapImage('nav2','img/nav_fares_on.gif')"
+  onMouseOut="restoreImage()"><IMG NAME="nav2"
+  SRC="img/nav_fares.gif" WIDTH="126" HEIGHT="24"></A>
+
+function swapImage(name, src) {
+  var img = document.images[name];
+  img.oldSrc = img.src;
+  img.src = src;
+  swapped = img;
+}`,
+      },
+      {
+        name: 'Tables and spacer.gif',
+        sel: 'frame[name="main"]',
+        then: 'Layout was a table 760 pixels wide, because most screens were 800 by 600. Gaps were a transparent 1x1 GIF stretched to whatever size was needed. Fonts were Verdana at 11px, because it was on every PC and still readable that small.',
+        now: 'CSS grid, gap, and widths that follow the window. The spacer is gone; it was 43 bytes and it was everywhere.',
+        code: `<TABLE WIDTH="760" BORDER="0" CELLPADDING="0"
+       CELLSPACING="0" ALIGN="center">
+<TR>
+<TD WIDTH="160" VALIGN="top" BGCOLOR="#EEEEFF">...</TD>
+<TD WIDTH="10"><IMG SRC="img/spacer.gif"
+    WIDTH="10" HEIGHT="1" ALT=""></TD>
+<TD WIDTH="420" VALIGN="top">...</TD>`,
+      },
+      {
+        name: 'DHTML menus',
+        sel: 'frame[name="main"]',
+        then: 'Netscape 4 and IE 4 each had their own idea of a movable element, so every menu script started by asking which browser it was in. Hover Quick Links on the left to see one.',
+        now: 'One standard DOM. A menu like this is a few lines of CSS with :hover and :focus-within, or a popover.',
+        code: `function getLayer(id) {
+  if (document.getElementById)
+    return document.getElementById(id).style;
+  if (document.all) return document.all[id].style;
+  if (document.layers) return document.layers[id];
+}
+
+function showMenu(id) {
+  clearTimeout(menuTimer);
+  hideMenus();
+  var m = getLayer(id);
+  m.visibility = document.layers ? "show" : "visible";
+}`,
+      },
+      {
+        name: 'Booking form',
+        sel: 'frame[name="main"]',
+        then: 'Month and day dropdowns, no year, an alert() when you got it wrong, and a full page reload to a Perl script on the server. The results page you get here is built in the browser instead.',
+        now: 'A date input, validation the browser does itself, and results that load without leaving the page.',
+        code: `<FORM ACTION="/cgi-bin/booking.pl" METHOD="GET"
+      onSubmit="return checkForm(this)">
+
+function checkForm(f) {
+  if (f.from.selectedIndex == f.to.selectedIndex) {
+    alert("Please choose two different cities.");
+    f.to.focus();
+    return false;
+  }
+  return true;
+}`,
+      },
+      {
+        name: 'Pop-up windows',
+        sel: null,
+        then: 'Anything extra opened in a new, smaller window with the toolbars switched off. Try About Us or the Y2K badge. A real window.open would leave this page, so the pop-up is drawn on the desktop instead.',
+        now: '<dialog>, opened in the same page, closed with Escape, and never blocked by a pop-up blocker.',
+        code: `window.open("y2k.html", "halcyon",
+  "width=440,height=380,toolbar=no,location=no," +
+  "scrollbars=yes,resizable=no");`,
+      },
+      {
+        name: 'Two-digit years',
+        sel: null,
+        then: 'getYear() returned 99 in 1999. On January 1, 2000 Netscape returned 100 and Internet Explorer returned 2000, so pages that added 1900 printed the year 19100. The footer of this page still uses the old code.',
+        now: 'getFullYear(), ISO 8601 dates, and Intl.DateTimeFormat to show them in the reader\'s format.',
+        code: `function today() {
+  var d = new Date();
+  return (d.getMonth() + 1) + "/" + d.getDate() + "/" +
+         (d.getYear() % 100);
+}
+// the classic bug:  "19" + d.getYear()  ->  "19100"`,
+      },
+    ],
+  },
   {
     year: 2001, browser: 'INTERNET EXPLORER 6', short: 'IE 6', os: 'xp', chrome: 'ie6', conn: '56K MODEM', kbps: 4.25, page: 91, built: true,
     url: 'http://www.halcyonair.com/flash/index.html',

@@ -324,3 +324,67 @@ body.xr .wall { padding-right: min(488px, 100%); }
   #pass h2 { font-size: 24px; }
 }
 @media (prefers-reduced-motion: reduce) { #pass[open] { animation: none; } }
+
+/* ---------- Windows 98, 1999 ---------- */
+
+[data-os="win98"] .wall { background: #008080; }
+.w98 { box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #dfdfdf, inset -2px -2px #808080, inset 2px 2px #fff; background: #c0c0c0; }
+.sunk { box-shadow: inset 1px 1px #808080, inset -1px -1px #fff, inset 2px 2px #0a0a0a, inset -2px -2px #dfdfdf; background: #fff; }
+.thin-sunk { box-shadow: inset 1px 1px #808080, inset -1px -1px #fff; }
+.ie5 { padding: 3px; font: 11px Tahoma, 'MS Sans Serif', sans-serif; color: #000; }
+.tb98 { display: flex; align-items: center; gap: 4px; height: 20px; padding: 0 2px 0 4px; background: linear-gradient(90deg, #000080, #1084d0); color: #fff; font: bold 11px Tahoma, sans-serif; }
+.tb98 .t { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.tb98 > svg, .task-98 .job svg, .ie5 .sb svg, .ie5 .addr svg { width: 16px; height: 16px; flex: none; }
+.tb98 .wb { display: flex; gap: 2px; }
+.tb98 .wb i { width: 16px; height: 14px; display: grid; place-items: center; color: #000; font: bold 9px/1 Tahoma, sans-serif; font-style: normal; }
+.tb98 .wb i:last-child { margin-left: 2px; }
+.ie5 .menu { display: flex; align-items: center; height: 20px; }
+.ie5 .menu span { padding: 0 6px; }
+.ie5 .bar { display: flex; align-items: stretch; height: 46px; border-top: 1px solid #808080; box-shadow: inset 0 1px #fff; }
+.ie5 .bar .b { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; min-width: 50px; padding: 0 4px; }
+.ie5 .bar svg { width: 22px; height: 22px; filter: grayscale(1) contrast(.9); }
+.ie5 .bar .b:hover { box-shadow: inset -1px -1px #808080, inset 1px 1px #fff; }
+.ie5 .bar .b:hover svg { filter: none; }
+.ie5 .bar .sep { width: 2px; margin: 4px 3px; box-shadow: inset 1px 0 #808080, inset -1px 0 #fff; }
+.ie5 .bar .throb { margin-left: auto; width: 40px; display: grid; place-items: center; background: #000; }
+.ie5 .bar .throb svg { width: 30px; height: 30px; filter: none; }
+.ie5 .addr { display: flex; align-items: center; gap: 4px; height: 26px; padding: 0 3px; border-top: 1px solid #808080; box-shadow: inset 0 1px #fff; }
+.ie5 .addr .fld2 { flex: 1; display: flex; align-items: center; gap: 4px; height: 20px; padding: 0 4px; overflow: hidden; white-space: nowrap; }
+.ie5 .view { margin-top: 2px; }
+.ie5 .sb { display: flex; gap: 2px; height: 20px; margin-top: 2px; }
+.ie5 .sb > span { display: flex; align-items: center; gap: 4px; padding: 0 4px; overflow: hidden; white-space: nowrap; }
+.ie5 .sb .msg { flex: 1; }
+.ie5 .sb .prog { width: 130px; padding: 2px; }
+.ie5 .sb .prog i { display: block; height: 100%; width: var(--p, 0%); background: repeating-linear-gradient(90deg, #000080 0 7px, transparent 7px 9px); }
+.ie5 .sb .zone { width: 150px; }
+
+.task-98 { display: flex; align-items: center; gap: 4px; height: 30px; flex: none; padding: 2px 2px 0; font: 11px Tahoma, sans-serif; color: #000; box-shadow: inset 0 1px #dfdfdf, inset 0 2px #fff; background: #c0c0c0; }
+.task-98 .start { display: flex; align-items: center; gap: 4px; height: 24px; padding: 0 6px 0 4px; font-weight: bold; }
+.task-98 .start svg { width: 18px; height: 16px; }
+.task-98 .job { display: flex; align-items: center; gap: 5px; width: 210px; height: 24px; padding: 0 6px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; background: repeating-conic-gradient(#c0c0c0 0 25%, #fff 0 50%) 0 0 / 2px 2px; font-weight: bold; }
+.task-98 .tray { margin-left: auto; display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 6px; }
+.task-98 .tray svg { width: 16px; height: 16px; }
+
+/* Dial-Up Networking */
+.dun { position: absolute; z-index: 5; left: 50%; top: 46%; translate: -50% -50%; width: 340px; padding: 3px; font: 11px Tahoma, 'MS Sans Serif', sans-serif; color: #000; }
+.dun .body { padding: 12px 12px 10px; }
+.dun .head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 10px; box-shadow: 0 1px #808080, 0 2px #fff; font-weight: bold; }
+.dun .head svg { width: 32px; height: 32px; flex: none; }
+.dun .dr { display: grid; grid-template-columns: 92px 1fr; align-items: center; margin-bottom: 7px; }
+.dun .dr .fv { height: 20px; padding: 3px 4px; white-space: nowrap; }
+.dun .chk { display: flex; align-items: center; gap: 6px; margin: 2px 0 10px 92px; }
+.dun .chk i { width: 13px; height: 13px; display: grid; place-items: center; font: bold 10px/1 Tahoma; font-style: normal; }
+.dun .btns { display: flex; justify-content: flex-end; gap: 6px; margin-top: 12px; }
+.dun button { min-width: 75px; height: 23px; padding: 0 8px; border: 0; font: 11px Tahoma, sans-serif; color: #000; cursor: pointer; }
+.dun button:active { box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff, inset 2px 2px #808080; }
+.dun button:focus-visible { outline: 1px dotted #000; outline-offset: -5px; }
+.dun .status { min-height: 52px; line-height: 1.6; }
+.dun .status b { display: block; }
+body.dialing98 #win { visibility: hidden; }
+
+/* window.open, 1999 style */
+.popup { position: absolute; z-index: 6; padding: 3px; display: flex; flex-direction: column; }
+.popup iframe { flex: 1; border: 0; background: #fff; margin-top: 2px; }
+.icons98 { position: absolute; left: 14px; top: 14px; display: grid; gap: 18px; z-index: 0; }
+.icons98 span { display: grid; justify-items: center; gap: 4px; width: 74px; font: 11px Tahoma, sans-serif; color: #fff; text-align: center; }
+.icons98 svg { width: 32px; height: 32px; }
