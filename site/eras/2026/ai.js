@@ -5,7 +5,12 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 // the bent-glass edge is an SVG filter inside backdrop-filter, which only Chromium draws
 if (navigator.userAgentData?.brands?.some(b => b.brand === 'Chromium')) document.documentElement.classList.add('lens');
-if (reduce) $('.film').pause();
+// the film only downloads for people who want motion; the poster stays otherwise
+if (!reduce) {
+  const film = $('.film');
+  film.preload = 'auto';
+  film.play().catch(() => {});
+}
 
 const usd = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
 const PLACES = [

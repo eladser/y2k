@@ -8,14 +8,23 @@
 <meta name="description" content="One airline homepage, rebuilt for each era of the web from 1996 to 2026. Try any version, then X-ray it to see how it was made.">
 <meta property="og:title" content="Halcyon Airways · one homepage, every era of the web">
 <meta property="og:description" content="The same airline homepage, rebuilt eight times between 1996 and 2026. Open one, click around, then X-ray it to see how it was built.">
+<meta property="og:type" content="website">
 <meta property="og:image" content="https://y2k.eladser.dev/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="A split-flap departures board listing eight years of the web, from Netscape 3 in 1996 to Chrome in 2026">
 <meta property="og:url" content="https://y2k.eladser.dev/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0f1115">
+<link rel="canonical" href="https://y2k.eladser.dev/">
 <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
 <link rel="preload" href="fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="shell.css">
 <script type="module" src="shell.js"></script>
+<link rel="modulepreload" href="eras.js">
+<link rel="modulepreload" href="modem.js">
+<link rel="modulepreload" href="eras/2026/prompts.js">
 </head>
 <body>
 
@@ -34,7 +43,7 @@
   <div class="ctl">
     <button id="prev" type="button" aria-label="Earlier year"><svg viewBox="0 0 16 16"><path d="M11 2 4 8l7 6z"/></svg></button>
     <button id="next" type="button" aria-label="Later year"><svg viewBox="0 0 16 16"><path d="m5 2 7 6-7 6z"/></svg></button>
-    <button id="all" type="button"><span class="lbl">All years</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h12v2H2z"/></svg></button>
+    <button id="all" type="button" aria-label="All years"><span class="lbl">All years</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h12v2H2z"/></svg></button>
     <button id="xr" type="button" aria-pressed="false">X-ray</button>
     <button type="button" data-pass aria-label="How this works">?</button>
     <button id="snd" type="button" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2zm9-1a4 4 0 0 1 0 6l-1-1a2.6 2.6 0 0 0 0-4z"/></svg></button>
@@ -81,6 +90,7 @@
 <aside id="xray" aria-label="How this page was built">
   <div class="xr-head"><h2 id="xr-title">X-ray</h2><p id="xr-stack"></p></div>
   <ul class="xr-list" id="xr-list"></ul>
+  <p class="xr-hint">Open one to see where it is on the page.</p>
   <p class="xr-foot" id="xr-foot"></p>
 </aside>
 

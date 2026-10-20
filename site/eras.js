@@ -273,9 +273,8 @@ on (release) {
         sel: '#search',
         then: 'Flash 5 could talk to the server without reloading the page, years before AJAX had a name. loadVariables posted the form to an ASP script, which answered with URL-encoded text that the player turned into variables.',
         now: 'fetch() sends JSON and gets JSON back, and the response can be typed, cached or cancelled. The bigger change is plain HTML underneath, so the search still works with JavaScript off.',
-        code: `on (release) {
-    from = fromBox.text;
-    to = toBox.text;
+        code: `// the two input boxes are bound to the variables "from" and "to"
+on (release) {
     loadVariables("search.asp", this, "POST");
 }
 // search.asp answered with plain text:
@@ -306,9 +305,11 @@ onClipEvent (data) {
         sel: '#stage',
         then: 'The movie was drawn at 760 by 440 and scale="showall" stretched it to fit, letterboxing the rest in black. A small window got small text, and a big one got blurry bitmaps.',
         now: 'Layout reflows to the space it has. Text stays the size you chose, and images pick a resolution with srcset.',
-        code: `Stage.scaleMode = "showAll";
-// "noScale" kept pixels sharp but cropped the movie,
-// "exactFit" filled the window and squashed everything`,
+        code: `<PARAM NAME="scale" VALUE="showall">
+<EMBED src="halcyon.swf" scale="showall" ...>
+
+<!-- "noborder" filled the window and cropped the edges,
+     "exactfit" filled it and squashed everything -->`,
       },
     ],
   },
@@ -484,7 +485,7 @@ dialog.showModal();`,
         name: 'Rounded corners',
         sel: '.box',
         then: 'Firefox and Safari each had their own property for rounded corners, and Internet Explorer had none, so IE users saw square boxes. The fallback was four corner images per box.',
-        now: 'border-radius has worked everywhere for over a decade. The last line of the snippet is the only one a browser in 2026 still reads.',
+        now: 'border-radius has worked everywhere for over a decade. Firefox dropped the -moz- version long ago. The -webkit- one still works, kept for old sites.',
         code: `.box {
   -moz-border-radius: 10px;    /* Firefox 2 */
   -webkit-border-radius: 10px; /* Safari 3 */
@@ -562,7 +563,7 @@ dialog.showModal();`,
       {
         name: 'The carousel',
         sel: '#slides',
-        then: 'Every homepage rotated three or four banners, one every few seconds. This is Bootstrap\'s jQuery plugin, wired up entirely with data attributes. The University of Notre Dame measured theirs in 2013: 1% of visitors clicked a slide, and 84% of those clicks were on the first one.',
+        then: 'Every homepage rotated three or four banners, one every few seconds. This is Bootstrap\'s jQuery plugin: one line starts it, and data attributes wire up the arrows. The University of Notre Dame measured theirs in 2013: 1% of visitors clicked a slide, and 84% of those clicks were on the first one.',
         now: 'One strong image, or a row you swipe with CSS scroll snapping and no script at all.',
         code: `<div id="slides" class="carousel slide">
   <div class="carousel-inner">
@@ -577,7 +578,7 @@ $('#slides').carousel({ interval: 5000 });`,
       {
         name: 'CSS3, prefixed',
         sel: '.search-box .btn',
-        then: 'Gradients, rounded corners and shadows moved from images into CSS, but each browser had its own experimental syntax. This is Bootstrap\'s orange button: one gradient written six times, plus a Microsoft filter for Internet Explorer 9.',
+        then: 'Gradients, rounded corners and shadows moved from images into CSS, but each browser had its own experimental syntax. This is Bootstrap\'s orange button: one gradient written five times, plus a Microsoft filter for Internet Explorer.',
         now: 'One unprefixed line. Browsers stopped shipping new features behind prefixes and put them behind flags instead, and build tools add the few prefixes that are left.',
         code: `.btn-warning {
   background-color: #faa732;

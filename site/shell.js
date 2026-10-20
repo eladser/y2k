@@ -10,14 +10,14 @@ const WIDTH = { tm: 4, fl: 5, br: 20, cn: 11, pg: 7, ld: 7, st: 8 };
 let ac = null, noise = null, sound = true, last = 0;
 
 function wake() {
-  if (ac) return;
-  ac = new AudioContext();
+  if (ac) return void (ac.state === 'suspended' && ac.resume());
+  try { ac = new AudioContext(); } catch { return; }
   noise = ac.createBuffer(1, ac.sampleRate * 0.012, ac.sampleRate);
   const d = noise.getChannelData(0);
   for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length) ** 6;
 }
-addEventListener('pointerdown', wake, { once: true });
-addEventListener('keydown', wake, { once: true });
+addEventListener('pointerup', wake);
+addEventListener('keydown', wake);
 
 function clack() {
   if (!sound || !ac) return;
@@ -44,6 +44,8 @@ function field(cls) {
   return s;
 }
 
+const FLIP = [{ transform: 'scaleY(1)' }, { transform: 'scaleY(.2)', color: '#9b968c', offset: 0.45 }, { transform: 'scaleY(1)' }];
+
 function set(fld, text, delay = 0) {
   const want = text.toUpperCase().padEnd(fld.children.length).slice(0, fld.children.length);
   [...fld.children].forEach((c, i) => {
@@ -60,9 +62,7 @@ function set(fld, text, delay = 0) {
       if (c.dataset.to !== to) return;
       const next = --steps <= 0 ? to : DRUM[(DRUM.indexOf(c.textContent) + 1 + Math.floor(Math.random() * 3)) % DRUM.length].replace(' ', ' ');
       c.textContent = next;
-      c.classList.remove('flip');
-      void c.offsetWidth;
-      c.classList.add('flip');
+      c.animate(FLIP, 60);
       clack();
       if (next !== to) setTimeout(tick, 55 + Math.random() * 30);
     };
@@ -96,14 +96,24 @@ const rows = ERAS.map((e, i) => {
   b.type = 'button';
   b.className = 'row';
   b.disabled = !e.built;
-  b.setAttribute('aria-label', `${e.year}, ${e.browser.toLowerCase()}${e.built ? '' : ', not built yet'}`);
+  b.setAttribute('aria-label', `${e.year}, ${e.browser.toLowerCase()}, ${e.conn.toLowerCase()}, typical page ${kb(e.page).toLowerCase()}, ${secs(e.page / e.kbps).toLowerCase()} to download${e.built ? '' : ', not built yet'}`);
   const f = fields(b);
   b.addEventListener('click', () => go(i));
+  const board = on => e.built && set(f.st, on ? 'BOARDING' : 'ON TIME');
+  b.addEventListener('pointerenter', () => board(true));
+  b.addEventListener('pointerleave', () => board(false));
+  b.addEventListener('focus', () => board(true));
+  b.addEventListener('blur', () => board(false));
   li.append(b);
   $('#rows').append(li);
   return f;
 });
 const now = fields($('#nowrow'));
+// rotating a tablet crosses the breakpoint, and the long browser names don't fit the narrow board
+narrow.addEventListener('change', () => {
+  ERAS.forEach((e, i) => fill(rows[i], e, null));
+  if (cur >= 0) fill(now, ERAS[cur], 'BOARDING');
+});
 
 /* ---------- browser chrome ---------- */
 
@@ -237,10 +247,17 @@ setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20
 
 let cur = -1, frame = null;
 
+function boards(on) {
+  body.classList.toggle('boards', on);
+  $('#desk').inert = on;
+  if (on) ($('#rows').children[Math.max(cur, 0)]?.querySelector('button') ?? $('#rows button')).focus();
+  else if (document.activeElement?.closest('#rows')) $('#all').focus();
+}
+
 function go(i, push = true) {
   const e = ERAS[i];
   if (!e?.built) return;
-  body.classList.remove('boards');
+  boards(false);
   body.classList.add('flying');
   if (push && location.hash !== `#${e.year}`) history.pushState(null, '', `#${e.year}`);
   if (cur === i) return;
@@ -317,8 +334,10 @@ function dun(done) {
   box.querySelector('.o').addEventListener('click', finish);
   box.querySelector('.c').addEventListener('click', () => {
     wake();
-    snd = play(ac, build(ac.sampleRate), !sound);
-    dialGain = snd.gain;
+    if (ac) {
+      snd = play(ac, build(ac.sampleRate), !sound);
+      dialGain = snd.gain;
+    }
     const b = box.querySelector('.body');
     b.innerHTML = `<div class="head">${I.dun}<span>Connecting to Halcyon Online</span></div><div class="status"><b>Status:</b><span class="st">Dialing...</span></div><div class="btns"><button type="button" class="w98 x">Cancel</button></div>`;
     b.querySelector('.x').addEventListener('click', () => {
@@ -360,7 +379,9 @@ function openPopup({ src, title = '', w = 420, h = 360 }) {
   const p = document.createElement('div');
   p.className = 'popup w98';
   const box = $('#win').getBoundingClientRect(), wall = $('.wall').getBoundingClientRect();
-  Object.assign(p.style, { width: `${w}px`, height: `${h}px`, left: `${box.left - wall.left + 90}px`, top: `${box.top - wall.top + 70}px` });
+  w = Math.min(w, wall.width - 16);
+  const left = Math.max(8, Math.min(box.left - wall.left + 90, wall.width - w - 8));
+  Object.assign(p.style, { width: `${w}px`, height: `${h}px`, left: `${left}px`, top: `${box.top - wall.top + 70}px` });
   p.innerHTML = `<div class="tb98">${I.page}<span class="t"></span><span class="wb"><i class="w98 x" role="button" tabindex="0" aria-label="Close">&times;</i></span></div>`;
   p.querySelector('.t').textContent = title;
   const f = document.createElement('iframe');
@@ -389,7 +410,8 @@ function land() {
   frame?.remove();
   frame = null;
   cur = -1;
-  body.classList.remove('flying', 'boards');
+  body.classList.remove('flying');
+  boards(false);
 }
 
 /* ---------- x-ray ---------- */
@@ -484,7 +506,7 @@ $('#all').addEventListener('click', () => {
     hangup98();
     cur = -1;
   }
-  body.classList.add('boards');
+  boards(true);
 });
 $('#xr').addEventListener('click', () => {
   const on = body.classList.toggle('xr');
@@ -502,9 +524,9 @@ $('#snd').addEventListener('click', () => {
 });
 
 addEventListener('keydown', e => {
-  if ($('#pass').open || e.target.closest?.('input, select, textarea')) return;
+  if ($('#pass').open || e.altKey || e.ctrlKey || e.metaKey || e.target.closest?.('input, select, textarea')) return;
   if (e.key === 'Escape') {
-    if (body.classList.contains('boards') && cur >= 0) body.classList.remove('boards');
+    if (body.classList.contains('boards') && cur >= 0) boards(false);
     else if (body.classList.contains('xr')) $('#xr').click();
   }
   if (!body.classList.contains('flying') || body.classList.contains('boards')) return;

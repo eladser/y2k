@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Flight not found · Halcyon Airways</title>
+<link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
+<script>
+  // /1999 is a year on the board
+  var m = location.pathname.match(/^\/((?:19|20)\d\d)\/?$/);
+  if (m) location.replace('/#' + m[1]);
+</script>
+<style>
+  @font-face { font-family: Flap; src: url(/fonts/barlow-condensed-600.woff2) format('woff2'); }
+  body { margin: 0; min-height: 100vh; display: grid; place-content: center; gap: 18px; padding: 24px; background: #0f1115; color: #efe9dc; font: 17px/1.5 system-ui, sans-serif; text-align: center; }
+  .flaps { display: flex; justify-content: center; gap: 3px; }
+  .flaps span { width: 1.1em; padding: 4px 0; border-radius: 3px; background: linear-gradient(#22262d 0 50%, #1b1e24 50%); color: #f3b81f; font: 600 34px/1 Flap, sans-serif; }
+  p { margin: 0; color: #8a919b; }
+  a { color: #f3b81f; }
+</style>
+</head>
+<body>
+  <div class="flaps" aria-label="Cancelled"><span>C</span><span>A</span><span>N</span><span>C</span><span>E</span><span>L</span><span>L</span><span>E</span><span>D</span></div>
+  <p>There's no flight at this gate.</p>
+  <p><a href="/">Back to the departures board</a></p>
+</body>
+</html>
