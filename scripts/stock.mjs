@@ -1,7 +1,7 @@
-// One-off stills for the older eras, generated with kie.ai and kept raw in d:/tmp/y2k-raw.
+// One-off stills for the older eras, generated with kie.ai. Raw files land in <tmp>/y2k-raw.
 //   node scripts/stock.mjs 1999-banner
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
-import { homedir } from 'node:os';
+import { homedir, tmpdir } from 'node:os';
 import { join } from 'node:path';
 
 export const STOCK = {
@@ -38,9 +38,10 @@ for (;;) {
   const d = await call(`/jobs/recordInfo?taskId=${taskId}`);
   if (d.state === 'fail') throw new Error(d.failMsg ?? 'failed');
   if (d.state !== 'success') continue;
-  mkdirSync('d:/tmp/y2k-raw', { recursive: true });
+  const raw = join(tmpdir(), 'y2k-raw');
+  mkdirSync(raw, { recursive: true });
   const img = await fetch(JSON.parse(d.resultJson).resultUrls[0]);
-  writeFileSync(`d:/tmp/y2k-raw/${name}.png`, Buffer.from(await img.arrayBuffer()));
-  console.log(`d:/tmp/y2k-raw/${name}.png`);
+  writeFileSync(join(raw, `${name}.png`), Buffer.from(await img.arrayBuffer()));
+  console.log(join(raw, `${name}.png`));
   break;
 }

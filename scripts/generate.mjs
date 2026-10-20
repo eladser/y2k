@@ -1,17 +1,16 @@
-// Generates the 2026 page's film and photos with kie.ai, then encodes them for the web.
+// The 2026 film and photos, generated with kie.ai and encoded for the web.
 //   node scripts/generate.mjs            everything
 //   node scripts/generate.mjs photos     only the stills
 //   node scripts/generate.mjs film       only the film
-// Key: KIE_API_KEY in the environment or in ~/.secrets/kie.env. Raw downloads go to d:/tmp/y2k-raw.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
-import { homedir } from 'node:os';
+import { homedir, tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { execFileSync } from 'node:child_process';
 import { FILM, PHOTOS, WINDOW } from '../site/eras/2026/prompts.js';
 
 const API = 'https://api.kie.ai/api/v1';
 const OUT = new URL('../site/eras/2026/', import.meta.url).pathname.replace(/^\/([A-Z]:)/, '$1');
-const RAW = 'd:/tmp/y2k-raw';
+const RAW = join(tmpdir(), 'y2k-raw');
 const only = process.argv[2];
 
 const key = process.env.KIE_API_KEY ?? readFileSync(join(homedir(), '.secrets', 'kie.env'), 'utf8').match(/KIE_API_KEY=(\S+)/)?.[1];
@@ -65,7 +64,7 @@ console.log('credits', await call('/chat/credit'));
 const jobs = [];
 if (only !== 'photos') {
   jobs.push(video(FILM).then(u => save(u, 'film.mp4')).then(raw => {
-    // no audio track, web-sized, moov atom up front so it starts playing while it downloads
+    // +faststart moves the moov atom up front so it plays while downloading
     ff(['-i', raw, '-an', '-vf', 'scale=1600:-2', '-c:v', 'libx264', '-crf', '25', '-preset', 'slow', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', join(OUT, FILM.file)]);
     ff(['-i', raw, '-ss', '0', '-frames:v', '1', '-vf', 'scale=1600:-2', '-q:v', '4', join(OUT, 'media/film.jpg')]);
     console.log('film done');
