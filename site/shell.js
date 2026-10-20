@@ -501,6 +501,7 @@ $('#all').addEventListener('click', () => {
 $('#xr').addEventListener('click', () => {
   const on = body.classList.toggle('xr');
   $('#xr').setAttribute('aria-pressed', on);
+  try { localStorage.setItem('halcyon.xr', on ? 'on' : 'off'); } catch { /* not remembered */ }
   spot(on ? open() : null);
   // the 2026 film is still arriving at iframe load, so measure again whenever someone looks
   if (on && frame) weigh(frame);
@@ -549,6 +550,14 @@ if (!seen) setTimeout(() => { if (!seen) openPass(); }, reduce ? 0 : 1100);
     ul.append(li);
   }
   $('#src').append(Object.assign(document.createElement('p'), { textContent: NOTE }), ul);
+}
+
+// X-ray starts open where there's room for it next to the window; phones get it on demand
+let xrPref = null;
+try { xrPref = localStorage.getItem('halcyon.xr'); } catch { /* no storage */ }
+if (xrPref === 'on' || (!xrPref && matchMedia('(min-width: 1360px)').matches)) {
+  body.classList.add('xr');
+  $('#xr').setAttribute('aria-pressed', true);
 }
 
 ERAS.forEach((e, i) => fill(rows[i], e, null, reduce ? 0 : 250 + i * 140));

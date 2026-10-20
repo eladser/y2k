@@ -14,6 +14,7 @@
   --line: #2a2e35;
   --mut: #8a919b;
   --strip: 64px;
+  --xw: clamp(380px, 30vw, 460px);
 }
 
 * { box-sizing: border-box; }
@@ -213,12 +214,12 @@ body.flying #desk { display: flex; }
 /* ---------- x-ray ---------- */
 
 #xray {
-  position: fixed; top: var(--strip); right: 0; bottom: 0; z-index: 20; width: min(460px, 100%);
+  position: fixed; top: var(--strip); right: 0; bottom: 0; z-index: 20; width: min(var(--xw), 100%);
   display: flex; flex-direction: column; background: var(--panel); border-left: 1px solid #000;
   transform: translateX(100%); transition: transform .28s cubic-bezier(.23, 1, .32, 1); visibility: hidden;
 }
-body.xr #xray { transform: none; visibility: visible; }
-body.xr .wall { padding-right: min(488px, 100%); }
+body.xr.flying:not(.boards) #xray { transform: none; visibility: visible; }
+body.xr .wall { padding-right: min(calc(var(--xw) + 28px), 100%); }
 .xr-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--line); }
 .xr-head h2 { margin: 0; font: 700 26px/1 Flap, sans-serif; letter-spacing: .04em; text-transform: uppercase; }
 .xr-head p { margin: 6px 0 0; color: var(--mut); font-size: 14px; }
