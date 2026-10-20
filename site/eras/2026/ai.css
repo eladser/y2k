@@ -23,9 +23,9 @@ button, input { font: inherit; color: inherit; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
 .defs { position: absolute; width: 0; height: 0; }
 
-/* liquid glass: everyone gets the frosted blur, Chromium also gets the bent edge from #lens */
+/* liquid glass: frosted blur everywhere, plus the bent edge from #lens in Chromium */
 .glass {
-  /* a faint dark base under the highlight, so white text survives a bright sky behind it */
+  /* faint dark base so white text survives a bright sky behind it */
   background: linear-gradient(140deg, oklch(100% 0 0 / .14), oklch(100% 0 0 / .03) 60%), oklch(16% .02 255 / .3);
   backdrop-filter: blur(16px) saturate(1.7);
   border: 1px solid oklch(100% 0 0 / .2);

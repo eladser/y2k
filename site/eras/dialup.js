@@ -1,16 +1,14 @@
-// Not period code. This file replays a page the way it arrived over a modem: text first,
-// pictures one at a time as their bytes come in, each with its ALT text standing in until then.
-// The status bar messages go to the IE5 window drawn around this page.
+// Not period code: replays the page as it came over a modem, text first, then each picture as its bytes arrive
 (() => {
-  // bytes per second, set per page: 1999's two frames share one 34 kbps line, 1996 had 28.8K
+  // bytes/s, set per page: 1999's two frames share one 34 kbps line, 1996 had 28.8K
   const RATE = Number(document.currentScript?.dataset.rate) || 3000;
   const host = 'http://www.halcyonair.com/';
-  // one status bar, two frames: only the content frame reports, so they don't overwrite each other
+  // two frames, one status bar: only the content frame reports
   const say = (status, progress) => top !== self && window.name !== 'top' && top.postMessage({ status, progress }, location.origin);
   const key = `halcyon.56k.${location.pathname}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let seen = false;
-  try { seen = !!sessionStorage.getItem(key); } catch { /* fine */ }
+  try { seen = !!sessionStorage.getItem(key); } catch {}
 
   // pages that want the status bar afterwards (1996's scrolling message) wait for this
   const finished = () => {
@@ -42,7 +40,7 @@
 
     const next = k => {
       if (k >= imgs.length) {
-        try { sessionStorage.setItem(key, '1'); } catch { /* fine */ }
+        try { sessionStorage.setItem(key, '1'); } catch {}
         return finished();
       }
       const img = imgs[k], bytes = size(img), ms = (bytes / RATE) * 1000;

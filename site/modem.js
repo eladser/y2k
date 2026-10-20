@@ -1,6 +1,4 @@
-// A V.90 handshake built sample by sample. No audio files: every sound is made from the
-// frequencies in the ITU specs (V.8, V.21, V.34), squeezed from ~20 s down to ~10.
-// Random bits come from a seeded PRNG so it sounds the same every time.
+// V.90 handshake from the ITU spec frequencies (V.8, V.21, V.34), squeezed from ~20 s to ~10
 
 const TAU = Math.PI * 2;
 export const LENGTH = 10.1;
@@ -38,7 +36,6 @@ export function build(sr) {
     fill(t0, dur, amp, x => freqs.reduce((v, f) => v + Math.sin(TAU * f * x), 0));
   const noise = (t0, dur, amp) => fill(t0, dur, amp, () => rnd() * 2 - 1);
 
-  // continuous-phase FSK, one random bit per symbol
   const fsk = (t0, dur, mark, space, baud, amp) => {
     let ph = 0, bit = 1;
     const per = Math.round(sr / baud);
@@ -56,8 +53,7 @@ export function build(sr) {
       return Math.sin(TAU * f * x + flip);
     });
   };
-  // L1/L2 probing: cosines every 150 Hz minus the four the spec leaves out,
-  // with Schroeder phases so they don't all peak at once
+  // L1/L2: 150 Hz comb minus the four the spec skips, Schroeder phases so they don't peak together
   const probe = (t0, dur, amp) => {
     const fs = [];
     for (let k = 1; k <= 25; k++) if (![6, 8, 12, 16].includes(k)) fs.push(k * 150);
@@ -65,21 +61,21 @@ export function build(sr) {
       fs.reduce((v, f, k) => v + Math.cos(TAU * f * x + (Math.PI * k * k) / fs.length), 0));
   };
 
-  noise(0, 0.012, 0.4); // off-hook click
+  noise(0, 0.012, 0.4);
   tones(0.05, 0.95, [350, 440], 0.18);
   [...'5551999'].forEach((d, i) => tones(1.05 + i * 0.17, 0.09, DTMF[d], 0.22));
   tones(2.3, 0.9, [440, 480], 0.14);
-  noise(3.3, 0.01, 0.3); // the other end picks up
+  noise(3.3, 0.01, 0.3);
 
   // ANSam: 2100 Hz with 15 Hz AM, phase reversed every 450 ms
   fill(3.4, 1.8, 0.28, x => (1 + 0.2 * Math.sin(TAU * 15 * x)) / 1.2 * Math.sin(TAU * 2100 * x + (Math.floor(x / 0.45) % 2) * Math.PI));
 
-  fsk(5.25, 1.0, 980, 1180, 300, 0.13); // caller, V.21 channel 1
-  fsk(5.25, 1.0, 1650, 1850, 300, 0.13); // answerer, channel 2
+  fsk(5.25, 1.0, 980, 1180, 300, 0.13);
+  fsk(5.25, 1.0, 1650, 1850, 300, 0.13);
 
   dpsk(6.3, 0.2, 1200, 600, 0.12);
   dpsk(6.3, 0.2, 2400, 600, 0.12);
-  probe(6.52, 0.16, 0.55); // L1 is the loud "bong"
+  probe(6.52, 0.16, 0.55);
   probe(6.7, 0.6, 0.3);
 
   noise(7.35, 0.85, 0.13);

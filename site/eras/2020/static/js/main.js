@@ -1,5 +1,4 @@
-// Halcyon, 2020. The real project was JSX in src/, built by create-react-app (Babel + webpack).
-// This copy is written as the React.createElement calls Babel turns JSX into, so it needs no build step.
+// Halcyon, 2020. JSX written out as the createElement calls Babel emits, so there's no build step
 (function () {
   'use strict';
   const { useState, useEffect, useRef } = React;
@@ -216,7 +215,7 @@
       let live = true;
       (async () => {
         try {
-          // the fares API took a second or two; the skeletons are what you looked at meanwhile
+          // the real fares API took a second or two, long enough to see the skeletons
           const [res] = await Promise.all([fetch('data/fares.json'), wait(1400)]);
           if (!res.ok) throw new Error(res.status);
           const f = (await res.json())[city.code];

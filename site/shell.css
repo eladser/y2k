@@ -24,8 +24,6 @@ button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
-/* ---------- flaps ---------- */
-
 .f {
   position: relative; display: inline-block; width: .62em; height: 1.2em; margin-right: .07em;
   border-radius: 2px; text-align: center; line-height: 1.2em; vertical-align: top;
@@ -40,8 +38,6 @@ button { font: inherit; color: inherit; }
   100% { transform: scaleY(1); }
 }
 .fld { display: inline-flex; white-space: nowrap; }
-
-/* ---------- the board ---------- */
 
 #board {
   position: fixed; inset: 0; z-index: 30; display: flex; flex-direction: column;
@@ -111,8 +107,6 @@ body.flying.boards #rows { display: block; }
 body.flying.boards .depart { --fs: clamp(13px, 1.62vw, 22px); margin: 0 auto; flex: none; }
 body.flying.boards #nowrow { display: none; }
 body.flying.boards .ctl { display: none; }
-
-/* ---------- the desk ---------- */
 
 #desk { position: fixed; inset: var(--strip) 0 0 0; display: none; flex-direction: column; overflow: hidden; }
 body.flying #desk { display: flex; }
@@ -211,8 +205,6 @@ body.flying #desk { display: flex; }
 .chrome-now .omni { flex: 1; display: flex; align-items: center; gap: 8px; height: 30px; padding: 0 14px; border-radius: 15px; background: #eef1f4; color: #1f2328; font-size: 13px; }
 .chrome-now .omni svg, .chrome-now .bar svg { width: 15px; height: 15px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* ---------- x-ray ---------- */
-
 #xray {
   position: fixed; top: var(--strip); right: 0; bottom: 0; z-index: 20; width: min(var(--xw), 100%);
   display: flex; flex-direction: column; background: var(--panel); border-left: 1px solid #000;
@@ -245,8 +237,6 @@ body.xr .wall { padding-right: min(calc(var(--xw) + 28px), 100%); }
 .xr-body pre.wrap { white-space: pre-wrap; font-family: Barlow, system-ui, sans-serif; font-size: 13.5px; }
 .xr-foot { padding: 12px 20px; border-top: 1px solid var(--line); color: var(--mut); font-size: 13px; }
 
-/* ---------- small screens ---------- */
-
 @media (max-width: 900px) {
   .cols, .row { grid-template-columns: calc(var(--u) * 4) calc(var(--u) * 16) calc(var(--u) * 8); }
   .cols span:nth-child(2), .cols span:nth-child(4), .cols span:nth-child(5), .cols span:nth-child(6),
@@ -269,8 +259,6 @@ body.xr .wall { padding-right: min(calc(var(--xw) + 28px), 100%); }
   .f.flip, .desk-in { animation: none; }
   #xray { transition: none; }
 }
-
-/* ---------- boarding pass ---------- */
 
 #pass { width: min(880px, calc(100% - 24px)); max-width: none; padding: 0; border: 0; background: none; color: #15171b; overflow: visible; }
 #pass::backdrop { background: rgba(8, 9, 12, .74); backdrop-filter: blur(3px); }
@@ -367,7 +355,6 @@ body.xr .wall { padding-right: min(calc(var(--xw) + 28px), 100%); }
 .task-98 .tray { margin-left: auto; display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 10px 0 6px; }
 .task-98 .tray svg { width: 16px; height: 16px; }
 
-/* Dial-Up Networking */
 .dun { position: absolute; z-index: 5; left: 50%; top: 46%; translate: -50% -50%; width: 340px; padding: 3px; font: 11px Tahoma, 'MS Sans Serif', sans-serif; color: #000; }
 .dun .body { padding: 12px 12px 10px; }
 .dun .head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; padding-bottom: 10px; box-shadow: 0 1px #808080, 0 2px #fff; font-weight: bold; }
@@ -384,7 +371,6 @@ body.xr .wall { padding-right: min(calc(var(--xw) + 28px), 100%); }
 .dun .status b { display: block; }
 body.dialing98 #win { visibility: hidden; }
 
-/* window.open, 1999 style */
 .popup { position: absolute; z-index: 6; padding: 3px; display: flex; flex-direction: column; }
 .popup iframe { flex: 1; border: 0; background: #fff; margin-top: 2px; }
 .icons98 { position: absolute; left: 14px; top: 14px; display: grid; gap: 18px; z-index: 0; }

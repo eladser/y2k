@@ -11,8 +11,6 @@ fit();
 
 const scene = id => document.querySelectorAll('.scene').forEach(s => s.classList.toggle('on', s.id === id));
 
-/* ---------- sound ---------- */
-
 let ac = null, master = null, muted = false, hush = false, noise = null;
 
 addEventListener('message', e => {
@@ -79,7 +77,7 @@ function boom() {
   whoosh(t, 0.6);
 }
 
-// a four-bar trance loop, Am F C G, scheduled a little ahead like every Web Audio sequencer
+// four-bar trance loop, Am F C G, scheduled a little ahead
 const ROOTS = [57, 53, 60, 55];
 const TRIAD = r => [r, r + (r === 57 ? 3 : 4), r + 7];
 let beat = 0, next = 0, loop = 0;
@@ -140,8 +138,6 @@ $('#eq').addEventListener('click', () => {
   muted = !muted;
   volume();
 });
-
-/* ---------- timeline ---------- */
 
 const anims = [], timers = [];
 const A = (el, kf, o) => {
@@ -325,8 +321,6 @@ function show(id, btn) {
   if (id === 'fleet' && !reduce) document.querySelectorAll('.spec').forEach((s, i) => A(s, [{ opacity: 0, transform: 'translateX(-10px)' }, { opacity: 1, transform: 'none' }], { duration: 300, delay: 300 + i * 160 }));
 }
 
-/* ---------- globe ---------- */
-
 const CITIES = [[51.5, -0.1, 'LON'], [48.9, 2.35, 'PAR'], [40.7, -74, 'NYC'], [35.7, 139.7, 'TYO'], [41.9, 12.5, 'ROM'], [-33.9, 151.2, 'SYD'], [32.1, 34.8, 'TLV']];
 const HUB = CITIES[6];
 let globeRaf = 0;
@@ -427,7 +421,6 @@ $('#search').addEventListener('submit', e => {
   const recv = document.createTextNode('');
   wire.append(recv);
   let i = 0;
-  // the reply arrives at modem speed, a few characters at a time
   const tick = () => {
     i = Math.min(reply.length, i + 3 + Math.floor(Math.random() * 4));
     recv.textContent = reply.slice(0, i);
@@ -447,8 +440,6 @@ $('#search').addEventListener('submit', e => {
   };
   tick();
 });
-
-/* ---------- destinations ---------- */
 
 const DEST = [['LONDON', 499, '#1b3a5c', '#ffb347'], ['PARIS', 459, '#2b2350', '#ff7a8a'], ['NEW YORK', 689, '#0f2f45', '#ffd166'], ['TOKYO', 812, '#2a1638', '#ff4f6a'], ['ROME', 429, '#3a2414', '#ffb000'], ['SYDNEY', 1199, '#06324a', '#ffe066']];
 

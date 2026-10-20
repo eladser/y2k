@@ -7,8 +7,6 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 const DRUM = ' ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789.,-/:';
 const WIDTH = { tm: 4, fl: 5, br: 20, cn: 11, pg: 7, ld: 7, st: 8 };
 
-/* ---------- the clack ---------- */
-
 let ac = null, noise = null, sound = true, last = 0;
 
 function wake() {
@@ -23,7 +21,7 @@ addEventListener('keydown', wake, { once: true });
 
 function clack() {
   if (!sound || !ac) return;
-  // a full board flipping is hundreds of flaps; one clack per 22 ms reads as the rattle
+  // hundreds of flaps flip at once; one clack per 22 ms is enough for the rattle
   if (ac.currentTime - last < 0.022) return;
   last = ac.currentTime;
   const src = new AudioBufferSourceNode(ac, { buffer: noise, playbackRate: 0.8 + Math.random() * 0.5 });
@@ -237,8 +235,6 @@ const TASK = {
 };
 setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20000);
 
-/* ---------- flying ---------- */
-
 let cur = -1, frame = null;
 
 function go(i, push = true) {
@@ -266,7 +262,6 @@ function desk(e) {
   hangup98?.();
   frame = document.createElement('iframe');
   const src = `eras/${e.year}/index.html`;
-  // 1999 starts offline: the page only loads once Dial-Up Networking has connected
   if (e.dialup && !dialed()) dun(() => (frame.src = src));
   else frame.src = src;
   frame.title = `Halcyon Airways homepage, ${e.year}`;
@@ -309,7 +304,7 @@ function dun(done) {
   let snd = null;
   const stop = () => {
     timers.forEach(clearTimeout);
-    try { snd?.src.stop(); } catch { /* already over */ }
+    try { snd?.src.stop(); } catch {}
     box.remove();
     body.classList.remove('dialing98');
     hangup98 = dialGain = null;
@@ -326,7 +321,6 @@ function dun(done) {
     dialGain = snd.gain;
     const b = box.querySelector('.body');
     b.innerHTML = `<div class="head">${I.dun}<span>Connecting to Halcyon Online</span></div><div class="status"><b>Status:</b><span class="st">Dialing...</span></div><div class="btns"><button type="button" class="w98 x">Cancel</button></div>`;
-    // Cancel hangs up and puts the Connect form back, like the real dialog
     b.querySelector('.x').addEventListener('click', () => {
       stop();
       dun(done);
@@ -337,7 +331,7 @@ function dun(done) {
     timers.push(setTimeout(() => st('Logging on to network...'), 7350));
     timers.push(setTimeout(() => st('Connected at 53,333 bps.'), LENGTH * 1000));
     timers.push(setTimeout(() => {
-      try { sessionStorage.setItem('halcyon.dialed', '1'); } catch { /* fine */ }
+      try { sessionStorage.setItem('halcyon.dialed', '1'); } catch {}
       const m = $('#modemicon');
       if (m) m.innerHTML = I.modem;
       finish();
@@ -345,8 +339,6 @@ function dun(done) {
   });
   box.querySelector('.c').focus();
 }
-
-/* ---------- messages from the era pages: status bar text, progress, popups ---------- */
 
 addEventListener('message', ev => {
   if (ev.origin !== location.origin || !ev.data || typeof ev.data !== 'object') return;
@@ -362,7 +354,7 @@ addEventListener('message', ev => {
 
 function openPopup({ src, title = '', w = 420, h = 360 }) {
   const url = new URL(src, frame?.contentWindow?.location.href ?? location.href);
-  // only our own era pages, never an arbitrary URL handed over in a message
+  // only our own era pages, never a URL handed over in a message
   if (url.origin !== location.origin || !url.pathname.startsWith(new URL('eras/', location.href).pathname)) return;
   $('.popup')?.remove();
   const p = document.createElement('div');
@@ -391,7 +383,6 @@ function route() {
   land();
 }
 
-// back to the board: stop whatever the open era is doing, the 2001 music included
 function land() {
   hangup98?.();
   $('.popup')?.remove();
@@ -448,8 +439,7 @@ function xray(e) {
 
 const open = () => $('#xr-list details[open]')?.closest('li')._x ?? null;
 
-// a hole cut in a dark overlay over whatever the technique drives, tracked every frame
-// because half of these pages are animating
+// the spotlight is tracked every frame because half of these pages are animating
 function spot(x) {
   lit = x && body.classList.contains('xr') ? x : null;
   cancelAnimationFrame(raf);
@@ -476,7 +466,7 @@ function spot(x) {
 function weigh(f) {
   if (!f.getAttribute('src')) return;
   try {
-    // 1999 is a frameset, so count what every frame inside it loaded too
+    // 1999 is a frameset, so count every frame inside it too
     const wins = [f.contentWindow, ...Array.from(f.contentWindow.frames)];
     const all = wins.flatMap(w => [...w.performance.getEntriesByType('navigation'), ...w.performance.getEntriesByType('resource')]);
     const bytes = all.reduce((n, r) => n + (r.encodedBodySize || r.decodedBodySize || 0), 0);
@@ -485,8 +475,6 @@ function weigh(f) {
     console.warn('weigh', err);
   }
 }
-
-/* ---------- controls ---------- */
 
 $('#prev').addEventListener('click', () => step(-1));
 $('#next').addEventListener('click', () => step(1));
@@ -501,9 +489,9 @@ $('#all').addEventListener('click', () => {
 $('#xr').addEventListener('click', () => {
   const on = body.classList.toggle('xr');
   $('#xr').setAttribute('aria-pressed', on);
-  try { localStorage.setItem('halcyon.xr', on ? 'on' : 'off'); } catch { /* not remembered */ }
+  try { localStorage.setItem('halcyon.xr', on ? 'on' : 'off'); } catch {}
   spot(on ? open() : null);
-  // the 2026 film is still arriving at iframe load, so measure again whenever someone looks
+  // the 2026 film is still downloading at iframe load, so measure again
   if (on && frame) weigh(frame);
 });
 $('#snd').addEventListener('click', () => {
@@ -526,20 +514,16 @@ addEventListener('keydown', e => {
 });
 addEventListener('popstate', route);
 
-/* ---------- the boarding pass: what this is, for first-time visitors ---------- */
-
 const pass = $('#pass');
 let seen = false;
-try { seen = !!localStorage.getItem('halcyon.pass'); } catch { /* private mode: they'll see it again, fine */ }
+try { seen = !!localStorage.getItem('halcyon.pass'); } catch {}
 const openPass = () => { seen = true; if (!pass.open) pass.showModal(); };
 document.querySelectorAll('[data-pass]').forEach(b => b.addEventListener('click', openPass));
 pass.addEventListener('close', () => {
-  try { localStorage.setItem('halcyon.pass', '1'); } catch { /* same */ }
+  try { localStorage.setItem('halcyon.pass', '1'); } catch {}
 });
 pass.addEventListener('click', e => { if (e.target === pass) pass.close(); });
 if (!seen) setTimeout(() => { if (!seen) openPass(); }, reduce ? 0 : 1100);
-
-/* ---------- boarding ---------- */
 
 {
   const ul = document.createElement('ul');
@@ -552,9 +536,8 @@ if (!seen) setTimeout(() => { if (!seen) openPass(); }, reduce ? 0 : 1100);
   $('#src').append(Object.assign(document.createElement('p'), { textContent: NOTE }), ul);
 }
 
-// X-ray starts open where there's room for it next to the window; phones get it on demand
 let xrPref = null;
-try { xrPref = localStorage.getItem('halcyon.xr'); } catch { /* no storage */ }
+try { xrPref = localStorage.getItem('halcyon.xr'); } catch {}
 if (xrPref === 'on' || (!xrPref && matchMedia('(min-width: 1360px)').matches)) {
   body.classList.add('xr');
   $('#xr').setAttribute('aria-pressed', true);

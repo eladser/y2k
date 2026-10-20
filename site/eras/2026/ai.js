@@ -17,7 +17,6 @@ const PLACES = [
   { city: 'London', hours: '5h 15m', fare: 241, tags: ['city', 'museums', 'theatre', 'weekend', 'rain'], line: 'Museums are free, the theatre is not, and both are worth it.' },
 ];
 
-/* the bento */
 $('#bento').replaceChildren(...PLACES.map((p, i) => {
   const t = document.createElement('article');
   t.className = 'tile';
@@ -32,16 +31,15 @@ $('#bento').replaceChildren(...PLACES.map((p, i) => {
 }));
 document.querySelectorAll('.seat-pic img').forEach(img => img.addEventListener('error', () => img.remove()));
 
-/* ask */
 const answer = $('#answer'), how = $('#how'), q = $('#q');
 let ready = null;
 
-// one promise for everyone, so a double click doesn't see "no model" while it's still loading
+// shared promise, so a double click doesn't see "no model" while it's still loading
 function model() {
   return (ready ??= (async () => {
     if (!('LanguageModel' in self)) return null;
     try {
-      // only use it if it's already on the machine; a first download is gigabytes, not our call to make
+      // only if it's already downloaded; the first download is gigabytes
       if ((await LanguageModel.availability()) !== 'available') return null;
       return await LanguageModel.create({
         initialPrompts: [{
@@ -58,7 +56,7 @@ function model() {
 
 const cheapest = list => list.reduce((a, b) => (a.fare < b.fare ? a : b));
 
-// no model: score the destinations by whole words they share with the question, within the budget
+// no model: count whole-word tag matches, within the budget
 function keyword(text) {
   const t = text.toLowerCase().replace(/(\d),(\d{3})/g, '$1$2');
   const budget = Number(t.match(/\$\s?(\d+)/)?.[1] ?? t.match(/(\d+)\s*(?:usd|dollars)\b/)?.[1] ?? Infinity);
@@ -86,7 +84,7 @@ async function ask(text) {
   if (ai) {
     let s;
     try {
-      // a fresh copy per question, so earlier questions don't steer this one or fill the context
+      // clone per question so earlier ones don't steer it or fill the context
       s = await ai.clone();
       const raw = await s.prompt(text, {
         responseConstraint: { type: 'object', properties: { city: { type: 'string', enum: PLACES.map(p => p.city) }, why: { type: 'string' } }, required: ['city', 'why'] },
@@ -117,7 +115,6 @@ document.querySelectorAll('.chips button').forEach(b => b.addEventListener('clic
   ask(b.textContent);
 }));
 
-/* the placeholder cycles through things people actually type */
 const EXAMPLES = ['Somewhere warm in March, good food, under $700', 'Snow, a cabin, no crowds', 'A long weekend with a short flight', 'The best food city in the world'];
 let ex = 0;
 if (!reduce) setInterval(() => {

@@ -49,7 +49,6 @@ $(document).ready(function () {
     $(this).hide();
   });
 
-  // search without leaving the page
   $("#search").submit(function () {
     var from = findAirport($("#from").val()) || AIRPORTS[0];
     var to = findAirport($("#to").val());
@@ -60,7 +59,7 @@ $(document).ready(function () {
       return false;
     }
     out.html('<p class="loading"><img src="img/spinner.gif" width="16" height="16" alt="" />Searching 38 cities...</p>');
-    // a 2007 server took a moment to answer; this one is a static file, so wait like one
+    // a 2007 server took a moment to answer; this is a static file, so fake it
     setTimeout(function () {
       $.getJSON("data/fares.json", function (fares) {
         var f = fares[to.code], times = [["07:10", 0], ["13:45", 40], ["22:30", -30]], rows = "";
@@ -68,7 +67,7 @@ $(document).ready(function () {
           rows += "<tr><td>HA " + (300 + i * 2) + "</td><td>" + from.code + " &rarr; " + to.code + "</td><td>" + times[i][0] + "</td><td>" + f.hours + '</td><td class="fare">$' + (f.fare + times[i][1]) + "</td></tr>";
         out.hide().html("<table><tr><th>Flight</th><th>Route</th><th>Departs</th><th>Flight time</th><th>Fare</th></tr>" + rows +
           '</table><p class="updated">Updated just now. No page reload!</p>').fadeIn(400);
-        // the yellow fade: flash what changed, then let it settle
+        // the yellow fade
         var cheapest = out.find("tr:last");
         cheapest.addClass("yellow");
         setTimeout(function () { cheapest.removeClass("yellow"); }, 1500);
