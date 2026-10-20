@@ -1,0 +1,9 @@
+{
+  "name": "y2k",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test",
+    "dev": "npx --yes http-server@14.1.1 site -p 8199 -c-1"
+  }
+}

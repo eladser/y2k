@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="52" viewBox="0 0 200 52" shape-rendering="crispEdges">
+<defs><pattern id="h" width="16" height="9" patternUnits="userSpaceOnUse"><rect width="16" height="9" fill="#ffcc00"/><polygon points="0,9 8,0 16,0 8,9" fill="#111"/><animateTransform attributeName="patternTransform" type="translate" values="0 0;4 0;8 0;12 0" dur=".6s" calcMode="discrete" repeatCount="indefinite"/></pattern></defs>
+<rect width="200" height="52" fill="#000"/>
+<rect x="1" y="1" width="198" height="9" fill="url(#h)"/>
+<rect x="1" y="42" width="198" height="9" fill="url(#h)"/>
+<rect x="1" y="11" width="198" height="30" fill="#ffcc00"/>
+<text x="100" y="31" text-anchor="middle" font-family="Arial Black, Arial, Helvetica, sans-serif" font-weight="900" font-size="12" fill="#000">UNDER CONSTRUCTION</text>
+<circle cx="11" cy="26" r="5" fill="#ff5500"><animate attributeName="fill" values="#ff5500;#5a1e00" dur="1s" calcMode="discrete" repeatCount="indefinite"/></circle>
+<circle cx="189" cy="26" r="5" fill="#5a1e00"><animate attributeName="fill" values="#5a1e00;#ff5500" dur="1s" calcMode="discrete" repeatCount="indefinite"/></circle>
+</svg>

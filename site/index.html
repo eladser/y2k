@@ -1,0 +1,328 @@
+<!doctype html>
+<html lang="en" data-sha="" data-built="">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'sha256-Yxmx0PGJpd/8AmRrqnyKPVJXOdaqFnOQ52O+UZkYGAI='; img-src 'self' data: https://avatars.githubusercontent.com; connect-src 'self' https://abacus.jasoncameron.dev https://api.github.com; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Elad's Home Page</title>
+<meta name="description" content="A homepage from 1999 that still works, next to what every piece of it turned into by 2026. Dial-up included.">
+<meta property="og:title" content="y2k.eladser.dev - the same homepage, 27 years apart">
+<meta property="og:description" content="A 1999 homepage that still works: hit counter, guestbook, 56K dial-up. Install the Y2K patch to see what each piece became.">
+<meta property="og:image" content="https://y2k.eladser.dev/img/og.png">
+<meta property="og:url" content="https://y2k.eladser.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0a0a0a">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="y2k.css">
+<script>(function(h){var d;try{d=!localStorage.getItem('y2k.dialed')}catch(e){d=1}if(/[?&]dial/.test(location.search))d=1;h.dataset.era=location.hash=='#2026'?'2026':'1999';if(d&&h.dataset.era=='1999')h.classList.add('dialing')})(document.documentElement)</script>
+<script type="module" src="y2k.js"></script>
+</head>
+<body>
+
+<div id="dial">
+<pre id="term">y2k.eladser.dev                          COM1  57600 8N1
+
+This page loads the way pages did in 1999:
+through a phone line, at 56 kbps.
+
+Sound on. It takes about ten seconds.
+</pre>
+<canvas id="spec0" class="spec" width="842" height="128" aria-hidden="true"></canvas>
+<div class="dial-row">
+<button id="connect" type="button">Connect</button>
+<label><input type="checkbox" id="spk" checked> speaker</label>
+<button id="skip" type="button" class="link">skip the modem</button>
+</div>
+</div>
+
+<!-- ============ 1999 ============ -->
+<DIV ID="v99">
+<TABLE CLASS="page" WIDTH="100%" CELLPADDING="0" CELLSPACING="0" BORDER="0" BACKGROUND="img/stripe.svg">
+<TR>
+<TD CLASS="nav" WIDTH="140" VALIGN="top">
+<BR>
+<CENTER><IMG SRC="img/pc.svg" WIDTH="64" HEIGHT="64" ALT=""></CENTER>
+<P>
+<FONT FACE="Arial" SIZE="2"><B>
+<A HREF="#top">Home</A><BR>
+<A HREF="#about">About me</A><BR>
+<A HREF="#projects">My projects</A><BR>
+<A HREF="#computer">My computer</A><BR>
+<A HREF="#guestbook">Guestbook</A> <BLINK>NEW!</BLINK><BR>
+<A HREF="#links">Cool links</A><BR>
+</B></FONT>
+</TD>
+<TD CLASS="main" VALIGN="top">
+<A NAME="top"></A>
+<CENTER>
+<BR>
+<FONT FACE="Arial" SIZE="6" COLOR="#000080"><B>Welcome to Elad's Home Page!</B></FONT><BR>
+<FONT FACE="Arial" SIZE="2">on the World Wide Web since 1999</FONT>
+<P>
+<IMG SRC="img/construction.svg" WIDTH="200" HEIGHT="52" ALT="Under construction" DATA-PATCH="weight"><BR>
+<FONT SIZE="2"><I>This page is always under construction.</I></FONT>
+</CENTER>
+<P>
+<MARQUEE SCROLLAMOUNT="4" BGCOLOR="#000080"><FONT FACE="Comic Sans MS" COLOR="#FFFF00">*** Welcome to my corner of the Information Superhighway! *** Now with a GUESTBOOK, please sign it before you go! *** This site is Y2K compliant (probably) ***</FONT></MARQUEE>
+<P>
+<CENTER DATA-PATCH="counter">You are visitor number <SPAN CLASS="counter" ID="c99">000000</SPAN> since March 1999.</CENTER>
+<P>
+<TABLE BORDER="1" CELLPADDING="6" CELLSPACING="0" BGCOLOR="#FFFFCC" WIDTH="100%">
+<TR><TD><FONT FACE="Arial" SIZE="2"><B><FONT COLOR="#CC0000">WARNING:</FONT></B> This page is not Y2K compliant. On January 1st, 2000 my guestbook will think it's 1900.
+<A HREF="#2026" CLASS="patch">Download the Y2K patch</A> (2,164 KB, about 7 minutes on a 56K modem)</FONT></TD></TR>
+</TABLE>
+
+<A NAME="about"></A>
+<H2><FONT FACE="Arial">About me</FONT></H2>
+<P>Hi! My name is Elad and this is my home page. I'm a computer engineer from Haifa, Israel.
+I mostly write C++, some Java, and Perl when nobody is looking. I hear Microsoft is working
+on a new language codenamed "Cool". If it's any good I'll learn it.
+<P>When I'm not programming I'm on ICQ, or waiting for something to finish downloading.
+
+<A NAME="projects"></A>
+<H2><FONT FACE="Arial">My projects</FONT></H2>
+<UL>
+<LI><A HREF="https://aerolens.eladser.dev/">AeroLens</A> - shows every airplane in the sky, live. You'll need a T1 line. <BLINK><FONT COLOR="#FF0000"><B>NEW!</B></FONT></BLINK>
+<LI><A HREF="https://github.com/eladser/mtop">mtop</A> - like <TT>top</TT>, but for the "language models" running on your 3D card.
+<LI><A HREF="https://github.com/eladser/seerlens">Seerlens</A> - writes down every conversation your program has with a robot.
+<LI><A HREF="https://github.com/eladser/AspNetDebugDashboard">ASP.NET Debug Dashboard</A> - for ASP! (not that ASP)
+</UL>
+
+<A NAME="computer"></A>
+<H2><FONT FACE="Arial">My computer</FONT></H2>
+<TABLE BORDER="1" CELLPADDING="3" CELLSPACING="0">
+<TR><TD BGCOLOR="#C0C0C0"><B>CPU</B></TD><TD>Intel Pentium II, 400 MHz</TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><B>RAM</B></TD><TD>64 MB SDRAM</TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><B>Hard disk</B></TD><TD>6.4 GB</TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><B>Video</B></TD><TD>3dfx Voodoo2, 12 MB</TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><B>Modem</B></TD><TD>US Robotics 56K, V.90</TD></TR>
+<TR><TD BGCOLOR="#C0C0C0"><B>OS</B></TD><TD>Windows 98 SE and Red Hat 6.0</TD></TR>
+</TABLE>
+
+<A NAME="guestbook"></A>
+<H2><FONT FACE="Arial">Guestbook</FONT></H2>
+<P>Please sign my guestbook! It really makes my day.
+<P DATA-PATCH="guestbook"><A HREF="https://github.com/eladser/y2k/issues/1" CLASS="w9x">Sign my guestbook</A>
+<FONT SIZE="2">You need a GitHub account. In 1999 you needed nothing, which is why every guestbook was full of casino ads.</FONT>
+<HR SIZE="1" NOSHADE>
+<DIV ID="gblist99" DATA-PATCH="dates"><I>Loading entries...</I></DIV>
+
+<A NAME="links"></A>
+<H2><FONT FACE="Arial">Cool links</FONT></H2>
+<UL>
+<LI><A HREF="https://eladser.dev/">My other home page</A> (the new one)
+<LI><A HREF="https://web.archive.org/">The Wayback Machine</A> - somebody is saving all of this
+<LI><A HREF="https://neal.fun/internet-artifacts/">Internet Artifacts</A> - a museum of the early web
+<LI><A HREF="https://www.spacejam.com/1996/">Space Jam</A> - still online, still 1996
+</UL>
+<P>
+<CENTER>
+<TABLE BORDER="2" CELLPADDING="5" CELLSPACING="0" BGCOLOR="#EEEEEE">
+<TR><TD ALIGN="center"><FONT FACE="Arial" SIZE="2">This site is a member of the <B>Elad's Projects Webring</B><BR>
+[ <A HREF="https://github.com/eladser/mtop">&lt;&lt; Prev</A> | <A HREF="https://eladser.dev/">Home</A> | <A HREF="https://github.com/eladser" ID="ringrand">Random</A> | <A HREF="https://aerolens.eladser.dev/">Next &gt;&gt;</A> ]</FONT></TD></TR>
+</TABLE>
+<P>
+<SPAN CLASS="b88 notepad">Made with<BR><B>NOTEPAD</B></SPAN>
+<SPAN CLASS="b88 html32"><B>HTML 3.2</B><BR>checked!</SPAN>
+<SPAN CLASS="b88 view">best viewed<BR><B>800 x 600</B></SPAN>
+<SPAN CLASS="b88 nav4">Netscape<BR><B>NOW!</B></SPAN>
+<SPAN CLASS="b88 y2k"><B>Y2K</B><BR>compliant?</SPAN>
+<P>
+<FONT FACE="Arial" SIZE="1">Best viewed with Netscape Navigator 4.0 at 800x600.<BR>
+<SPAN DATA-PATCH="lastmod">Last updated: <SPAN ID="lastmod">recently</SPAN></SPAN><BR>
+&copy; 1999 Elad. <A HREF="https://eladser.dev/">E-mail me!</A></FONT>
+</CENTER>
+<BR><BR>
+</TD>
+<TD CLASS="spacer">&nbsp;</TD>
+</TR>
+</TABLE>
+<BUTTON TYPE="button" CLASS="patch w9x" ID="patchbtn">Install Y2K patch</BUTTON>
+</DIV>
+
+
+<!-- ============ 2026 ============ -->
+<div id="v26">
+<header class="bar">
+  <a class="logo mono" href="#2026">y2k<span>.eladser.dev</span></a>
+  <nav>
+    <span class="era mono" role="group" aria-label="Year">
+      <a href="#1999">1999</a><a href="#2026" aria-current="page">2026</a>
+    </span>
+    <a class="mono" href="https://github.com/eladser/y2k">source</a>
+    <a class="mono" href="https://eladser.dev/">eladser.dev</a>
+  </nav>
+</header>
+
+<main>
+<section class="lede">
+  <p class="mono kicker"><span class="dot"></span><span id="kick">connecting...</span></p>
+  <h1>The same homepage, 27&nbsp;years apart.</h1>
+  <p>Everything on the 1999 page works. The counter counts, the guestbook takes entries, and the modem you heard was built by your browser while you listened. There's no server behind any of it, just files on GitHub Pages. Here's what each piece turned into, with the code from both years.</p>
+</section>
+
+<article class="diff" id="modem">
+  <div class="idx mono">01</div>
+  <div class="body">
+    <h2>The modem</h2>
+    <div class="w specw">
+      <div class="specbox"><canvas id="spec26" class="spec" width="842" height="128" aria-label="Spectrogram of a dial-up handshake, 0 to 4 kHz over ten seconds"></canvas><div class="head" id="head26"></div></div>
+      <ol class="phases mono" id="phases26"></ol>
+      <button type="button" class="ghost mono" id="play26">play it again</button>
+    </div>
+    <p class="cap">Everyone online in 1999 heard this, and almost nobody knew what it was. Two modems were testing the phone line: which frequencies got through, how bad the echo was, how fast they could push. Your browser built the whole thing from the ITU specs, sample by sample, and ran its own FFT over it to draw the picture above. Time runs left to right, pitch goes up, and brighter means louder.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; Dial-Up Networking &middot; extra settings &middot; 1999</figcaption><pre><code>; Modem &gt; Advanced &gt; Extra settings
+AT&amp;F1 S7=60 L2 M1
+; L2  speaker volume medium
+; M1  speaker on until the carrier locks
+ATDT 555-1999</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ modem.js &middot; JavaScript &middot; 2026</figcaption><pre><code>// ANSam: 2100 Hz with 15 Hz AM, phase reversed every 450 ms
+fill(3.4, 1.8, 0.28, x =&gt;
+  (1 + 0.2 * Math.sin(TAU * 15 * x)) / 1.2 *
+  Math.sin(TAU * 2100 * x + (Math.floor(x / 0.45) % 2) * Math.PI));
+
+fsk(5.25, 1.0, 980, 1180, 300, 0.13);  // caller, V.21 channel 1
+fsk(5.25, 1.0, 1650, 1850, 300, 0.13); // answerer, channel 2</code></pre></figure>
+    </div>
+  </div>
+</article>
+
+<article class="diff" id="counter">
+  <div class="idx mono">02</div>
+  <div class="body">
+    <h2>Hit counter</h2>
+    <div class="w count">
+      <div class="big mono" id="big26">------</div>
+      <p class="mono sub" id="countnote">waiting for the counter</p>
+    </div>
+    <p class="cap">In 1999 the number changed when you pressed reload. Now it changes on its own. The page holds a stream open to a counting API, and every new visitor gets pushed to everyone with the page open. Open a second tab and watch this one.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; counter.cgi &middot; Perl &middot; 1999</figcaption><pre><code># included with &lt;!--#exec cgi="/cgi-bin/counter.cgi" --&gt;
+open(COUNT, "+&lt;count.txt") || die "no count.txt";
+flock(COUNT, 2);
+$hits = &lt;COUNT&gt; + 1;
+seek(COUNT, 0, 0);
+print COUNT $hits;
+close(COUNT);
+
+print "Content-type: text/plain\n\n";
+print $hits;</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ y2k.js &middot; JavaScript &middot; 2026</figcaption><pre><code>const hit = await fetch(`${COUNTER}/hit/${KEY}`).then(r =&gt; r.json());
+showCount(hit.value);
+
+// then just listen: everyone else's visit arrives as an event
+const es = new EventSource(`${COUNTER}/stream/${KEY}`);
+es.onmessage = e =&gt; showCount(JSON.parse(e.data).value);</code></pre></figure>
+    </div>
+  </div>
+</article>
+
+<article class="diff" id="guestbook26">
+  <div class="idx mono">03</div>
+  <div class="body">
+    <h2>Guestbook</h2>
+    <div class="w gb">
+      <ol class="feed" id="feed26"><li class="empty">Loading entries...</li></ol>
+      <a class="btn" href="https://github.com/eladser/y2k/issues/1">Sign it on GitHub</a>
+    </div>
+    <p class="cap">The 1999 script pasted whatever you typed straight into the page, so people typed <code>&lt;script&gt;</code>. Then the casino bots found it. Now the guestbook is a GitHub issue. Signing needs an account, which stops most spam, and the page reads the comments with one public API call and puts them on screen as plain text, never HTML.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; guestbook.pl &middot; Perl &middot; 1999</figcaption><pre><code>read(STDIN, $buf, $ENV{'CONTENT_LENGTH'});
+foreach $pair (split(/&amp;/, $buf)) {
+    ($k, $v) = split(/=/, $pair);
+    $v =~ tr/+/ /;
+    $v =~ s/%(..)/pack("C", hex($1))/eg;
+    $in{$k} = $v;
+}
+open(BOOK, "&gt;&gt;guestbook.html");
+print BOOK "&lt;B&gt;$in{'name'}&lt;/B&gt;: $in{'comments'}&lt;HR&gt;\n";
+close(BOOK);</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ y2k.js &middot; JavaScript &middot; 2026</figcaption><pre><code>// comments come oldest first, so ask how many there are and read the last two pages
+const last = Math.max(1, Math.ceil((await get(ISSUE)).comments / 30));
+const pages = await Promise.all([last - 1, last].filter(p =&gt; p &gt; 0)
+  .map(p =&gt; get(`${ISSUE}/comments?per_page=30&amp;page=${p}`)));
+
+for (const c of pages.flat().slice(-30).reverse()) {
+  const p = document.createElement('p');
+  p.textContent = c.body; // text, never innerHTML
+  feed.append(p);
+}</code></pre></figure>
+    </div>
+  </div>
+</article>
+
+<article class="diff" id="deploy">
+  <div class="idx mono">04</div>
+  <div class="body">
+    <h2>Last updated</h2>
+    <div class="w build mono" id="build26">local copy, never deployed</div>
+    <p class="cap">In 1999 you dragged <code>index.html</code> into the right pane of WS_FTP and hoped nobody loaded the page halfway through. The date at the bottom was whatever the server said the file's timestamp was. Now every push to <code>main</code> runs the tests, stamps the commit into the page and publishes it. The line above comes from that stamp.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; index.html &middot; JavaScript 1.2 &middot; 1999</figcaption><pre><code>&lt;!-- upload: WS_FTP LE, drag to the right pane --&gt;
+&lt;SCRIPT LANGUAGE="JavaScript"&gt;
+document.write("Last updated: " + document.lastModified);
+&lt;/SCRIPT&gt;</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ .github/workflows/pages.yml &middot; 2026</figcaption><pre><code>- run: npm test
+- name: stamp the commit into the page
+  run: |
+    sed -i -e "s|data-sha=\"\"|data-sha=\"$GITHUB_SHA\"|" \
+      -e "s|data-built=\"\"|data-built=\"$(date -u +%FT%TZ)\"|" \
+      site/index.html
+- uses: actions/upload-pages-artifact@v4
+  with: { path: site }
+- uses: actions/deploy-pages@v4</code></pre></figure>
+    </div>
+  </div>
+</article>
+
+<article class="diff" id="weight">
+  <div class="idx mono">05</div>
+  <div class="body">
+    <h2>Page weight</h2>
+    <div class="w weigh" id="weight26"></div>
+    <p class="cap">On a 56K modem every kilobyte cost the visitor about a fifth of a second, so you counted them. Netscape even had <code>LOWSRC</code>, a tiny black-and-white image it showed while the real one crawled in. Nobody counts anymore. The median home page in 2025 was 2,164&nbsp;KB, which is over seven minutes of the sound you heard at the start.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; index.html &middot; HTML 3.2 &middot; 1999</figcaption><pre><code>&lt;!-- keep the whole page under 40K or people leave --&gt;
+&lt;IMG SRC="me.jpg" LOWSRC="me-bw.gif"
+     WIDTH=120 HEIGHT=160 ALT="me"&gt;</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ index.html &middot; HTML &middot; 2026</figcaption><pre><code>&lt;img src="me.avif" srcset="me@2x.avif 2x"
+     width="120" height="160" alt="me"
+     loading="lazy" decoding="async"&gt;</code></pre></figure>
+    </div>
+  </div>
+</article>
+
+<article class="diff" id="offline">
+  <div class="idx mono">06</div>
+  <div class="body">
+    <h2>Work offline</h2>
+    <div class="w off mono" id="off26">checking...</div>
+    <p class="cap">In 1999 you were offline most of the day, and you paid by the minute when you weren't. Internet Explorer had File &gt; Work Offline, which showed you whatever happened to be left in the cache. This page installs a service worker on your first visit. Turn off your wifi and reload: it still opens. The counter and the guestbook go quiet, like a 1999 page with the modem unplugged.</p>
+    <div class="code">
+<figure class="old"><figcaption class="mono">&minus; index.html &middot; HTML 3.2 &middot; 1999</figcaption><pre><code>&lt;!-- please, browser, don't cache this --&gt;
+&lt;META HTTP-EQUIV="Pragma" CONTENT="no-cache"&gt;
+&lt;META HTTP-EQUIV="Expires" CONTENT="0"&gt;</code></pre></figure>
+<figure class="new"><figcaption class="mono">+ sw.js &middot; JavaScript &middot; 2026</figcaption><pre><code>self.addEventListener('fetch', e =&gt; {
+  if (e.request.method !== 'GET' || !e.request.url.startsWith(self.location.origin)) return;
+  // network first so a deploy shows up right away; cache only when there's no line
+  e.respondWith(fetch(e.request.url, { cache: 'no-cache' })
+    .then(r =&gt; { if (r.ok) { const c = r.clone(); caches.open(CACHE).then(k =&gt; k.put(e.request, c)); } return r; })
+    .catch(() =&gt; caches.match(e.request, { ignoreSearch: true })));
+});</code></pre></figure>
+    </div>
+  </div>
+</article>
+</main>
+
+<footer class="foot mono">
+  <p>Made by <a href="https://eladser.dev/">Elad Sertshuk</a>. No frameworks, no build step, no server. Some things from 1999 were right.</p>
+  <p><a href="#1999">back to 1999</a> &middot; <a href="./?dial" id="redial">dial again</a> &middot; <a href="https://github.com/eladser/y2k">source on GitHub</a></p>
+</footer>
+</div>
+
+<div id="patchlog" aria-live="polite"></div>
+<div id="status"><span id="st-msg">Document: Done.</span><span id="st-kb"></span><button type="button" id="st-stop">Stop</button></div>
+
+</body>
+</html>
