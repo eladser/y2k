@@ -255,6 +255,8 @@ body.xr .wall { padding-right: min(488px, 100%); }
   .row .br .f:nth-child(n+17) { display: none; }
   .wall { padding: 0; }
   .ie6, .chrome-now { border-radius: 0; box-shadow: none; }
+  .c7 { resize: none; min-width: 0; }
+  .task-7 .pin:not(.on) { display: none; }
   .ie6 .menu, .ie6 .tools, .ie6 .sb, .task-xp, .chrome-now .tabs { display: none; }
   body.flying .depart { --fs: 15px; }
   body.flying #nowrow .br { display: none; }
@@ -440,6 +442,49 @@ body.dialing98 #win { visibility: hidden; }
   background: linear-gradient(rgba(255, 255, 255, .28), rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .02)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25), 0 0 0 1px #000; }
 .task-vista .job svg { width: 16px; height: 16px; flex: none; }
 .task-vista .tray { margin-left: auto; height: 100%; display: flex; align-items: center; padding: 0 14px; background: rgba(255, 255, 255, .05); box-shadow: inset 1px 0 rgba(255, 255, 255, .12); }
+
+/* ---------- Windows 7 + Chrome 23, 2012 ---------- */
+
+[data-os="win7"] .wall {
+  background:
+    radial-gradient(22% 30% at 50% 50%, rgba(255, 255, 255, .45), transparent 70%),
+    radial-gradient(16% 20% at 45% 44%, rgba(255, 110, 40, .5), transparent 70%),
+    radial-gradient(16% 20% at 55% 44%, rgba(130, 220, 60, .45), transparent 70%),
+    radial-gradient(16% 20% at 45% 57%, rgba(60, 170, 255, .6), transparent 70%),
+    radial-gradient(16% 20% at 55% 57%, rgba(255, 210, 40, .45), transparent 70%),
+    radial-gradient(90% 80% at 50% 50%, #2b92dc, #0b4f9c 55%, #052147);
+}
+/* drag the corner: the 2012 page is the first one here with media queries */
+.c7 { resize: horizontal; overflow: hidden; min-width: 340px; max-width: 100%; background: linear-gradient(rgba(120, 170, 220, .6), rgba(70, 120, 175, .55)); }
+.c7 .tbc { display: flex; align-items: flex-end; gap: 4px; height: 36px; padding-left: 8px; }
+.c7 .tab3 { display: flex; align-items: center; gap: 7px; width: 220px; height: 27px; padding: 0 18px; margin-bottom: -1px; position: relative; z-index: 1;
+  clip-path: polygon(12px 0, calc(100% - 12px) 0, 100% 100%, 0 100%); background: linear-gradient(#fff, #f6f6f6); white-space: nowrap; overflow: hidden; }
+.c7 .tab3 span:first-of-type { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.c7 .tab3 .fav { width: 14px; height: 14px; flex: none; border-radius: 3px; background: #1b1b1b; box-shadow: inset 0 -5px #f89406; }
+.c7 .tab3 .x { color: #777; font-size: 15px; }
+.c7 .newtab { width: 26px; height: 15px; margin: 0 0 6px -10px; transform: skewX(24deg); border-radius: 3px; border: 1px solid rgba(0, 0, 0, .4); background: linear-gradient(rgba(255, 255, 255, .55), rgba(255, 255, 255, .2)); }
+.c7 .caps { margin-left: auto; align-self: flex-start; }
+.ch23 { display: flex; flex-direction: column; flex: 1; min-height: 0; border: 1px solid rgba(0, 0, 0, .45); background: #f6f6f6; }
+.ch23 .bar { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 8px; border-bottom: 1px solid #b9b9b9; color: #555; }
+.ch23 .bar svg { width: 19px; height: 19px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round; }
+.ch23 .bar svg.wr { stroke: none; width: 17px; height: 17px; }
+.ch23 .omni { flex: 1; display: flex; align-items: center; height: 27px; padding: 0 6px 0 8px; border: 1px solid #b5b5b5; border-top-color: #9a9a9a; border-radius: 2px; background: #fff;
+  font: 14px Arial, sans-serif; color: #000; white-space: nowrap; overflow: hidden; }
+.ch23 .omni span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.ch23 .omni svg { width: 17px; height: 17px; stroke-width: 1.8; color: #888; }
+
+.task-7 { display: flex; align-items: center; gap: 2px; height: 40px; flex: none; padding-left: 4px; font: 12px 'Segoe UI', Tahoma, sans-serif; color: #fff;
+  background: linear-gradient(rgba(70, 110, 150, .55), rgba(20, 45, 75, .75)); backdrop-filter: blur(10px); box-shadow: inset 0 1px rgba(255, 255, 255, .35), 0 -1px rgba(0, 0, 0, .5); }
+.task-7 .orb { width: 38px; height: 38px; margin-right: 10px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #8cd0ff, #1a63b5 45%, #062248 72%); box-shadow: 0 0 0 1px rgba(0, 0, 0, .7), inset 0 1px 1px rgba(255, 255, 255, .7), 0 0 12px rgba(120, 190, 255, .5); }
+.task-7 .orb svg { width: 20px; height: 18px; }
+.task-7 .pin { width: 56px; height: 38px; display: grid; place-items: center; border-radius: 3px; }
+.task-7 .pin svg { width: 26px; height: 26px; }
+.task-7 .pin.on { background: linear-gradient(rgba(255, 255, 255, .32), rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .02)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .35), 0 0 0 1px rgba(0, 0, 0, .55); }
+.task-7 .tray { margin-left: auto; display: flex; align-items: center; gap: 12px; padding: 0 12px; }
+.task-7 .tray svg { width: 16px; height: 16px; }
+.task-7 .when { display: grid; justify-items: center; line-height: 1.35; }
+.task-7 .show { width: 14px; height: 100%; border-left: 1px solid rgba(255, 255, 255, .25); box-shadow: inset 1px 0 rgba(0, 0, 0, .35); }
 
 /* ---------- Windows 95 + Netscape Navigator 3, 1996 ---------- */
 

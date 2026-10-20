@@ -522,7 +522,136 @@ dialog.showModal();`,
       },
     ],
   },
-  { year: 2012, browser: 'CHROME 23', os: 'win7', conn: '7.4 MBPS', kbps: 925, page: 738, built: false },
+  {
+    year: 2012, browser: 'CHROME 23', os: 'win7', chrome: 'ch23', conn: '7.4 MBPS', kbps: 925, page: 738, built: true,
+    url: 'www.halcyonair.com',
+    tab: 'Halcyon Airways - Cheap flights from Tel Aviv',
+    title: 'Halcyon Airways - Cheap flights from Tel Aviv - Google Chrome',
+    stack: 'HTML5 · Bootstrap 2.2.1 · jQuery 1.8.3 · responsive',
+    xray: [
+      {
+        name: 'Responsive design',
+        sel: '.navbar',
+        then: 'Ethan Marcotte named it in A List Apart in 2010: a fluid grid, flexible images and media queries, so one page fits a phone and a desktop. Drag the bottom-right corner of this window to make it narrow. The menu folds into the three-line button and the columns stack.',
+        now: 'Mobile first is the default, since phones bring most of the traffic. Container queries let a component respond to the space it has, not just to the screen.',
+        code: `<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+@media (max-width: 767px) {
+  .container { width: auto; }
+  [class*="span"] {
+    display: block; float: none;
+    width: 100%; margin-left: 0;
+  }
+}`,
+      },
+      {
+        name: 'Bootstrap',
+        sel: '#destinations',
+        then: 'Twitter open-sourced its internal toolkit in August 2011, and within a year it was the most popular project on GitHub. A 940 pixel grid of twelve floated columns, a black navbar, a carousel and three columns underneath. A lot of 2012 looked exactly like this page.',
+        now: 'CSS Grid and flexbox do the layout without a framework. Companies build their own design systems, or compose pages from utility classes.',
+        code: `<div class="row">
+  <div class="span4">...</div>
+  <div class="span4">...</div>
+  <div class="span4">...</div>
+</div>
+
+[class*="span"] { float: left; min-height: 1px; margin-left: 20px; }
+.span4 { width: 300px; }`,
+      },
+      {
+        name: 'The carousel',
+        sel: '#slides',
+        then: 'Every homepage rotated three or four banners, one every few seconds. This is Bootstrap\'s jQuery plugin, wired up entirely with data attributes. The University of Notre Dame measured theirs in 2013: 1% of visitors clicked a slide, and 84% of those clicks were on the first one.',
+        now: 'One strong image, or a row you swipe with CSS scroll snapping and no script at all.',
+        code: `<div id="slides" class="carousel slide">
+  <div class="carousel-inner">
+    <div class="active item"><img src="img/slide_tokyo.jpg"> ...</div>
+  </div>
+  <a class="carousel-control left" href="#slides"
+     data-slide="prev">&lsaquo;</a>
+</div>
+
+$('#slides').carousel({ interval: 5000 });`,
+      },
+      {
+        name: 'CSS3, prefixed',
+        sel: '.search-box .btn',
+        then: 'Gradients, rounded corners and shadows moved from images into CSS, but each browser had its own experimental syntax. This is Bootstrap\'s orange button: one gradient written six times, plus a Microsoft filter for Internet Explorer 9.',
+        now: 'One unprefixed line. Browsers stopped shipping new features behind prefixes and put them behind flags instead, and build tools add the few prefixes that are left.',
+        code: `.btn-warning {
+  background-color: #faa732;
+  background-image:
+    -moz-linear-gradient(top, #fbb450, #f89406);
+  background-image:
+    -webkit-gradient(linear, 0 0, 0 100%,
+      from(#fbb450), to(#f89406));
+  background-image:
+    -webkit-linear-gradient(top, #fbb450, #f89406);
+  background-image:
+    -o-linear-gradient(top, #fbb450, #f89406);
+  background-image:
+    linear-gradient(to bottom, #fbb450, #f89406);
+  filter: progid:DXImageTransform.Microsoft.gradient(
+    startColorstr='#fffbb450', endColorstr='#fff89406',
+    GradientType=0);
+}`,
+      },
+      {
+        name: 'HTML5 forms',
+        sel: '#search',
+        then: 'Placeholder text and a real date input, with no script. Chrome drew its own calendar for type="date" from 2012, but Firefox only got one in 2017 and desktop Safari in 2021, so most sites still shipped a jQuery date picker. The city list is Bootstrap\'s typeahead, configured with a JSON array in an attribute.',
+        now: 'The input types work everywhere, and <datalist> gives a text field suggestions without a plugin.',
+        code: `<input type="text" placeholder="Where to?" autocomplete="off"
+  data-provide="typeahead"
+  data-source='["Athens","Barcelona","Berlin","Lisbon", ...]'>
+
+<input type="date" name="depart">`,
+      },
+      {
+        name: 'Web fonts',
+        sel: '#destinations h3',
+        then: 'Google Web Fonts launched in 2010 and made custom type one line of HTML. Before that, sites drew headlines with Flash (sIFR) or with JavaScript that turned text into canvas shapes (Cufón). Open Sans was the favourite. This copy serves it from this site, not from Google.',
+        now: 'Self-hosted variable fonts: every weight in one file. Browsers stopped sharing the font cache between sites in 2020, so the big shared CDN stopped being faster.',
+        code: `<link rel="stylesheet" type="text/css"
+  href="http://fonts.googleapis.com/css?family=Open+Sans:400,700">
+
+body { font-family: 'Open Sans', sans-serif; }`,
+      },
+      {
+        name: 'Icon sprites',
+        sel: '.search-box .btn i',
+        then: 'Glyphicons Halflings: 140 icons in a single PNG, each one an empty <i> with a background position. One download instead of 140, because browsers opened at most six connections to a server at a time. White icons for dark buttons were a second PNG.',
+        now: 'SVG icons that take any colour and size. HTTP/2 made lots of small files cheap, so nothing has to be stitched together.',
+        code: `[class^="icon-"] {
+  display: inline-block; width: 14px; height: 14px;
+  background-image: url("../img/glyphicons-halflings.png");
+  background-repeat: no-repeat;
+}
+.icon-search { background-position: -48px 0; }
+.icon-white {
+  background-image: url("../img/glyphicons-halflings-white.png");
+}`,
+      },
+      {
+        name: 'Like, Tweet, Pin',
+        sel: '.social .span6 + .span6',
+        then: 'The real 2012 page loaded Facebook\'s, Twitter\'s and Pinterest\'s scripts for these buttons, and each one could see every visit to every page that had one. Here they\'re plain buttons.',
+        now: 'Safari and Firefox block third-party cookies by default, and in Europe the GDPR means asking before any of it loads.',
+        code: `<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+<div class="fb-like" data-href="http://www.halcyonair.com"
+     data-send="false" data-show-faces="true"></div>`,
+      },
+    ],
+  },
   { year: 2020, browser: 'CHROME 87', os: 'win10', conn: '86 MBPS', kbps: 10755, page: 2000, built: false },
   {
     year: 2026, browser: 'CHROME 153', os: 'now', chrome: 'now', conn: '314 MBPS', kbps: 39294, page: 2987, built: true,

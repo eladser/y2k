@@ -145,6 +145,10 @@ const I = {
   ffStop: '<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="10" fill="#c0c0c0"/><path d="m9 9 8 8m0-8-8 8" stroke="#fff" stroke-width="2.6"/></svg>',
   ffHome: '<svg viewBox="0 0 26 26"><path d="M13 4 3 13h3v9h5v-6h4v6h5v-9h3z" fill="#e8c35a" stroke="#8a6a1a"/><path d="M13 4 3 13h3l7-6 7 6h3z" fill="#c8402a"/></svg>',
   ffGo: '<svg viewBox="0 0 26 26"><path d="M8 6l10 7-10 7z" fill="#4c9f2a" stroke="#2f6d17"/></svg>',
+  wrench: '<svg class="wr" viewBox="0 0 16 16"><path d="M10.6 1.2a4.2 4.2 0 0 0-4 5.5L1.4 11.9a1.5 1.5 0 0 0 2.1 2.1l5.2-5.2a4.2 4.2 0 0 0 5.5-4l-2.5 2.5-2.2-.6-.6-2.2z" fill="#5f5f5f"/></svg>',
+  chrome: '<svg viewBox="0 0 16 16"><path d="M8 8 1.5 4.25A7.5 7.5 0 0 1 14.5 4.25z" fill="#db4437"/><path d="M8 8 14.5 4.25A7.5 7.5 0 0 1 8 15.5z" fill="#f4c20d"/><path d="M8 8 8 15.5A7.5 7.5 0 0 1 1.5 4.25z" fill="#0f9d58"/><circle cx="8" cy="8" r="3.6" fill="#fff"/><circle cx="8" cy="8" r="2.7" fill="#4285f4"/></svg>',
+  ie9: '<svg viewBox="0 0 16 16"><path d="M12.98 10.82A5.5 5.5 0 1 1 13.5 8.5H2.5" fill="none" stroke="#1e7fd8" stroke-width="2.4"/><path d="M1.5 12.5c2-6 9-11 13-10" fill="none" stroke="#f5b400" stroke-width="1.4"/></svg>',
+  folder: '<svg viewBox="0 0 16 16"><path d="M1 3.5h5l1.5 1.5H15v8.5H1z" fill="#e9c560" stroke="#a5822a"/><path d="M1 6.5h14v7H1z" fill="#f6d77a"/></svg>',
   modem: '<svg viewBox="0 0 16 16"><rect x="1" y="3" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="9" y="8" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="2" y="4" width="4" height="2" fill="#0f0"/><rect x="10" y="9" width="4" height="2" fill="#0f0"/></svg>',
 };
 
@@ -197,6 +201,12 @@ const CHROME = {
       <div class="view"><div class="spot"></div></div>
       <div class="sbar sb"><b class="txt">Done</b></div>
     </div>`,
+  ch23: e => `
+    <div class="tbc"><div class="tab3"><i class="fav"></i><span>${e.tab}</span><span class="x">&times;</span></div><i class="newtab"></i><span class="caps"><i>&#8211;</i><i>&#9633;</i><i class="x">&#10005;</i></span></div>
+    <div class="ch23">
+      <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni"><span>${e.url}</span>${I.star}</div>${I.wrench}</div>
+      <div class="view"><div class="spot"></div></div>
+    </div>`,
   now: e => `
     <div class="tabs"><span class="dots"><i></i><i></i><i></i></span><div class="tab"><i class="fav"></i><span>${e.title}</span><span class="x">&times;</span></div></div>
     <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni">${I.lock}${e.url}</div>${I.star}</div>
@@ -213,6 +223,7 @@ const TASK = {
   vista: e => `<div class="task-vista"><span class="orb">${I.flag}</span><span class="job">${I.ffx}${e.tab}</span><span class="tray" id="clock">${clock()}</span></div>`,
   win95: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk">${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon">${dialed() ? I.modem : ''}</span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
+  win7: e => `<div class="task-7"><span class="orb">${I.flag}</span><span class="pin">${I.ie9}</span><span class="pin">${I.folder}</span><span class="pin on">${I.chrome}</span><span class="tray">${I.speaker}<span class="when"><span id="clock">${clock()}</span><span>${new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })}/2012</span></span></span><i class="show"></i></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
 setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20000);
@@ -239,8 +250,9 @@ function desk(e) {
   const d = $('#desk');
   d.dataset.os = e.os;
   const win = $('#win');
-  win.className = `win ${{ ff1: 'ie6 ff1', nn3: 'ie5 w98 nn3', ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', now: 'chrome-now' }[e.chrome]}`;
+  win.className = `win ${{ ff1: 'ie6 ff1', nn3: 'ie5 w98 nn3', ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', ch23: 'aero c7', now: 'chrome-now' }[e.chrome]}`;
   win.innerHTML = CHROME[e.chrome](e);
+  win.style.width = '';
   $('.popup')?.remove();
   hangup98?.();
   frame = document.createElement('iframe');
