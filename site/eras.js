@@ -157,16 +157,17 @@ onClipEvent (data) {
         sel: 'h1',
         check: () => CSS.supports('animation-timeline: scroll()'),
         then: 'Headlines were images, or sIFR: a tiny Flash movie per headline, so the font could be anything other than Verdana.',
-        now: 'One variable font file with weight and width axes. Scrolling drives the axes directly in CSS, so the headline narrows and thins as you leave the hero.',
-        code: `h1 {
-  font-family: 'Mona Sans';
+        now: 'One variable font file with weight and width axes. A registered custom property turns scroll position into a plain number, and that number drives the axes, so the headline narrows and thins as you leave the hero. No JavaScript.',
+        code: `@property --s { syntax: '<number>'; inherits: true; initial-value: 0; }
+
+h1 {
+  font-variation-settings: 'wdth' calc(112 - var(--s) * 37),
+                           'wght' calc(740 - var(--s) * 480);
   animation: squeeze linear both;
   animation-timeline: scroll();
   animation-range: 0 70vh;
 }
-@keyframes squeeze {
-  to { font-variation-settings: 'wdth' 75, 'wght' 260; }
-}`,
+@keyframes squeeze { to { --s: 1; } }`,
       },
       {
         name: 'Ask Halcyon',

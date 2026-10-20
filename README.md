@@ -1,19 +1,20 @@
-# y2k.eladser.dev
+# Halcyon Airways, 1996 to 2026
 
-A homepage from 1999 that still works, and what each piece of it turned into by 2026.
+**[y2k.eladser.dev](https://y2k.eladser.dev)**
 
-It opens with a 56K dial-up handshake. There's no audio file: the browser builds the sound sample by sample from the frequencies in the ITU V.8, V.21 and V.34 specs, then runs its own FFT to draw the spectrogram while you listen. After that the page "downloads" at 5 KB/s.
+One made-up airline's homepage, rebuilt the way it would have been built in each era of the web. Same airline, same job, the tools and taste of that year. Every version works, and an X-ray panel shows how it was built, with the real code from that year.
 
-The 1999 page is real 1999 HTML: uppercase tags, `BGCOLOR`, a table layout, `<MARQUEE>`. The counter counts, and the guestbook takes entries (with the Y2K bug in its dates). The "Y2K patch" switches to the 2026 version, which puts the code from both years side by side:
+You pick a year on a split-flap departures board. The whole computer changes with it: the desktop, the browser, and the site inside.
 
-| 1999 | 2026 |
+| Year | What you get |
 | --- | --- |
-| a US Robotics modem | Web Audio, built from the specs |
-| `counter.cgi` and `count.txt` | a counting API pushing live updates over Server-Sent Events |
-| `guestbook.pl` appending raw HTML | comments on [issue #1](https://github.com/eladser/y2k/issues/1), rendered as text |
-| WS_FTP and `document.lastModified` | GitHub Actions stamping the commit into the page |
-| `LOWSRC` and a 40 KB budget | measured page weight vs the 2,164 KB median |
-| File > Work Offline | a service worker |
+| 2001 | A full Flash 5 site on Windows XP and IE6: "enter site" splash, a preloader at real 56K speed, a skippable intro with a synthesized techno loop, rollover blips, a wireframe globe, and a flight search that shows the `loadVariables` reply arriving as URL-encoded text. |
+| 2026 | An AI-generated film and photos, liquid glass, kinetic variable type driven by scroll, and an "Ask Halcyon" box that runs Gemini Nano on your own machine through Chrome's Prompt API when it's available. |
+| 1996, 1999, 2004, 2007, 2012, 2020 | On the board, not built yet. |
+
+None of the old tech runs anymore, so none of it is used here. The Flash site is HTML, SVG and the Web Animations API on the same 760 by 440 stage, and its music is synthesized live with Web Audio.
+
+The board's numbers are sourced: typical page weight per year from websiteoptimization.com, Nielsen Norman Group, Byte Level Research and HTTP Archive, connection speeds from the GVU surveys, comScore, Akamai and Ookla. The full list is on the board under "Where the numbers come from".
 
 No framework, no build step, no server. Static files on GitHub Pages.
 
@@ -21,9 +22,7 @@ No framework, no build step, no server. Static files on GitHub Pages.
 
 ```
 npm run dev     # http://localhost:8199
-npm test        # checks the synthesized tones and the FFT
+npm test        # checks the synthesized modem tones and the FFT
 ```
 
-## Sign the guestbook
-
-[Leave a comment here](https://github.com/eladser/y2k/issues/1). It shows up on the page.
+`scripts/generate.mjs` regenerates the 2026 film and photos through kie.ai from the prompts in `site/eras/2026/prompts.js` (needs `KIE_API_KEY` in the environment or `~/.secrets/kie.env`).

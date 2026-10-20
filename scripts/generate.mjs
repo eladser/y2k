@@ -1,6 +1,7 @@
 // Generates the 2026 page's film and photos with kie.ai, then encodes them for the web.
 //   node scripts/generate.mjs            everything
 //   node scripts/generate.mjs photos     only the stills
+//   node scripts/generate.mjs film       only the film
 // Key: KIE_API_KEY in the environment or in ~/.secrets/kie.env. Raw downloads go to d:/tmp/y2k-raw.
 import { readFileSync, writeFileSync, mkdirSync, existsSync } from 'node:fs';
 import { homedir } from 'node:os';
@@ -71,8 +72,8 @@ if (only !== 'photos') {
   }));
 }
 // Reykjavik sits in a tall tile, so it gets a portrait frame
-for (const p of PHOTOS) jobs.push(image(p, p.city === 'Reykjavik' ? '3:4' : '16:9').then(u => save(u, `${p.city}.png`)).then(raw => avif(raw, p.file)));
-jobs.push(image(WINDOW, '16:9').then(u => save(u, 'window.png')).then(raw => avif(raw, WINDOW.file)));
+if (only !== 'film') for (const p of PHOTOS) jobs.push(image(p, p.city === 'Reykjavik' ? '3:4' : '16:9').then(u => save(u, `${p.city}.png`)).then(raw => avif(raw, p.file)));
+if (only !== 'film') jobs.push(image(WINDOW, '16:9').then(u => save(u, 'window.png')).then(raw => avif(raw, WINDOW.file)));
 
 function avif(raw, file) {
   ff(['-i', raw, '-vf', 'scale=1800:-2', '-c:v', 'libaom-av1', '-crf', '30', '-still-picture', '1', '-frames:v', '1', join(OUT, file)]);

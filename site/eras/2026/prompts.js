@@ -5,8 +5,8 @@ export const LOOK = 'Editorial travel photography, natural light, 35mm lens, gen
 
 export const FILM = {
   file: 'media/film.mp4',
-  model: 'Google Veo 3, 1080p, 8 seconds',
-  prompt: 'Cinematic aerial tracking shot from a chase plane at golden hour. A sleek modern twin-engine airliner, white fuselage with a deep kingfisher-blue tail and a thin ember-orange stripe, glides slowly from left to right above an endless sea of soft clouds. Low warm sun behind it, light rim on the wings, thin haze, gentle camera drift. Photoreal, anamorphic 35mm look, natural colour grade, no text, no logos.',
+  model: 'Google Veo 3, 1080p, 8 seconds, second take. The model drew a film-strip border with sprocket holes on its own, so the edges were cropped off.',
+  prompt: 'Wide cinematic aerial shot from a chase plane at golden hour. A sleek modern twin-engine airliner, white fuselage with a deep kingfisher-blue tail and a thin ember-orange stripe, flies small in the upper right third of the frame, heading slowly towards the left. The lower half of the frame is an unbroken sea of soft clouds catching warm light, and the sky on the left is open and empty. Low sun hidden behind distant clouds, thin haze, slow steady camera drift. Photoreal, anamorphic 35mm look, natural colour grade, no lens flares, no text, no logos.',
 };
 
 export const PHOTOS = [
