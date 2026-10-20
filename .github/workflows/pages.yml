@@ -38,11 +38,6 @@ jobs:
         with:
           node-version: 24
       - run: npm test
-      - name: stamp the commit into the page
-        run: |
-          sed -i -e "s|data-sha=\"\"|data-sha=\"$GITHUB_SHA\"|" \
-            -e "s|data-built=\"\"|data-built=\"$(date -u +%FT%TZ)\"|" \
-            site/index.html
       - uses: actions/upload-pages-artifact@v4
         with: { path: site }
       - id: deploy
