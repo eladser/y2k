@@ -10,6 +10,8 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
   transform: translate(-50%, -50%) scale(var(--s, 1)); transform-origin: 50% 50%;
   background: #000; color: var(--ink); font: 10px/1.4 Verdana, Geneva, sans-serif;
 }
+#turn { display: none; position: absolute; left: 0; right: 0; top: 14%; color: #39c6ff; text-align: center; line-height: 1.8; }
+@media (orientation: portrait) and (max-width: 600px) { #turn { display: block; } }
 .px { font: 8px/1 Silkscreen, monospace; letter-spacing: .08em; text-transform: uppercase; -webkit-font-smoothing: none; }
 .dim { color: var(--cy2); }
 .small { font-size: 8px; }
