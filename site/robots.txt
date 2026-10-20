@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /eras/
+
+Sitemap: https://y2k.eladser.dev/sitemap.xml
