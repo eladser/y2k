@@ -140,7 +140,7 @@ onClipEvent (data) {
       },
       {
         name: 'Liquid glass',
-        sel: '.glass',
+        sel: '.nav, .ask',
         check: () => CSS.supports('backdrop-filter: blur(1px)'),
         then: 'Translucency was a pre-rendered PNG with an alpha channel. A blurred panel meant shipping a second, blurred copy of the background image and lining the two up by hand.',
         now: 'backdrop-filter blurs and bends whatever is behind the element, live, including a playing video. An SVG displacement map adds the lens edge.',

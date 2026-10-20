@@ -21,6 +21,7 @@ html, body { height: 100%; }
 body { margin: 0; background: var(--ink); color: var(--flap-ink); font: 16px/1.5 Barlow, system-ui, sans-serif; overflow: hidden; }
 button { font: inherit; color: inherit; }
 :focus-visible { outline: 2px solid var(--amber); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 
 /* ---------- flaps ---------- */
 
@@ -313,6 +314,7 @@ body.xr .wall { padding-right: min(488px, 100%); }
 .how-btn { padding: 0; border: 0; background: none; color: var(--amber); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
 
 @media (max-width: 720px) {
+  #pass { max-height: calc(100dvh - 24px); overflow: auto; }
   .pass { grid-template-columns: 1fr; mask: none; }
   .stub { border-left: 0; border-top: 2px dashed #d3d0c7; }
   .stub .barcode { display: none; }

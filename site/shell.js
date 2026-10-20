@@ -163,6 +163,7 @@ function go(i, push = true) {
   if (cur === i) return;
   cur = i;
   fill(now, e, "BOARDING");
+  $('#nowsay').textContent = `${e.year}: ${e.browser.toLowerCase()}, ${e.conn.toLowerCase()}`;
   desk(e);
   xray(e);
 }
@@ -288,6 +289,8 @@ $('#xr').addEventListener('click', () => {
   const on = body.classList.toggle('xr');
   $('#xr').setAttribute('aria-pressed', on);
   spot(on ? open() : null);
+  // the 2026 film is still arriving at iframe load, so measure again whenever someone looks
+  if (on && frame) weigh(frame);
 });
 $('#snd').addEventListener('click', () => {
   sound = !sound;
@@ -296,7 +299,7 @@ $('#snd').addEventListener('click', () => {
 });
 
 addEventListener('keydown', e => {
-  if (e.target.closest?.('input, select, textarea')) return;
+  if ($('#pass').open || e.target.closest?.('input, select, textarea')) return;
   if (e.key === 'Escape') {
     if (body.classList.contains('boards') && cur >= 0) body.classList.remove('boards');
     else if (body.classList.contains('xr')) $('#xr').click();
@@ -311,14 +314,15 @@ addEventListener('popstate', route);
 /* ---------- the boarding pass: what this is, for first-time visitors ---------- */
 
 const pass = $('#pass');
-document.querySelectorAll('[data-pass]').forEach(b => b.addEventListener('click', () => pass.showModal()));
+let seen = false;
+try { seen = !!localStorage.getItem('halcyon.pass'); } catch { /* private mode: they'll see it again, fine */ }
+const openPass = () => { seen = true; if (!pass.open) pass.showModal(); };
+document.querySelectorAll('[data-pass]').forEach(b => b.addEventListener('click', openPass));
 pass.addEventListener('close', () => {
-  try { localStorage.setItem('halcyon.pass', '1'); } catch { /* private mode: they'll see it again, fine */ }
+  try { localStorage.setItem('halcyon.pass', '1'); } catch { /* same */ }
 });
 pass.addEventListener('click', e => { if (e.target === pass) pass.close(); });
-let seen = false;
-try { seen = !!localStorage.getItem('halcyon.pass'); } catch { /* same */ }
-if (!seen) setTimeout(() => pass.showModal(), reduce ? 0 : 1100);
+if (!seen) setTimeout(() => { if (!seen) openPass(); }, reduce ? 0 : 1100);
 
 /* ---------- boarding ---------- */
 

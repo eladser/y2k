@@ -56,9 +56,15 @@ h1 {
   margin: 0 0 26px; font-size: clamp(48px, min(10.5vw, 15svh), 156px); line-height: .88; letter-spacing: -.045em; font-weight: 700;
   font-variation-settings: 'wdth' calc(var(--w) - var(--s) * 37), 'wght' calc(var(--g) - var(--s) * 480);
   text-wrap: balance; transform-origin: 0 100%;
-  animation: grow 1.8s cubic-bezier(.2, .7, .2, 1) both, squeeze linear both;
-  animation-timeline: auto, scroll();
-  animation-range: normal, 0 70vh;
+  animation: grow 1.8s cubic-bezier(.2, .7, .2, 1) both;
+}
+/* without scroll timelines the squeeze would run in 0s and leave the headline thin and faded */
+@supports (animation-timeline: scroll()) {
+  h1 {
+    animation: grow 1.8s cubic-bezier(.2, .7, .2, 1) both, squeeze linear both;
+    animation-timeline: auto, scroll();
+    animation-range: normal, 0 70vh;
+  }
 }
 h1 span { display: inline-block; animation: rise 1.1s cubic-bezier(.2, .7, .2, 1) both; }
 h1 span:nth-child(2) { animation-delay: .12s; }

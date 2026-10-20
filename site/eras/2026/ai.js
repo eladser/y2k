@@ -34,36 +34,47 @@ document.querySelectorAll('.seat-pic img').forEach(img => img.addEventListener('
 
 /* ask */
 const answer = $('#answer'), how = $('#how'), q = $('#q');
-let session = null, checked = false;
+let ready = null;
 
-async function model() {
-  if (checked) return session;
-  checked = true;
-  if (!('LanguageModel' in self)) return null;
-  try {
-    // only use it if it's already on the machine; a first download is gigabytes, not our call to make
-    if ((await LanguageModel.availability()) !== 'available') return null;
-    session = await LanguageModel.create({
-      initialPrompts: [{
-        role: 'system',
-        content: `You are the trip finder for Halcyon, an airline flying from Tel Aviv. Pick exactly one destination for the traveller from this list and say why in one short, plain sentence. Destinations: ${PLACES.map(p => `${p.city} (${p.hours} non-stop, from $${p.fare}; ${p.tags.join(', ')})`).join('; ')}.`,
-      }],
-    });
-  } catch (e) {
-    console.warn('on-device model unavailable', e);
-    session = null;
-  }
-  return session;
+// one promise for everyone, so a double click doesn't see "no model" while it's still loading
+function model() {
+  return (ready ??= (async () => {
+    if (!('LanguageModel' in self)) return null;
+    try {
+      // only use it if it's already on the machine; a first download is gigabytes, not our call to make
+      if ((await LanguageModel.availability()) !== 'available') return null;
+      return await LanguageModel.create({
+        initialPrompts: [{
+          role: 'system',
+          content: `You are the trip finder for Halcyon, an airline flying from Tel Aviv. Pick exactly one destination for the traveller from this list and say why in one short, plain sentence. Destinations: ${PLACES.map(p => `${p.city} (${p.hours} non-stop, from $${p.fare}; ${p.tags.join(', ')})`).join('; ')}.`,
+        }],
+      });
+    } catch (e) {
+      console.warn('on-device model unavailable', e);
+      return null;
+    }
+  })());
 }
 
-// no model: score the destinations by the words they share with the question, and respect a budget
+const cheapest = list => list.reduce((a, b) => (a.fare < b.fare ? a : b));
+
+// no model: score the destinations by whole words they share with the question, within the budget
 function keyword(text) {
-  const t = text.toLowerCase();
-  const budget = Number(t.match(/\$\s?(\d+)/)?.[1] ?? Infinity);
-  const scored = PLACES.filter(p => p.fare <= budget).map(p => ({ p, n: p.tags.filter(tag => t.includes(tag)).length }));
+  const t = text.toLowerCase().replace(/(\d),(\d{3})/g, '$1$2');
+  const budget = Number(t.match(/\$\s?(\d+)/)?.[1] ?? t.match(/(\d+)\s*(?:usd|dollars)\b/)?.[1] ?? Infinity);
+  const fits = PLACES.filter(p => p.fare <= budget);
+  if (!fits.length) {
+    const p = cheapest(PLACES);
+    return { city: p.city, why: `Nothing we fly is under $${budget}. The closest is ${p.city}.` };
+  }
+  const scored = fits.map(p => ({ p, n: p.tags.filter(tag => new RegExp(`\\b${tag}\\b`).test(t)).length }));
   scored.sort((a, b) => b.n - a.n || a.p.fare - b.p.fare);
-  const best = scored[0]?.p ?? PLACES.reduce((a, b) => (a.fare < b.fare ? a : b));
-  return { city: best.city, why: best.line };
+  const best = scored[0];
+  if (!best.n) {
+    const p = cheapest(fits);
+    return { city: p.city, why: `Nothing matched those words, so here is the cheapest place that fits. ${p.line}` };
+  }
+  return { city: best.p.city, why: best.p.line };
 }
 
 async function ask(text) {
@@ -73,14 +84,19 @@ async function ask(text) {
   const ai = await model();
   let pick, byModel = false;
   if (ai) {
+    let s;
     try {
-      const raw = await ai.prompt(text, {
+      // a fresh copy per question, so earlier questions don't steer this one or fill the context
+      s = await ai.clone();
+      const raw = await s.prompt(text, {
         responseConstraint: { type: 'object', properties: { city: { type: 'string', enum: PLACES.map(p => p.city) }, why: { type: 'string' } }, required: ['city', 'why'] },
       });
       pick = JSON.parse(raw);
       byModel = true;
     } catch (e) {
       console.warn('prompt failed, falling back', e);
+    } finally {
+      s?.destroy();
     }
   }
   pick ??= keyword(text);
