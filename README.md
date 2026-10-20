@@ -2,7 +2,9 @@
 
 **[y2k.eladser.dev](https://y2k.eladser.dev)**
 
-![The departures board](site/img/og.png)
+[![A 40-second tour: the departures board, dialing in for 1999, the 2001 Flash intro, and on to 2026 with the X-ray open](docs/tour.gif)](docs/tour.mp4)
+
+<sub>Click for the full-quality video.</sub>
 
 A made-up airline's homepage, built again for eight different years of the web. Each version is made the way it would have been at the time and runs inside that year's Windows and browser. They all work: you can search for flights, sit through the Flash intro, or dial in.
 
