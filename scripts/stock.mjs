@@ -13,6 +13,10 @@ export const STOCK = {
     aspect: '16:9',
     prompt: 'A 2007 airline advertising photo: a smiling young woman in a white shirt sitting by an airplane window with a laptop, bright overexposed daylight, glossy and clean, shallow depth of field, the optimistic stock-photo look of the mid-2000s. No text, no logos.',
   },
+  '2020-hero': {
+    aspect: '1:1',
+    prompt: 'A flat vector illustration in the "Corporate Memphis" style that tech companies used everywhere around 2020: two travellers with long bendy oversized limbs, small heads and flat purple and blue skin, one pulling a suitcase, one holding a giant phone showing a boarding pass, a stylised airplane above them and a few round potted plants. Flat shapes, no outlines, no gradients, no shading, a small palette of indigo, coral, mint green and pale yellow, on a solid pale lavender background. No text, no logos.',
+  },
 };
 
 const name = process.argv[2];

@@ -1,0 +1,11 @@
+{
+  "LHR": { "hours": "5h 15m", "fare": 289 }, "LGW": { "hours": "5h 10m", "fare": 259 },
+  "LIS": { "hours": "5h 10m", "fare": 219 }, "LAX": { "hours": "15h 20m", "fare": 899 },
+  "CDG": { "hours": "4h 50m", "fare": 249 }, "PRG": { "hours": "4h 05m", "fare": 199 },
+  "NRT": { "hours": "12h 45m", "fare": 829 }, "JFK": { "hours": "11h 40m", "fare": 649 },
+  "FCO": { "hours": "3h 50m", "fare": 189 }, "ATH": { "hours": "1h 55m", "fare": 129 },
+  "AMS": { "hours": "4h 55m", "fare": 239 }, "BCN": { "hours": "4h 40m", "fare": 209 },
+  "BER": { "hours": "4h 25m", "fare": 199 }, "BUD": { "hours": "3h 25m", "fare": 169 },
+  "IST": { "hours": "2h 05m", "fare": 149 }, "KEF": { "hours": "6h 20m", "fare": 459 },
+  "VIE": { "hours": "3h 55m", "fare": 189 }, "TLV": { "hours": "5h 15m", "fare": 289 }
+}

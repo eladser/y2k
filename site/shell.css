@@ -255,8 +255,6 @@ body.xr .wall { padding-right: min(488px, 100%); }
   .row .br .f:nth-child(n+17) { display: none; }
   .wall { padding: 0; }
   .ie6, .chrome-now { border-radius: 0; box-shadow: none; }
-  .c7 { resize: none; min-width: 0; }
-  .task-7 .pin:not(.on) { display: none; }
   .ie6 .menu, .ie6 .tools, .ie6 .sb, .task-xp, .chrome-now .tabs { display: none; }
   body.flying .depart { --fs: 15px; }
   body.flying #nowrow .br { display: none; }
@@ -485,6 +483,59 @@ body.dialing98 #win { visibility: hidden; }
 .task-7 .tray svg { width: 16px; height: 16px; }
 .task-7 .when { display: grid; justify-items: center; line-height: 1.35; }
 .task-7 .show { width: 14px; height: 100%; border-left: 1px solid rgba(255, 255, 255, .25); box-shadow: inset 1px 0 rgba(0, 0, 0, .35); }
+
+/* ---------- Windows 10 + Chrome 87, 2020 ---------- */
+
+[data-os="win10"] .wall {
+  background:
+    linear-gradient(104deg, transparent 36%, rgba(130, 200, 255, .32) 43%, transparent 50%),
+    linear-gradient(78deg, transparent 52%, rgba(90, 170, 255, .22) 57%, transparent 64%),
+    radial-gradient(70% 80% at 32% 50%, #1d6fdc, #0a2e78 55%, #020b26);
+}
+.c87 { background: #dee1e6; box-shadow: 0 0 0 1px rgba(0, 0, 0, .3), 0 20px 50px rgba(0, 0, 0, .45); font: 12px 'Segoe UI', system-ui, sans-serif; color: #202124; }
+.c87 .tabs87 { display: flex; align-items: flex-end; height: 40px; padding-left: 8px; }
+.c87 .tab4 { display: flex; align-items: center; gap: 8px; width: 240px; height: 34px; padding: 0 12px; border-radius: 8px 8px 0 0; background: #fff; white-space: nowrap; overflow: hidden; }
+.c87 .tab4 span:first-of-type { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.c87 .tab4 .fav { width: 16px; height: 16px; flex: none; border-radius: 4px; background: #5a4fcf; }
+.c87 .tab4 .x { color: #5f6368; font-size: 16px; }
+.c87 .plus { align-self: center; margin: 4px 0 0 10px; color: #5f6368; font-size: 20px; font-weight: 300; }
+.c87 .caps10 { display: flex; align-self: flex-start; margin-left: auto; }
+.c87 .caps10 i { display: grid; place-items: center; width: 46px; height: 30px; }
+.c87 .caps10 i.x:hover { background: #e81123; color: #fff; }
+.c87 .caps10 svg { width: 10px; height: 10px; fill: none; stroke: currentColor; }
+.c87 .bar87 { display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 10px 0 12px; background: #fff; border-bottom: 1px solid #dadce0; color: #5f6368; }
+.c87 .bar87 svg { width: 18px; height: 18px; flex: none; fill: none; stroke: currentColor; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+.c87 .bar87 svg.fill { fill: currentColor; stroke: none; }
+.c87 .omni { flex: 1; display: flex; align-items: center; gap: 10px; height: 30px; padding: 0 12px; border-radius: 15px; background: #f1f3f4; color: #202124; font-size: 14px; white-space: nowrap; overflow: hidden; }
+.c87 .omni span { flex: 1; overflow: hidden; text-overflow: ellipsis; }
+.c87 .omni svg { width: 15px; height: 15px; stroke-width: 2; }
+.c87 .avatar { display: grid; place-items: center; width: 24px; height: 24px; flex: none; border-radius: 50%; background: #1a73e8; color: #fff; font-size: 12px; font-weight: 600; }
+
+.task-10 { display: flex; align-items: stretch; height: 40px; flex: none; font: 12px 'Segoe UI', system-ui, sans-serif; color: #fff; background: rgba(16, 16, 16, .9); backdrop-filter: blur(16px); }
+.task-10 svg { fill: none; stroke: currentColor; stroke-width: 1.2; }
+.task-10 .start { display: grid; place-items: center; width: 48px; }
+.task-10 .start svg, .task-10 .pin svg { stroke: none; }
+.task-10 .start svg { width: 16px; height: 16px; }
+.task-10 .find { display: flex; align-items: center; gap: 10px; width: 340px; padding: 0 12px; background: #f2f2f2; color: #555; font-size: 14px; }
+.task-10 .find svg { width: 16px; height: 16px; stroke: #222; }
+.task-10 .tv { display: grid; place-items: center; width: 48px; }
+.task-10 .tv svg { width: 18px; height: 18px; }
+.task-10 .pin { display: grid; place-items: center; width: 48px; }
+.task-10 .pin svg { width: 24px; height: 24px; }
+.task-10 .pin.on { background: rgba(255, 255, 255, .1); box-shadow: inset 0 -2px #76b9ed; }
+.task-10 .tray { display: flex; align-items: center; gap: 12px; margin-left: auto; padding: 0 10px; }
+.task-10 .tray svg { width: 16px; height: 16px; }
+.task-10 .up { font-size: 14px; }
+.task-10 .when { display: grid; justify-items: center; line-height: 1.35; }
+.task-10 .show { width: 6px; border-left: 1px solid rgba(255, 255, 255, .3); }
+
+/* after the era blocks so these win on phones */
+@media (max-width: 900px) {
+  .c7 { resize: none; min-width: 0; }
+  .task-7 .pin:not(.on) { display: none; }
+  .c87 { box-shadow: none; }
+  .c87 .bar87 > svg.fill, .c87 .avatar, .task-10 .find, .task-10 .tv, .task-10 .pin:not(.on), .task-10 .tray > svg { display: none; }
+}
 
 /* ---------- Windows 95 + Netscape Navigator 3, 1996 ---------- */
 

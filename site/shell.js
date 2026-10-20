@@ -149,6 +149,10 @@ const I = {
   chrome: '<svg viewBox="0 0 16 16"><path d="M8 8 1.5 4.25A7.5 7.5 0 0 1 14.5 4.25z" fill="#db4437"/><path d="M8 8 14.5 4.25A7.5 7.5 0 0 1 8 15.5z" fill="#f4c20d"/><path d="M8 8 8 15.5A7.5 7.5 0 0 1 1.5 4.25z" fill="#0f9d58"/><circle cx="8" cy="8" r="3.6" fill="#fff"/><circle cx="8" cy="8" r="2.7" fill="#4285f4"/></svg>',
   ie9: '<svg viewBox="0 0 16 16"><path d="M12.98 10.82A5.5 5.5 0 1 1 13.5 8.5H2.5" fill="none" stroke="#1e7fd8" stroke-width="2.4"/><path d="M1.5 12.5c2-6 9-11 13-10" fill="none" stroke="#f5b400" stroke-width="1.4"/></svg>',
   folder: '<svg viewBox="0 0 16 16"><path d="M1 3.5h5l1.5 1.5H15v8.5H1z" fill="#e9c560" stroke="#a5822a"/><path d="M1 6.5h14v7H1z" fill="#f6d77a"/></svg>',
+  puzzle: '<svg class="fill" viewBox="0 0 24 24"><path d="M20.5 11H19V7a2 2 0 0 0-2-2h-4V3.5a2.5 2.5 0 0 0-5 0V5H4a2 2 0 0 0-2 2v3.8h1.5a2.7 2.7 0 0 1 0 5.4H2V20a2 2 0 0 0 2 2h3.8v-1.5a2.7 2.7 0 0 1 5.4 0V22H17a2 2 0 0 0 2-2v-4h1.5a2.5 2.5 0 0 0 0-5z"/></svg>',
+  kebab: '<svg class="fill" viewBox="0 0 24 24"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>',
+  win10: '<svg viewBox="0 0 16 16"><path d="M0 0h7.5v7.5H0zm8.5 0H16v7.5H8.5zM0 8.5h7.5V16H0zm8.5 0H16V16H8.5z" fill="#fff"/></svg>',
+  edge: '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#0c79d2"/><path d="M2.6 10.6C3 6 6.6 3.4 10.1 4c3 .5 4.4 3 3.4 5-1 1.8-4 1.5-4.2-.3" fill="none" stroke="#5ee07a" stroke-width="2.4" stroke-linecap="round"/></svg>',
   modem: '<svg viewBox="0 0 16 16"><rect x="1" y="3" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="9" y="8" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="2" y="4" width="4" height="2" fill="#0f0"/><rect x="10" y="9" width="4" height="2" fill="#0f0"/></svg>',
 };
 
@@ -207,6 +211,10 @@ const CHROME = {
       <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni"><span>${e.url}</span>${I.star}</div>${I.wrench}</div>
       <div class="view"><div class="spot"></div></div>
     </div>`,
+  ch87: e => `
+    <div class="tabs87"><div class="tab4"><i class="fav"></i><span>${e.tab}</span><span class="x">&times;</span></div><span class="plus">+</span><span class="caps10"><i><svg viewBox="0 0 10 10"><path d="M0 5.5h10"/></svg></i><i><svg viewBox="0 0 10 10"><path d="M.5.5h9v9h-9z"/></svg></i><i class="x"><svg viewBox="0 0 10 10"><path d="m0 0 10 10M10 0 0 10"/></svg></i></span></div>
+    <div class="bar87">${I.arrowL}${I.arrowR}${I.reload}<div class="omni">${I.lock}<span>${e.url}</span>${I.star}</div>${I.puzzle}<span class="avatar">E</span>${I.kebab}</div>
+    <div class="view"><div class="spot"></div></div>`,
   now: e => `
     <div class="tabs"><span class="dots"><i></i><i></i><i></i></span><div class="tab"><i class="fav"></i><span>${e.title}</span><span class="x">&times;</span></div></div>
     <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni">${I.lock}${e.url}</div>${I.star}</div>
@@ -224,6 +232,7 @@ const TASK = {
   win95: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk">${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon">${dialed() ? I.modem : ''}</span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   win7: e => `<div class="task-7"><span class="orb">${I.flag}</span><span class="pin">${I.ie9}</span><span class="pin">${I.folder}</span><span class="pin on">${I.chrome}</span><span class="tray">${I.speaker}<span class="when"><span id="clock">${clock()}</span><span>${new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })}/2012</span></span></span><i class="show"></i></div>`,
+  win10: e => `<div class="task-10"><span class="start">${I.win10}</span><span class="find"><svg viewBox="0 0 16 16"><circle cx="9.5" cy="6.5" r="5"/><path d="M6 10 1 15"/></svg>Type here to search</span><span class="tv"><svg viewBox="0 0 16 16"><path d="M1 4h10v8H1zM13 2v10M15 4v6"/></svg></span><span class="pin">${I.edge}</span><span class="pin">${I.folder}</span><span class="pin on">${I.chrome}</span><span class="tray"><span class="up">&#8963;</span><svg viewBox="0 0 16 16"><path d="M1 3h14v8H1zM5 14h6M8 11v3"/></svg><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2zM11.5 5.5a4 4 0 0 1 0 5M13.5 3.5a7 7 0 0 1 0 9"/></svg><span class="when"><span id="clock">${clock()}</span><span>${new Date().toLocaleDateString('en-US', { month: 'numeric', day: 'numeric' })}/2020</span></span><svg viewBox="0 0 16 16"><path d="M2 2h12v9H6l-4 3z"/></svg></span><i class="show"></i></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
 setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20000);
@@ -250,7 +259,7 @@ function desk(e) {
   const d = $('#desk');
   d.dataset.os = e.os;
   const win = $('#win');
-  win.className = `win ${{ ff1: 'ie6 ff1', nn3: 'ie5 w98 nn3', ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', ch23: 'aero c7', now: 'chrome-now' }[e.chrome]}`;
+  win.className = `win ${{ ff1: 'ie6 ff1', nn3: 'ie5 w98 nn3', ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', ch23: 'aero c7', ch87: 'c87', now: 'chrome-now' }[e.chrome]}`;
   win.innerHTML = CHROME[e.chrome](e);
   win.style.width = '';
   $('.popup')?.remove();

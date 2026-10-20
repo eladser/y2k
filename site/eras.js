@@ -652,7 +652,144 @@ body { font-family: 'Open Sans', sans-serif; }`,
       },
     ],
   },
-  { year: 2020, browser: 'CHROME 87', os: 'win10', conn: '86 MBPS', kbps: 10755, page: 2000, built: false },
+  {
+    year: 2020, browser: 'CHROME 87', os: 'win10', chrome: 'ch87', conn: '86 MBPS', kbps: 10755, page: 2000, built: true,
+    url: 'halcyonair.com',
+    tab: 'Halcyon | Flexible flights from Tel Aviv',
+    title: 'Halcyon | Flexible flights from Tel Aviv - Google Chrome',
+    stack: 'React 17 · hooks · fetch · CSS custom properties',
+    xray: [
+      {
+        name: 'Single-page app',
+        sel: '.top',
+        then: 'View source and the page is empty: one <div id="root"> and three scripts. React builds everything in the browser, and a search changes the address through the History API without loading a new page. Most 2020 apps started from create-react-app, written in JSX and compiled by Babel and webpack. This copy skips the build and calls React.createElement directly.',
+        now: 'Frameworks send real HTML from the server first and only make the interactive parts live: React Server Components, Astro islands, or plain HTML with a little script.',
+        code: `<div id="root"></div>
+<script src="/static/js/main.chunk.js"></script>
+
+function App() {
+  const [query, setQuery] = useState(readQuery);
+  const city = query && CITIES.find(c => c.code === query.to);
+  return (
+    <>
+      <CovidBar />
+      <Header />
+      {city ? <Results city={city} /> : <Home search={search} />}
+      <Consent />
+      <Chat />
+    </>
+  );
+}
+
+ReactDOM.render(<App />, document.getElementById('root'));`,
+      },
+      {
+        name: 'The COVID banner',
+        sel: '.covid',
+        then: 'In April 2020 airline passenger traffic fell 94% from a year before. Every airline site added a bar like this one, waived change fees and listed entry rules country by country. The dismissible alert bar became a standard component.',
+        now: 'The banners are gone. Some of the free changes stayed: the big US airlines dropped change fees on most tickets for good in August 2020.',
+        code: `function CovidBar() {
+  const [open, setOpen] = useState(true);
+  if (!open) return null;
+  return (
+    <div className="covid" role="region" aria-label="Travel update">
+      <p><strong>COVID-19:</strong> check the entry rules ...</p>
+      <button aria-label="Dismiss" onClick={() => setOpen(false)}>
+        <Icon name="x" />
+      </button>
+    </div>
+  );
+}`,
+      },
+      {
+        name: 'Dark mode',
+        sel: '.theme',
+        then: 'macOS got a dark mode in 2018, iOS and Android in 2019, and the prefers-color-scheme media query reached every major browser the same year. Sites moved their colours into CSS custom properties so they could flip them all at once. The moon button saves your choice.',
+        now: 'light-dark() sets both colours in one declaration, so there is no second block of variables to keep in sync.',
+        check: () => CSS.supports('color: light-dark(#000, #fff)'),
+        code: `:root {
+  --bg: #fafaff;
+  --text: #1f2041;
+  --brand: #5a4fcf;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12131c;
+    --text: #ecedf7;
+    --brand: #8b82ff;
+    color-scheme: dark;
+  }
+}
+body { background: var(--bg); color: var(--text); }`,
+      },
+      {
+        name: 'Corporate Memphis',
+        sel: '.art',
+        then: 'Bendy oversized limbs, small heads, purple skin and no outlines. The style grew out of Alegria, the illustrations Buck made for Facebook in 2017, and by 2020 every startup and bank had it. It sat in a blob, a shape made from one border-radius. This one was drawn by an image model in 2026, in that style.',
+        now: '3D renders, AI images and video. The 2026 page opens with a film.',
+        code: `<picture class="art">
+  <source srcset="img/hero.webp" type="image/webp">
+  <img src="img/hero.jpg" alt=""
+       width="560" height="560">
+</picture>
+
+.art img {
+  border-radius: 62% 38% 46% 54% / 49% 56% 44% 51%;
+}`,
+      },
+      {
+        name: 'Skeleton screens',
+        sel: '.search',
+        then: 'Search for a flight. Instead of a blank page or a spinner you get grey shapes where the results will be, shimmering until fetch() comes back. Facebook and LinkedIn made skeletons the standard way to wait.',
+        now: 'Streaming HTML and React Suspense show the real content in pieces as each part is ready.',
+        code: `useEffect(() => {
+  (async () => {
+    const res = await fetch('data/fares.json');
+    setFlights(toFlights(await res.json()));
+  })();
+}, [city.code]);
+
+return flights
+  ? flights.map(f => <Flight key={f.no} {...f} />)
+  : [0, 1, 2].map(i => <div key={i} className="flight card skel" />);`,
+      },
+      {
+        name: 'Lazy images',
+        sel: '.deal img',
+        then: 'loading="lazy" reached Chrome in 2019: pictures further down wait until you scroll near them. Width and height on the tag reserve the space before the image arrives, which started to matter when Google announced in May 2020 that layout shift would count toward search ranking. WebP with a JPEG fallback, because Safari only learned WebP in September 2020.',
+        now: 'AVIF, often half the size of JPEG, and every browser supports it. The 2026 page uses AVIF.',
+        code: `<picture>
+  <source srcset="img/lisbon.webp" type="image/webp">
+  <img src="img/lisbon.jpg" alt="" width="640" height="420"
+       loading="lazy">
+</picture>`,
+      },
+      {
+        name: 'Cookie consent',
+        sel: '.consent',
+        then: 'The GDPR took effect in May 2018, and by 2020 almost every site opened with a banner. Most made "Accept all" one click and put the way out a screen deeper, like this one.',
+        now: 'Regulators started fining that design. In January 2022 France fined Google €150 million and Facebook €60 million because refusing cookies took more clicks than accepting them.',
+        code: `{!done && (
+  <div className="consent card">
+    <p>We use cookies to make the site work ...</p>
+    <button onClick={() => setManage(true)}>Manage</button>
+    <button onClick={() => setDone(true)}>Accept all</button>
+  </div>
+)}`,
+      },
+      {
+        name: 'Live chat',
+        sel: '.chat',
+        then: 'A bubble in the corner that waves at you after a few seconds. Intercom, Drift and Zendesk sold them to everyone, and each one loaded hundreds of kilobytes of script on every page. Behind the friendly name was usually a decision tree with three buttons.',
+        now: 'An assistant that understands a question in your own words. The one on the 2026 page runs inside the browser.',
+        code: `<script>
+  window.intercomSettings = { app_id: "h4lcy0n" };
+</script>
+<script async src="https://widget.intercom.io/widget/h4lcy0n"></script>`,
+      },
+    ],
+  },
   {
     year: 2026, browser: 'CHROME 153', os: 'now', chrome: 'now', conn: '314 MBPS', kbps: 39294, page: 2987, built: true,
     url: 'halcyon.example',

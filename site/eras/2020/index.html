@@ -2,115 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Halcyon · Where to next?</title>
-<meta name="color-scheme" content="light dark">
-<link rel="stylesheet" href="app.css">
-<script type="module" src="app.js"></script>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#5a4fcf">
+<meta name="description" content="Book flexible flights from Tel Aviv. Free changes on every fare.">
+<link rel="manifest" href="manifest.json">
+<link rel="preload" href="fonts/poppins-600.woff2" as="font" type="font/woff2" crossorigin>
+<title>Halcyon | Flexible flights from Tel Aviv</title>
+<link href="static/css/main.css" rel="stylesheet">
 </head>
 <body>
-
-<header class="top">
-  <a class="brand" href="#" aria-label="Halcyon home">
-    <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M3 18c6-1 9-6 15-6 3 0 5 1 7 3l4-1-3 3c0 5-5 8-11 8-7 0-11-3-12-7z"/><circle cx="23" cy="15.5" r="1.3" class="eye"/><path d="M12 17c3 2 7 2 10 0" class="wing"/></svg>
-    Halcyon
-  </a>
-  <nav aria-label="Main">
-    <a href="#" aria-current="page">Book</a><a href="#">Manage</a><a href="#">Check in</a><a href="#dests">Destinations</a>
-  </nav>
-  <div class="me">
-    <button class="theme" type="button" aria-label="Switch light or dark">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8"/></svg>
-    </button>
-    <a class="signin" href="#">Sign in</a>
-  </div>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="pitch">
-      <p class="eyebrow">Non-stop from Tel Aviv to 38 cities</p>
-      <h1>Where to next?</h1>
-
-      <form class="search" id="search">
-        <div class="tabs" role="tablist" aria-label="What are you booking">
-          <button type="button" role="tab" aria-selected="true" data-panel="fly">Flights</button>
-          <button type="button" role="tab" aria-selected="false" data-panel="stay">Flight + hotel</button>
-          <button type="button" role="tab" aria-selected="false" data-panel="status">Flight status</button>
-        </div>
-
-        <div class="panel" id="p-fly">
-          <fieldset class="trip">
-            <legend class="sr">Trip type</legend>
-            <label><input type="radio" name="trip" id="round" checked> Round trip</label>
-            <label><input type="radio" name="trip" id="oneway"> One way</label>
-          </fieldset>
-          <div class="fields">
-            <label class="f where">From
-              <select name="from">
-                <button><selectedcontent></selectedcontent></button>
-                <option value="TLV" selected><b>TLV</b> Tel Aviv</option>
-                <option value="LHR"><b>LHR</b> London</option>
-                <option value="CDG"><b>CDG</b> Paris</option>
-              </select>
-            </label>
-            <label class="f where">To
-              <select name="to">
-                <button><selectedcontent></selectedcontent></button>
-                <option value="LIS"><b>LIS</b> Lisbon</option>
-                <option value="NRT" selected><b>NRT</b> Tokyo</option>
-                <option value="JFK"><b>JFK</b> New York</option>
-                <option value="ATH"><b>ATH</b> Athens</option>
-              </select>
-            </label>
-            <label class="f when">Depart<input type="date" name="depart" required></label>
-            <label class="f when return">Return<input type="date" name="back"></label>
-            <div class="f">Travellers
-              <button type="button" class="pax-btn" popovertarget="pax" id="paxbtn">1 adult</button>
-            </div>
-          </div>
-          <div id="pax" popover>
-            <div class="step"><span>Adults<small>12+</small></span><button type="button" data-k="a" data-d="-1" aria-label="Fewer adults">&minus;</button><output data-v="a">1</output><button type="button" data-k="a" data-d="1" aria-label="More adults">+</button></div>
-            <div class="step"><span>Children<small>2 to 11</small></span><button type="button" data-k="c" data-d="-1" aria-label="Fewer children">&minus;</button><output data-v="c">0</output><button type="button" data-k="c" data-d="1" aria-label="More children">+</button></div>
-            <button type="button" class="done" popovertarget="pax" popovertargetaction="hide">Done</button>
-          </div>
-          <button class="go" type="submit">Search flights</button>
-        </div>
-
-        <div class="panel" id="p-stay" hidden>
-          <p class="note">Pair any flight with one of 1,200 hotels and pay for both in one booking.</p>
-          <button class="go" type="button" disabled>Coming soon</button>
-        </div>
-
-        <div class="panel" id="p-status" hidden>
-          <div class="live" id="live"></div>
-        </div>
-      </form>
-    </div>
-
-    <figure class="window" aria-hidden="true">
-      <div class="sky" id="sky"><i class="cloud c1"></i><i class="cloud c2"></i><i class="cloud c3"></i><i class="wingtip"></i></div>
-      <figcaption id="skycap"></figcaption>
-    </figure>
-  </section>
-
-  <section class="dests" id="dests">
-    <h2>Popular from Tel Aviv</h2>
-    <div class="grid" id="grid"></div>
-  </section>
-</main>
-
-<footer class="foot">
-  <span>&copy; 2026 Halcyon</span><a href="#">Accessibility</a><a href="#">Privacy</a><a href="#">Careers</a>
-</footer>
-
-<dialog id="results" aria-labelledby="rtitle">
-  <form method="dialog">
-    <h2 id="rtitle">Flights</h2>
-    <ol id="rlist"></ol>
-    <button class="go">Close</button>
-  </form>
-</dialog>
-
+<noscript>You need to enable JavaScript to run this app.</noscript>
+<div id="root"></div>
+<script src="lib/react.production.min.js"></script>
+<script src="lib/react-dom.production.min.js"></script>
+<script src="static/js/main.js"></script>
 </body>
 </html>
