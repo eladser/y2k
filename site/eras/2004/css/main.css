@@ -1,0 +1,118 @@
+/* Halcyon Airways 2004
+   760px fixed width, two columns, no tables.
+   Sliding doors and faux columns from A List Apart. */
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #e8eef4 url(../img/body-bg.gif) repeat-x;
+  font: small/1.5 Verdana, "Trebuchet MS", Arial, sans-serif;
+  color: #333;
+  text-align: center; /* IE5 centers with this, not with margin: auto */
+}
+
+#container {
+  width: 760px;
+  margin: 0 auto;
+  text-align: left;
+  background: #fff;
+}
+
+a { color: #2d5d8b; }
+a:hover { color: #e8892b; }
+h2 { font: bold 1.3em "Trebuchet MS", Verdana, sans-serif; color: #2d5d8b; margin: 1.4em 0 .5em; }
+h3 { font: bold 1.05em "Trebuchet MS", Verdana, sans-serif; color: #2d5d8b; }
+abbr { border-bottom: 1px dotted #999; cursor: help; }
+
+.skip { position: absolute; left: -9999px; }
+
+/* image replacement: the text stays in the HTML for screen readers and search engines */
+#header { position: relative; height: 80px; background: #fff; }
+#logo {
+  position: absolute;
+  left: 20px;
+  top: 10px;
+  width: 300px;
+  height: 60px;
+  margin: 0;
+  background: url(../img/logo.gif) no-repeat;
+  text-indent: -9999px;
+}
+#logo a { display: block; height: 60px; }
+#phone { position: absolute; right: 20px; top: 26px; margin: 0; color: #7a92a8; font-size: .9em; }
+#phone strong { color: #2d5d8b; }
+
+/* sliding doors: a narrow left image on the li, a wide right image on the a */
+#nav {
+  margin: 0;
+  padding: 10px 10px 0 20px;
+  list-style: none;
+  background: #e8eef4;
+  border-bottom: 1px solid #8fa9c0;
+  height: 2.2em;
+}
+#nav li {
+  float: left;
+  margin: 0 3px 0 0;
+  padding: 0 0 0 9px;
+  background: url(../img/tab-left.gif) no-repeat left top;
+}
+#nav a {
+  display: block;
+  padding: 5px 15px 4px 6px;
+  background: url(../img/tab-right.gif) no-repeat right top;
+  font-weight: bold;
+  text-decoration: none;
+  color: #5a7896;
+}
+#nav li:hover, #nav li.current { background-position: 0% -150px; }
+#nav li:hover a, #nav li.current a { background-position: 100% -150px; color: #2d5d8b; padding-bottom: 5px; }
+
+/* faux columns: the sidebar colour is one image repeated down the wrapper */
+#wrapper { background: url(../img/faux.gif) repeat-y; }
+#wrapper:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+
+#content { float: left; width: 480px; padding: 15px 20px 20px; }
+
+/* Tantek's box model hack: IE5 includes padding in the width, everyone else adds it */
+#sidebar {
+  float: right;
+  width: 240px;
+  padding: 15px 10px;
+  voice-family: "\"}\"";
+  voice-family: inherit;
+  width: 220px;
+}
+html>body #sidebar { width: 220px; }
+
+#promo { margin-bottom: 1em; }
+#promo img { display: block; border: 1px solid #b9cbdc; }
+#promo p { margin: .5em 0 0; }
+
+#search fieldset { border: 1px solid #b9cbdc; padding: 10px 14px; background: #f7fafc; }
+#search legend { font-weight: bold; color: #2d5d8b; padding: 0 4px; }
+#search p { margin: .4em 0; clear: left; }
+#search label { float: left; width: 11em; }
+#search .submit { padding-left: 11em; }
+
+dl.fares { margin: 0; }
+dl.fares dt { float: left; clear: left; width: 8em; font-weight: bold; padding: 3px 0; border-bottom: 1px dotted #c6d4e1; }
+dl.fares dd { margin: 0 0 0 8em; padding: 3px 0; border-bottom: 1px dotted #c6d4e1; }
+dl.fares strong { color: #e8892b; }
+
+ul.news { margin: 0; padding: 0; list-style: none; }
+ul.news li { padding: 4px 0 4px 14px; background: url(../img/arrow.gif) no-repeat 0 .65em; }
+ul.news .date { display: block; font-size: .85em; color: #7a92a8; }
+
+/* rounded boxes: one image for the top, one for the bottom, fixed width */
+.box { background: url(../img/box-bottom.gif) no-repeat bottom; padding-bottom: 10px; margin-bottom: 14px; font-size: .95em; }
+.box h3 { background: url(../img/box-top.gif) no-repeat top; margin: 0; padding: 9px 12px 4px; }
+.box p, .box form, .box ul { margin: 0; padding: 4px 12px; background: #dfe9f2; }
+.box ul { list-style: none; }
+.box input[type="text"] { width: 170px; }
+.feed img { vertical-align: middle; }
+.getff { text-align: center; }
+.getff a img { border: 0; margin-top: 10px; }
+
+#footer { clear: both; padding: 10px 20px 20px; border-top: 1px solid #c6d4e1; font-size: .85em; color: #7a92a8; text-align: center; }
+#footer p { margin: .3em 0; }

@@ -1,0 +1,99 @@
+<!doctype html>
+<!-- 2007 art board: what Web 2.0 drew in Photoshop because CSS couldn't yet -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; font-family: 'Segoe UI', Tahoma, sans-serif; }
+  [data-out] { position: relative; flex: none; overflow: hidden; }
+
+  #header { width: 900px; height: 118px; background: linear-gradient(#ffffff, #eaf2fa); }
+  #header .logo { position: absolute; left: 34px; top: 14px; font: 700 64px/1 'Segoe UI', sans-serif; letter-spacing: -3px;
+    background: linear-gradient(#5eb2ff 0%, #1f6fc5 52%, #0d4f9c 53%, #2b7fd6 100%); -webkit-background-clip: text; color: transparent;
+    -webkit-box-reflect: below -14px linear-gradient(transparent 50%, rgba(255,255,255,.35)); }
+  #header .dot { color: #8cc63f; -webkit-text-fill-color: #8cc63f; }
+  #header .tag { position: absolute; left: 40px; top: 86px; font: 15px 'Segoe UI', sans-serif; color: #7a8a99; letter-spacing: .5px; }
+  #header .beta { position: absolute; left: 300px; top: 4px; width: 74px; height: 74px; transform: rotate(-14deg); }
+  #header .beta span { position: absolute; inset: 0; display: grid; place-items: center; font: 700 17px 'Segoe UI', sans-serif; color: #fff; text-shadow: 0 1px 1px #a3520a; letter-spacing: .5px; }
+
+  #headline { width: 520px; height: 76px; font: 700 31px/1.08 'Segoe UI', sans-serif; letter-spacing: -1.4px; color: #273746; text-shadow: 0 1px 0 #fff; background: #fff; }
+  #headline em { font-style: normal; color: #1f6fc5; }
+
+  .navspr { width: 132px; height: 68px; }
+  .navspr i { display: block; height: 34px; border-radius: 17px 17px 0 0; }
+  .navspr i:first-child { background: linear-gradient(#5aa9f2 0%, #2a7fd4 49%, #1565bb 50%, #1d72c9 100%); box-shadow: inset 0 1px rgba(255,255,255,.6); }
+  .navspr i:last-child { background: linear-gradient(#fff, #f3f7fb); box-shadow: inset 0 1px #fff; }
+
+  .gbtn { height: 46px; display: grid; place-items: center; border-radius: 10px; font: 700 18px 'Segoe UI', sans-serif; color: #fff; letter-spacing: -.2px; text-shadow: 0 -1px 0 rgba(0,0,0,.3); }
+  .gbtn::after { content: ''; position: absolute; left: 3px; right: 3px; top: 2px; height: 44%; border-radius: 8px 8px 30% 30% / 8px 8px 12px 12px; background: linear-gradient(rgba(255,255,255,.7), rgba(255,255,255,.08)); }
+  #b-find { width: 210px; background: linear-gradient(#9fd65a, #6aab21); box-shadow: inset 0 0 0 1px #4f8a14; }
+  #b-join { width: 250px; background: linear-gradient(#ffb44a, #f07c0a); box-shadow: inset 0 0 0 1px #c25f00; }
+  #b-go { width: 64px; height: 30px; font-size: 14px; border-radius: 8px; background: linear-gradient(#9fd65a, #6aab21); box-shadow: inset 0 0 0 1px #4f8a14; }
+
+  .spin { width: 16px; height: 16px; }
+  .spin i { position: absolute; left: 7px; top: 0; width: 2px; height: 5px; border-radius: 1px; background: #1f6fc5; transform-origin: 1px 8px; }
+
+  #rss { width: 14px; height: 14px; border-radius: 3px; background: linear-gradient(135deg, #f8ac5d, #e86b0d); }
+  #rss svg { position: absolute; inset: 0; }
+
+  .badge { width: 80px; height: 15px; display: flex; font: 700 7.5px/13px Verdana, sans-serif; white-space: nowrap; border: 1px solid #000; box-sizing: border-box; }
+  .badge b { padding: 0 2px; background: #666; color: #fff; font-weight: 700; }
+  .badge span { flex: 1; padding: 0 2px; text-align: center; color: #000; }
+
+  .thumb { width: 150px; height: 136px; background: #fff; }
+  .thumb div { width: 150px; height: 100px; background-size: cover; background-position: center; border-radius: 6px;
+    -webkit-box-reflect: below 2px linear-gradient(transparent 62%, rgba(255,255,255,.4)); }
+</style>
+</head>
+<body>
+
+<div id="header" data-out="header.png">
+  <div class="logo">halcyon<span class="dot">.</span></div>
+  <div class="tag">fly smarter. book faster. share everything.</div>
+  <svg class="beta" viewBox="0 0 74 74"><polygon fill="#f7931e" stroke="#d26d06" stroke-width="1.5" points="37,2 44,14 58,8 58,22 72,26 63,37 72,48 58,52 58,66 44,60 37,72 30,60 16,66 16,52 2,48 11,37 2,26 16,22 16,8 30,14"/></svg>
+  <div class="beta" style="pointer-events:none"><span>beta!</span></div>
+</div>
+
+<div id="headline" data-out="headline.png">Book your next trip<br>in <em>30 seconds</em>.</div>
+
+<div class="navspr" data-out="nav.png"><i></i><i></i></div>
+
+<div class="gbtn" id="b-find" data-out="btn_find.png">Find flights &raquo;</div>
+<div class="gbtn" id="b-join" data-out="btn_join.png">Join Halcyon Club. It's free!</div>
+<div class="gbtn" id="b-go" data-out="btn_go.png">Go</div>
+
+<div class="spin" data-out="spin1.png"></div>
+<div class="spin" data-out="spin2.png"></div>
+<div class="spin" data-out="spin3.png"></div>
+<div class="spin" data-out="spin4.png"></div>
+<div class="spin" data-out="spin5.png"></div>
+<div class="spin" data-out="spin6.png"></div>
+<div class="spin" data-out="spin7.png"></div>
+<div class="spin" data-out="spin8.png"></div>
+
+<div id="rss" data-out="rss.png"><svg viewBox="0 0 14 14"><circle cx="3.6" cy="10.4" r="1.6" fill="#fff"/><path d="M2.2 6.4a5.4 5.4 0 0 1 5.4 5.4M2.2 3a8.8 8.8 0 0 1 8.8 8.8" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round"/></svg></div>
+
+<div class="badge" data-out="b_xhtml.gif"><b>W3C</b><span style="background:#f90">XHTML 1.0</span></div>
+<div class="badge" data-out="b_css.gif"><b>W3C</b><span style="background:#69c">CSS 2.1</span></div>
+<div class="badge" data-out="b_rss.gif"><b>RSS</b><span style="background:#f60;color:#fff">VALID 2.0</span></div>
+<div class="badge" data-out="b_rails.gif"><b>RUBY</b><span style="background:#c00;color:#fff">ON RAILS</span></div>
+<div class="badge" data-out="b_web20.gif"><b>WEB</b><span style="background:#8cc63f">2.0 READY</span></div>
+
+<div class="thumb" data-out="t_tokyo.jpg" data-q="4"><div style="background-image:url(raw/Tokyo.png)"></div></div>
+<div class="thumb" data-out="t_lisbon.jpg" data-q="4"><div style="background-image:url(raw/Lisbon.png)"></div></div>
+<div class="thumb" data-out="t_athens.jpg" data-q="4"><div style="background-image:url(raw/Athens.png)"></div></div>
+<div class="thumb" data-out="t_reykjavik.jpg" data-q="4"><div style="background-image:url(raw/Reykjavik.png)"></div></div>
+
+<script>
+  // the ajaxload.info spinner: twelve o'clock gets darker, one frame per 45 degrees
+  document.querySelectorAll('.spin').forEach((s, f) => {
+    for (let k = 0; k < 8; k++) {
+      const i = document.createElement('i');
+      i.style.transform = `rotate(${k * 45}deg)`;
+      i.style.opacity = String(0.15 + 0.85 * (((k - f + 8) % 8) / 7));
+      s.append(i);
+    }
+  });
+</script>
+</body>
+</html>

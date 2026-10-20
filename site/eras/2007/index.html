@@ -1,0 +1,112 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>halcyon. fly smarter. (beta)</title>
+<link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+<link rel="alternate" type="application/rss+xml" title="The Halcyon Blog" href="#blog" />
+<script type="text/javascript" src="jquery-1.2.1.min.js"></script>
+<script type="text/javascript" src="site.js"></script>
+</head>
+<body>
+<div id="page">
+
+  <div id="header"><a href="#"><img src="img/header.png" width="900" height="118" alt="halcyon. fly smarter. book faster. share everything." /></a></div>
+
+  <ul id="nav" class="clearfix">
+    <li class="current"><a href="#">Home</a></li>
+    <li><a href="#search">Flights</a></li>
+    <li><a href="#dests">Destinations</a></li>
+    <li><a href="#club">Club</a></li>
+    <li><a href="#blog">Blog</a></li>
+  </ul>
+
+  <div id="main" class="clearfix">
+    <div id="content">
+
+      <div id="hero" class="box">
+        <img src="img/headline.png" width="520" height="76" alt="Book your next trip in 30 seconds." />
+        <p class="intro">Search 38 cities, compare fares, and book without a single page reload.</p>
+        <form id="search" action="#" method="get">
+          <div class="field">
+            <label for="from">From</label>
+            <input type="text" id="from" name="from" value="Tel Aviv" />
+            <img src="img/spinner.gif" width="16" height="16" alt="" class="spin" id="spin-from" />
+            <ul class="suggest" id="suggest-from"></ul>
+          </div>
+          <div class="field">
+            <label for="to">To</label>
+            <input type="text" id="to" name="to" value="" />
+            <img src="img/spinner.gif" width="16" height="16" alt="" class="spin" id="spin-to" />
+            <ul class="suggest" id="suggest-to"></ul>
+          </div>
+          <div class="field small">
+            <label for="when">Leaving</label>
+            <input type="text" id="when" name="when" value="11/16/2007" />
+          </div>
+          <input type="image" src="img/btn_find.png" width="210" height="46" alt="Find flights" class="find" />
+        </form>
+        <div id="results"></div>
+      </div>
+
+      <div id="dests" class="box">
+        <h2>Where are you flying next?</h2>
+        <ul class="thumbs clearfix">
+          <li><a href="img/big_tokyo.jpg" title="Tokyo, after the rain. Non-stop from Tel Aviv, 3 times a week."><img src="img/t_tokyo.jpg" width="134" height="121" alt="Tokyo" /></a></li>
+          <li><a href="img/big_lisbon.jpg" title="Lisbon. Tram 28 up to the castle."><img src="img/t_lisbon.jpg" width="134" height="121" alt="Lisbon" /></a></li>
+          <li><a href="img/big_athens.jpg" title="Athens, golden hour in the Plaka."><img src="img/t_athens.jpg" width="134" height="121" alt="Athens" /></a></li>
+          <li><a href="img/big_reykjavik.jpg" title="Reykjavik. Northern lights season starts in October."><img src="img/t_reykjavik.jpg" width="134" height="121" alt="Reykjavik" /></a></li>
+        </ul>
+        <p class="hint">Click a photo to see it bigger.</p>
+      </div>
+
+      <div class="box">
+        <h2>Popular right now</h2>
+        <p class="cloud">
+          <a href="#" class="t5">Tokyo</a> <a href="#" class="t2">Berlin</a> <a href="#" class="t4">London</a> <a href="#" class="t1">Prague</a>
+          <a href="#" class="t3">Barcelona</a> <a href="#" class="t5">New York</a> <a href="#" class="t2">Rome</a> <a href="#" class="t1">Budapest</a>
+          <a href="#" class="t4">Paris</a> <a href="#" class="t3">Athens</a> <a href="#" class="t1">Vienna</a> <a href="#" class="t2">Lisbon</a>
+          <a href="#" class="t3">Amsterdam</a> <a href="#" class="t1">Reykjavik</a> <a href="#" class="t2">Istanbul</a>
+        </p>
+      </div>
+    </div>
+
+    <div id="sidebar">
+      <div class="box photo">
+        <img src="img/hero.jpg" width="280" height="190" alt="" />
+        <p><strong>Wi-Fi on board.</strong> Check your email at 35,000 feet. Coming to every Halcyon flight in 2008.</p>
+      </div>
+
+      <p id="club"><a href="#"><img src="img/btn_join.png" width="250" height="46" alt="Join Halcyon Club. It's free!" /></a></p>
+
+      <div id="blog" class="box">
+        <h3><img src="img/rss.png" width="14" height="14" alt="RSS" /> From the Halcyon blog</h3>
+        <ul class="posts">
+          <li><a href="#">We're on Twitter! Follow us for gate changes</a><span>Posted by Dana &middot; Oct 18, 2007 &middot; 23 comments</span></li>
+          <li><a href="#">Our site now works on the iPhone</a><span>Posted by Avi &middot; Sep 30, 2007 &middot; 41 comments</span></li>
+          <li><a href="#">Halcyon Club gets a makeover (beta)</a><span>Posted by Dana &middot; Sep 12, 2007 &middot; 8 comments</span></li>
+        </ul>
+      </div>
+
+      <div class="box share">
+        <h3>Share this page</h3>
+        <a href="#" class="digg">Digg it</a> <a href="#" class="delicious">del.icio.us</a> <a href="#" class="facebook">Facebook</a> <a href="#" class="stumble">StumbleUpon</a>
+      </div>
+    </div>
+  </div>
+
+  <div id="footer">
+    <p><a href="#">About</a> | <a href="#">Careers</a> | <a href="#">Press</a> | <a href="#">Privacy</a> | <a href="#">API</a> | <a href="#blog">Blog</a></p>
+    <p>&copy; 2007 Halcyon Airways. All rights reserved. Halcyon is in beta. Things might break.</p>
+    <p class="badges"><img src="img/b_xhtml.gif" width="80" height="15" alt="Valid XHTML 1.0" /> <img src="img/b_css.gif" width="80" height="15" alt="Valid CSS" /> <img src="img/b_rss.gif" width="80" height="15" alt="RSS 2.0" /> <img src="img/b_rails.gif" width="80" height="15" alt="Ruby on Rails" /> <img src="img/b_web20.gif" width="80" height="15" alt="Web 2.0" /></p>
+  </div>
+</div>
+
+<div id="lb-overlay"></div>
+<div id="lb">
+  <img id="lb-img" src="img/big_tokyo.jpg" width="640" height="427" alt="" />
+  <p id="lb-caption"></p>
+  <a href="#" id="lb-close">Close &times;</a>
+</div>
+</body>
+</html>

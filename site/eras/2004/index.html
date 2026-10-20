@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Halcyon Airways | Cheap flights from Tel Aviv to Europe and New York</title>
+<meta name="description" content="Book cheap flights from Tel Aviv to 26 cities in Europe and North America. Web fares, online check-in and Halcyon Club." />
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" title="Default" />
+<link rel="alternate stylesheet" type="text/css" href="css/contrast.css" media="screen" title="High contrast" />
+<link rel="alternate stylesheet" type="text/css" href="css/large.css" media="screen" title="Large text" />
+<link rel="stylesheet" type="text/css" href="css/print.css" media="print" />
+<link rel="alternate" type="application/rss+xml" title="Halcyon web fares" href="#feed" />
+<script type="text/javascript" src="js/styleswitcher.js"></script>
+</head>
+<body>
+<div id="container">
+
+<p class="skip"><a href="#content">Skip to content</a></p>
+
+<div id="header">
+  <h1 id="logo"><a href="index.html" title="Halcyon Airways home">Halcyon Airways</a></h1>
+  <p id="phone">Reservations <strong>1-800-HALCYON</strong></p>
+</div>
+
+<ul id="nav">
+  <li class="current"><a href="index.html">Home</a></li>
+  <li><a href="#booking">Book a flight</a></li>
+  <li><a href="#fares">Web fares</a></li>
+  <li><a href="#news">Check in online</a></li>
+  <li><a href="#club">Halcyon Club</a></li>
+</ul>
+
+<div id="wrapper">
+  <div id="content">
+    <div id="promo">
+      <img src="img/promo.jpg" width="480" height="160" alt="Rooftops of the Plaka in Athens at sunset" />
+      <p><strong>Athens from $149 return.</strong> Book by 30 November for travel until March.</p>
+    </div>
+
+    <h2 id="booking">Book a flight</h2>
+    <form action="results.html" method="get" id="search">
+      <fieldset>
+        <legend>Where would you like to go?</legend>
+        <p>
+          <label for="from">From</label>
+          <select id="from" name="from"><option value="TLV" selected="selected">Tel Aviv</option></select>
+        </p>
+        <p>
+          <label for="to">To</label>
+          <select id="to" name="to">
+            <optgroup label="Europe">
+              <option value="ATH">Athens</option><option value="BCN">Barcelona</option><option value="LHR" selected="selected">London</option>
+              <option value="CDG">Paris</option><option value="FCO">Rome</option>
+            </optgroup>
+            <optgroup label="North America">
+              <option value="JFK">New York</option><option value="YYZ">Toronto</option>
+            </optgroup>
+          </select>
+        </p>
+        <p>
+          <label for="depart">Depart <abbr title="day/month/year">(dd/mm/yyyy)</abbr></label>
+          <input type="text" id="depart" name="depart" size="10" maxlength="10" value="26/11/2004" />
+        </p>
+        <p>
+          <label for="adults">Adults</label>
+          <select id="adults" name="adults"><option>1</option><option>2</option><option>3</option><option>4</option></select>
+        </p>
+        <p class="submit"><input type="submit" value="Search flights" /></p>
+      </fieldset>
+    </form>
+
+    <h2 id="fares">Web fares this week</h2>
+    <dl class="fares">
+      <dt>Athens</dt><dd>from <strong>$149</strong> return</dd>
+      <dt>Rome</dt><dd>from <strong>$219</strong> return</dd>
+      <dt>London</dt><dd>from <strong>$249</strong> return</dd>
+      <dt>Barcelona</dt><dd>from <strong>$259</strong> return</dd>
+      <dt>New York</dt><dd>from <strong>$569</strong> return</dd>
+    </dl>
+
+    <h2 id="news">News</h2>
+    <ul class="news">
+      <li><span class="date">8 November 2004</span> Check in online up to 24 hours before your flight and print your own boarding pass.</li>
+      <li><span class="date">21 October 2004</span> Every Halcyon booking is now an e-ticket. No more paper tickets.</li>
+      <li><span class="date">2 September 2004</span> New daily flights to Barcelona start in December.</li>
+    </ul>
+  </div>
+
+  <div id="sidebar">
+    <div class="box" id="club">
+      <h3>Fare alerts</h3>
+      <p>Get our best fares by e-mail every Tuesday.</p>
+      <form action="#" onsubmit="alert('Thanks! This copy of the site doesn\'t send e-mail, so nothing was subscribed.'); return false;">
+        <p><label for="email">E-mail address</label><br /><input type="text" id="email" name="email" size="20" /></p>
+        <p><input type="submit" value="Subscribe" /></p>
+      </form>
+      <p class="feed" id="feed"><img src="img/xml.gif" width="36" height="14" alt="XML" /> <a href="#feed">Web fares RSS feed</a> (<a href="#feed" title="RSS lets you read new fares in a feed reader, without visiting this site">what's this?</a>)</p>
+    </div>
+
+    <div class="box">
+      <h3>Text and colour</h3>
+      <ul id="styles">
+        <li><a href="#" onclick="setActiveStyleSheet('Default'); return false;">Default</a></li>
+        <li><a href="#" onclick="setActiveStyleSheet('High contrast'); return false;">High contrast</a></li>
+        <li><a href="#" onclick="setActiveStyleSheet('Large text'); return false;">Large text</a></li>
+      </ul>
+    </div>
+
+    <div class="box getff">
+      <a href="#"><img src="img/getfirefox.gif" width="180" height="60" alt="Get Firefox!" /></a>
+      <p>This site works in any browser, and it works best in one that follows web standards.</p>
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <p>&copy; 2004 Halcyon Airways Ltd. | <a href="#">Accessibility</a> | <a href="#">Privacy</a> | <a href="#">Site map</a> | <a href="#">Contact us</a></p>
+  <p>Valid <abbr title="eXtensible HyperText Markup Language">XHTML</abbr> 1.0 and <abbr title="Cascading Style Sheets">CSS</abbr>. Accessible to <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> 1.0 AA.</p>
+</div>
+
+</div>
+</body>
+</html>

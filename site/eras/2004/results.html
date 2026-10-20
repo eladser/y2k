@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Search results | Halcyon Airways</title>
+<link rel="stylesheet" type="text/css" href="css/main.css" media="screen" title="Default" />
+<link rel="alternate stylesheet" type="text/css" href="css/contrast.css" media="screen" title="High contrast" />
+<link rel="alternate stylesheet" type="text/css" href="css/large.css" media="screen" title="Large text" />
+<script type="text/javascript" src="js/styleswitcher.js"></script>
+<style type="text/css">
+table.results { width: 100%; border-collapse: collapse; margin: 1em 0; }
+table.results th { text-align: left; background: #dfe9f2; color: #2d5d8b; padding: 5px; border-bottom: 2px solid #b9cbdc; }
+table.results td { padding: 6px 5px; border-bottom: 1px solid #e3eaf1; }
+table.results tr:hover td { background: #fff8e8; }
+table.results .fare { font-weight: bold; color: #e8892b; }
+</style>
+</head>
+<body>
+<div id="container">
+<div id="header"><h1 id="logo"><a href="index.html">Halcyon Airways</a></h1><p id="phone">Reservations <strong>1-800-HALCYON</strong></p></div>
+<ul id="nav"><li><a href="index.html">Home</a></li><li class="current"><a href="index.html#booking">Book a flight</a></li><li><a href="index.html#fares">Web fares</a></li></ul>
+<div id="wrapper"><div id="content" style="width: 720px;">
+<h2>Flights from Tel Aviv</h2>
+<p id="summary"></p>
+<table class="results" summary="Available flights, with departure and arrival times and the fare">
+<thead><tr><th scope="col">Flight</th><th scope="col">Departs</th><th scope="col">Arrives</th><th scope="col">Fare per person</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+<p><a href="index.html#booking">&laquo; Change your search</a></p>
+</div></div>
+<div id="footer"><p>&copy; 2004 Halcyon Airways Ltd.</p></div>
+</div>
+<script type="text/javascript">
+// in 2004 the server built this page; here the browser fills in the table
+var CITIES = { ATH: ["Athens", 149, 2], BCN: ["Barcelona", 259, 5], LHR: ["London", 249, 5], CDG: ["Paris", 239, 5], FCO: ["Rome", 219, 4], JFK: ["New York", 569, 11], YYZ: ["Toronto", 619, 12] };
+function param(name) {
+  var m = new RegExp("[?&]" + name + "=([^&]*)").exec(location.search);
+  if (!m) return "";
+  try { return decodeURIComponent(m[1].replace(/\+/g, " ")); } catch (e) { return ""; }
+}
+var to = CITIES.hasOwnProperty(param("to")) ? param("to") : "LHR";
+var adults = parseInt(param("adults"), 10) || 1;
+var date = /^\d{1,2}\/\d{1,2}\/\d{4}$/.test(param("depart")) ? param("depart") : "26/11/2004";
+var c = CITIES[to];
+document.getElementById("summary").appendChild(document.createTextNode("To " + c[0] + " on " + date + ", " + adults + (adults > 1 ? " adults." : " adult.")));
+var times = [[7, 10, 0], [13, 45, 30], [22, 30, -20]], tbody = document.getElementById("rows");
+for (var i = 0; i < times.length; i++) {
+  var tr = document.createElement("tr");
+  var arr = (times[i][0] + c[2]) % 24;
+  var cells = ["HA " + (400 + i * 2), times[i][0] + ":" + times[i][1], arr + ":" + times[i][1] + (times[i][0] + c[2] >= 24 ? " (+1)" : ""), "$" + (c[1] + times[i][2])];
+  for (var j = 0; j < cells.length; j++) {
+    var td = document.createElement("td");
+    td.appendChild(document.createTextNode(cells[j]));
+    if (j == 3) td.className = "fare";
+    tr.appendChild(td);
+  }
+  tbody.appendChild(tr);
+}
+</script>
+</body>
+</html>

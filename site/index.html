@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Halcyon Airways · one homepage, every era of the web</title>
+<meta name="description" content="One airline homepage, rebuilt for each era of the web from 1996 to 2026. Try any version, then X-ray it to see how it was made.">
+<meta property="og:title" content="Halcyon Airways · one homepage, every era of the web">
+<meta property="og:description" content="The same airline homepage, rebuilt eight times between 1996 and 2026. Open one, click around, then X-ray it to see how it was built.">
+<meta property="og:image" content="https://y2k.eladser.dev/img/og.png">
+<meta property="og:url" content="https://y2k.eladser.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0f1115">
+<link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+<link rel="preload" href="fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="shell.css">
+<script type="module" src="shell.js"></script>
+</head>
+<body>
+
+<section id="board" aria-label="Departures">
+  <header class="board-head">
+    <p class="brand"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>Halcyon Airways</p>
+    <h1>One airline homepage,<br>every era of the web</h1>
+    <p class="sub">Pick a departure, then press X-ray to see how it was built. <button type="button" class="how-btn" data-pass>How this works</button></p>
+  </header>
+  <div class="depart">
+    <div class="cols" aria-hidden="true"><span>Year</span><span>Flight</span><span>Browser</span><span>Connection</span><span>Typical page</span><span>Download</span><span>Status</span></div>
+    <ol id="rows"></ol>
+    <div id="nowrow" class="row" aria-hidden="true"></div>
+    <span class="sr" id="nowsay" role="status"></span>
+  </div>
+  <div class="ctl">
+    <button id="prev" type="button" aria-label="Earlier year"><svg viewBox="0 0 16 16"><path d="M11 2 4 8l7 6z"/></svg></button>
+    <button id="next" type="button" aria-label="Later year"><svg viewBox="0 0 16 16"><path d="m5 2 7 6-7 6z"/></svg></button>
+    <button id="all" type="button"><span class="lbl">All years</span><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M2 3h12v2H2zm0 4h12v2H2zm0 4h12v2H2z"/></svg></button>
+    <button id="xr" type="button" aria-pressed="false">X-ray</button>
+    <button type="button" data-pass aria-label="How this works">?</button>
+    <button id="snd" type="button" aria-pressed="true" aria-label="Sound"><svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2zm9-1a4 4 0 0 1 0 6l-1-1a2.6 2.6 0 0 0 0-4z"/></svg></button>
+  </div>
+  <details class="src" id="src"><summary>Where the numbers come from</summary></details>
+  <p class="foot">Halcyon is a fictional airline. Made by <a href="https://eladser.dev/">Elad Sertshuk</a>. <a href="https://github.com/eladser/y2k">Source on GitHub</a>.</p>
+</section>
+
+<main id="desk">
+  <div class="wall"><div id="win" class="win"></div></div>
+  <div id="task"></div>
+</main>
+
+<dialog id="pass" aria-labelledby="pass-title">
+  <div class="pass">
+    <div class="pass-main">
+      <p class="pass-head"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg>Halcyon Airways <span>Boarding pass</span></p>
+      <div class="route">
+        <div><small>From</small><b>1996</b><span>Dial-up and table layouts</span></div>
+        <svg class="arc" viewBox="0 0 120 40" aria-hidden="true"><path d="M4 34 Q60 -6 116 34" /><circle cx="60" cy="14" r="3"/></svg>
+        <div><small>To</small><b>2026</b><span>Glass, video and AI</span></div>
+      </div>
+      <h2 id="pass-title">One homepage, rebuilt eight times.</h2>
+      <p class="pass-what">Halcyon is a made-up airline. Its homepage gets rebuilt the way each year would have done it, with that year's tools and that year's taste. Every version works.</p>
+      <ol class="how">
+        <li><b>Pick a year</b> on the departures board.</li>
+        <li><b>Use the site</b> the way people did then. Search for a flight, sit through the intro.</li>
+        <li><b>Press X-ray</b> to see how that version was built, with the real code from that year.</li>
+      </ol>
+    </div>
+    <div class="stub">
+      <dl>
+        <div><dt>Passenger</dt><dd>You</dd></div>
+        <div><dt>Flight</dt><dd>HA 96&ndash;26</dd></div>
+        <div><dt>Gate</dt><dd>WWW</dd></div>
+        <div><dt>Seat</dt><dd>Window</dd></div>
+      </dl>
+      <div class="barcode" aria-hidden="true"></div>
+      <form method="dialog"><button class="board-btn" autofocus>Board</button></form>
+    </div>
+  </div>
+</dialog>
+
+<aside id="xray" aria-label="How this page was built">
+  <div class="xr-head"><h2 id="xr-title">X-ray</h2><p id="xr-stack"></p></div>
+  <ul class="xr-list" id="xr-list"></ul>
+  <p class="xr-foot" id="xr-foot"></p>
+</aside>
+
+</body>
+</html>

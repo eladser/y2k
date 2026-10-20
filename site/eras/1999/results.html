@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+<TITLE>Halcyon Airways - Flight Search Results</TITLE>
+<SCRIPT LANGUAGE="JavaScript" SRC="halcyon.js"></SCRIPT>
+<SCRIPT SRC="../dialup.js" DATA-RATE="3000"></SCRIPT>
+<STYLE TYPE="text/css">
+<!--
+BODY, TD { font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; }
+A { color: #003399; }
+.small { font-size: 10px; color: #666666; }
+-->
+</STYLE>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+// in 1999 /cgi-bin/booking.pl printed this page on the server. here the browser does it
+function getParam(name) {
+  var q = location.search.substring(1).split("&");
+  for (var i = 0; i < q.length; i++) {
+    var p = q[i].split("=");
+    if (p[0] == name) return unescape((p[1] || "").replace(/\+/g, " "));
+  }
+  return "";
+}
+
+var CITY = new Array();
+CITY["TLV"] = "Tel Aviv"; CITY["LHR"] = "London"; CITY["CDG"] = "Paris";
+CITY["JFK"] = "New York"; CITY["FCO"] = "Rome"; CITY["ATH"] = "Athens";
+var HOURS = new Array();
+HOURS["LHR"] = 5; HOURS["CDG"] = 5; HOURS["JFK"] = 11; HOURS["FCO"] = 4; HOURS["ATH"] = 2; HOURS["TLV"] = 5;
+var FARE = new Array();
+FARE["LHR"] = 399; FARE["CDG"] = 379; FARE["JFK"] = 699; FARE["FCO"] = 349; FARE["ATH"] = 199; FARE["TLV"] = 399;
+
+// plenty of 1999 sites wrote these straight into the page, which is how they got defaced.
+// this one only prints what it recognises
+function clean(s, n) { return s.replace(/[^A-Za-z0-9]/g, "").substring(0, n); }
+var from = getParam("from"), to = getParam("to");
+if (typeof CITY[from] != "string") from = "TLV";
+if (typeof CITY[to] != "string") to = "LHR";
+var pax = parseInt(getParam("pax"), 10);
+if (!(pax >= 1 && pax <= 5)) pax = 1;
+var when = clean(getParam("mon"), 3) + " " + clean(getParam("day"), 2) + ", " + clean(getParam("yy"), 2);
+
+function pad(n) { return n < 10 ? "0" + n : "" + n; }
+
+function flightRows() {
+  var dep = new Array(8, 13, 22), num = new Array(214, 216, 218), html = "";
+  var hrs = HOURS[to == "TLV" ? from : to], fare = FARE[to == "TLV" ? from : to];
+  for (var i = 0; i < 3; i++) {
+    var arr = (dep[i] + hrs) % 24;
+    var price = fare + (i == 1 ? 50 : (i == 2 ? -20 : 0)) * 1;
+    html += "<TR BGCOLOR='" + (i % 2 ? "#EEEEFF" : "#FFFFFF") + "'>";
+    html += "<TD><INPUT TYPE='radio' NAME='pick'" + (i == 0 ? " CHECKED" : "") + "></TD>";
+    html += "<TD><B>HA " + num[i] + "</B></TD><TD>" + pad(dep[i]) + ":40</TD><TD>" + pad(arr) + ":55" + (dep[i] + hrs >= 24 ? " <FONT COLOR='#CC0000'>+1</FONT>" : "") + "</TD>";
+    html += "<TD>Non-stop</TD><TD><B>$" + price * pax + "</B></TD></TR>";
+  }
+  return html;
+}
+//-->
+</SCRIPT>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF" MARGINWIDTH="0" MARGINHEIGHT="0" TOPMARGIN="0" LEFTMARGIN="0">
+<TABLE WIDTH="760" BORDER="0" CELLPADDING="0" CELLSPACING="0" ALIGN="center">
+<TR><TD>
+<IMG SRC="img/spacer.gif" WIDTH="1" HEIGHT="14" ALT=""><BR>
+<FONT FACE="Arial" SIZE="4" COLOR="#003399"><B><I>Flight Search Results</I></B></FONT><BR>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+document.write("<P><B>" + CITY[from] + " (" + from + ") to " + CITY[to] + " (" + to + ")</B><BR>");
+document.write("Departing " + when + " &middot; " + pax + " adult(s)</P>");
+//-->
+</SCRIPT>
+<FORM NAME="pickform" onSubmit="alert('Thank you! To complete your booking, please call 1-800-HALCYON.\n\nOnline payment is coming soon.'); return false;">
+<TABLE WIDTH="560" BORDER="0" CELLPADDING="5" CELLSPACING="1" BGCOLOR="#CCCCFF">
+<TR BGCOLOR="#003399">
+  <TD><FONT COLOR="#FFFFFF">&nbsp;</FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Flight</B></FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Departs</B></FONT></TD>
+  <TD><FONT COLOR="#FFFFFF"><B>Arrives</B></FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Stops</B></FONT></TD><TD><FONT COLOR="#FFFFFF"><B>Total fare</B></FONT></TD>
+</TR>
+<SCRIPT LANGUAGE="JavaScript">
+<!--
+document.write(flightRows());
+//-->
+</SCRIPT>
+</TABLE>
+<P><INPUT TYPE="image" SRC="img/btn_continue.gif" WIDTH="84" HEIGHT="20" BORDER="0" ALT="Continue"></P>
+</FORM>
+<P CLASS="small">All times are local. Fares are per person and include all taxes. Seats are limited and may not be available on all flights.<BR>
+<A HREF="home.html">&laquo; New search</A></P>
+</TD></TR>
+</TABLE>
+</BODY>
+</HTML>

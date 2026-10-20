@@ -1,0 +1,20 @@
+[
+  { "code": "TLV", "city": "Tel Aviv", "country": "Israel" },
+  { "code": "LHR", "city": "London", "country": "United Kingdom" },
+  { "code": "LGW", "city": "London Gatwick", "country": "United Kingdom" },
+  { "code": "LIS", "city": "Lisbon", "country": "Portugal" },
+  { "code": "LAX", "city": "Los Angeles", "country": "United States" },
+  { "code": "CDG", "city": "Paris", "country": "France" },
+  { "code": "PRG", "city": "Prague", "country": "Czech Republic" },
+  { "code": "NRT", "city": "Tokyo", "country": "Japan" },
+  { "code": "JFK", "city": "New York", "country": "United States" },
+  { "code": "FCO", "city": "Rome", "country": "Italy" },
+  { "code": "ATH", "city": "Athens", "country": "Greece" },
+  { "code": "AMS", "city": "Amsterdam", "country": "Netherlands" },
+  { "code": "BCN", "city": "Barcelona", "country": "Spain" },
+  { "code": "BER", "city": "Berlin", "country": "Germany" },
+  { "code": "BUD", "city": "Budapest", "country": "Hungary" },
+  { "code": "IST", "city": "Istanbul", "country": "Turkey" },
+  { "code": "KEF", "city": "Reykjavik", "country": "Iceland" },
+  { "code": "VIE", "city": "Vienna", "country": "Austria" }
+]

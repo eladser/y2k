@@ -1,0 +1,6 @@
+/* Print: no navigation, no sidebar, black on white */
+body { background: #fff; color: #000; font: 11pt Georgia, serif; }
+#nav, #sidebar, .skip, #search { display: none; }
+#logo { text-indent: 0; background: none; }
+#container, #content { width: auto; float: none; }
+a { color: #000; text-decoration: none; }

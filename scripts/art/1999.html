@@ -1,0 +1,91 @@
+<!doctype html>
+<!-- 1999 art board. scripts/cut.mjs converts each [data-out] the way Photoshop 5's "Save for Web" would have -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; font-family: Verdana, sans-serif; }
+  [data-out] { position: relative; flex: none; overflow: hidden; }
+
+  #banner { width: 760px; height: 82px; background: linear-gradient(90deg, #000066 0%, #003399 48%, #3366cc 100%); }
+  #banner .photo { position: absolute; right: 0; top: 0; width: 440px; height: 82px; background: url(raw/1999-banner.png) 50% 22% / cover; -webkit-mask-image: linear-gradient(90deg, transparent, #000 42%); }
+  #banner .logo { position: absolute; left: 18px; top: 8px; font: italic 900 40px/1 'Arial Black', Arial, sans-serif; color: #fff; letter-spacing: 1px; text-shadow: 2px 2px 0 #000033, 3px 3px 2px #000; }
+  #banner .swoosh { position: absolute; left: 12px; top: 40px; width: 250px; height: 22px; }
+  #banner .air { position: absolute; left: 30px; top: 63px; font: bold 11px Verdana, sans-serif; letter-spacing: 8px; color: #ff9900; text-shadow: 1px 1px 0 #000033; }
+  #banner .tag { position: absolute; left: 330px; top: 60px; font: italic 12px Georgia, serif; color: #ccccff; text-shadow: 1px 1px 0 #000033; }
+
+  .nav { width: 126px; height: 24px; display: flex; align-items: center; justify-content: center; gap: 4px; font: bold 10px Verdana, sans-serif; letter-spacing: .5px; color: #fff; white-space: nowrap;
+    background: linear-gradient(#4477aa, #003366); box-shadow: inset 0 1px #88aadd, inset 0 -1px #000033, inset -1px 0 #000033, inset 1px 0 #6688bb; }
+  .nav.on { color: #003366; background: linear-gradient(#ffdd55, #ff9900); box-shadow: inset 0 1px #ffeeaa, inset 0 -1px #996600, inset -1px 0 #996600, inset 1px 0 #ffcc66; }
+  .nav.on::before { content: '\25BA '; font-size: 8px; }
+  .nav.wide { width: 130px; }
+
+  .hd { width: 160px; height: 22px; display: flex; align-items: center; gap: 6px; padding-left: 8px; box-sizing: border-box; font: bold 10px Verdana, sans-serif; color: #fff; letter-spacing: .5px;
+    background: linear-gradient(#3366cc, #003399); border-radius: 8px 8px 0 0; }
+  .hd::before { content: ''; width: 6px; height: 6px; background: #ff9900; box-shadow: 1px 1px 0 #000033; }
+
+  .btn { height: 20px; display: grid; place-items: center; font: bold 10px Verdana, sans-serif; color: #003366; letter-spacing: .3px;
+    background: linear-gradient(#ffdd66, #ff9900); box-shadow: inset 1px 1px #fff3c0, inset -1px -1px #995500; }
+  #b-search { width: 72px; } #b-login { width: 58px; } #b-select { width: 60px; } #b-continue { width: 84px; }
+
+  .new { width: 32px; height: 14px; display: grid; place-items: center; font: bold 9px Verdana, sans-serif; color: #fff; background: #cc0000; border-radius: 3px; }
+  .new.two { color: #ffff00; }
+  #bullet { width: 9px; height: 9px; } #bullet svg { display: block; }
+
+  #welcome { width: 440px; height: 30px; font: bold italic 21px/30px Arial, sans-serif; color: #003399; text-shadow: 2px 2px 0 #cccccc; }
+  #specials { width: 440px; height: 20px; display: flex; align-items: center; padding-left: 8px; box-sizing: border-box; font: bold 11px Verdana, sans-serif; color: #fff; background: linear-gradient(90deg, #ff9900, #ffcc33 70%, #fff); }
+
+  .badge { width: 88px; height: 31px; display: grid; place-items: center; text-align: center; font: bold 9px/1.15 Verdana, sans-serif; border: 1px solid #000; box-sizing: border-box; }
+  #b-y2k { background: linear-gradient(#33aa33, #116611); color: #fff; }
+  #b-y2k b { display: block; font-size: 12px; color: #ffff66; }
+  #b-ie { background: linear-gradient(#ffffff, #ccccff); color: #000066; }
+  #b-ie b { display: block; color: #cc0000; }
+
+  #saver { width: 64px; height: 56px; }
+</style>
+</head>
+<body>
+
+<div id="banner" data-out="banner.jpg" data-q="7">
+  <div class="photo"></div>
+  <svg class="swoosh" viewBox="0 0 250 40"><path d="M2 18 C 60 4, 160 0, 248 8 C 170 6, 80 10, 14 21 Z" fill="#ff9900" opacity=".9"/></svg>
+  <div class="logo">HALCYON</div>
+  <div class="air">AIRWAYS</div>
+  <div class="tag">The world is closer than you think.</div>
+</div>
+
+<div class="nav" data-out="nav_home.gif">HOME</div>
+<div class="nav on" data-out="nav_home_on.gif">HOME</div>
+<div class="nav" data-out="nav_fares.gif">FLIGHTS &amp; FARES</div>
+<div class="nav on" data-out="nav_fares_on.gif">FLIGHTS &amp; FARES</div>
+<div class="nav" data-out="nav_dest.gif">DESTINATIONS</div>
+<div class="nav on" data-out="nav_dest_on.gif">DESTINATIONS</div>
+<div class="nav" data-out="nav_club.gif">HALCYON CLUB</div>
+<div class="nav on" data-out="nav_club_on.gif">HALCYON CLUB</div>
+<div class="nav" data-out="nav_about.gif">ABOUT US</div>
+<div class="nav on" data-out="nav_about_on.gif">ABOUT US</div>
+<div class="nav wide" data-out="nav_contact.gif">CONTACT US</div>
+<div class="nav wide on" data-out="nav_contact_on.gif">CONTACT US</div>
+
+<div class="hd" data-out="hd_quick.gif">QUICK LINKS</div>
+<div class="hd" data-out="hd_book.gif">BOOK A FLIGHT</div>
+<div class="hd" data-out="hd_club.gif">HALCYON CLUB</div>
+
+<div class="btn" id="b-search" data-out="btn_search.gif">SEARCH &raquo;</div>
+<div class="btn" id="b-login" data-out="btn_login.gif">LOG IN</div>
+<div class="btn" id="b-continue" data-out="btn_continue.gif">CONTINUE &raquo;</div>
+
+<div class="new" data-out="new1.png">NEW!</div>
+<div class="new two" data-out="new2.png">NEW!</div>
+<div id="bullet" data-out="bullet.gif"><svg width="9" height="9"><path d="M1 0 L8 4.5 L1 9 Z" fill="#ff9900" stroke="#cc6600"/></svg></div>
+
+<div id="welcome" data-out="welcome.gif">Welcome to Halcyon Airways Online</div>
+<div id="specials" data-out="specials.gif">WEB SPECIALS &nbsp;&middot;&nbsp; Book by March 31, 1999</div>
+
+<div class="badge" id="b-y2k" data-out="badge_y2k.gif"><span><b>Y2K</b>READY</span></div>
+<div class="badge" id="b-ie" data-out="badge_ie.gif"><span>Best viewed in<b>IE 4.0+</b></span></div>
+
+<div id="saver" data-out="saver.gif"><svg width="64" height="56" viewBox="0 0 64 56"><rect x="6" y="2" width="52" height="40" rx="3" fill="#d8d2bf" stroke="#7a745f"/><rect x="11" y="7" width="42" height="29" fill="#003399"/><circle cx="44" cy="14" r="5" fill="#ffcc33"/><path d="M15 28 l18 -6 l8 -1 l-4 3 l-16 6 z" fill="#fff"/><rect x="24" y="42" width="16" height="5" fill="#bdb6a1"/><rect x="14" y="47" width="36" height="6" fill="#d8d2bf" stroke="#7a745f"/></svg></div>
+
+</body>
+</html>
