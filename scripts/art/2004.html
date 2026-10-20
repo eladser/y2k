@@ -1,0 +1,58 @@
+<!doctype html>
+<!-- Art board for the 2004 site: the images that made CSS layouts look designed, from the
+     A List Apart techniques of 2003-2004 (sliding doors, faux columns, rounded box tops). -->
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  body { margin: 0; padding: 20px; background: #fff; display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; font-family: 'Trebuchet MS', Verdana, sans-serif; }
+  [data-out] { position: relative; flex: none; overflow: hidden; }
+
+  #logo { width: 300px; height: 60px; background: #fff; }
+  #logo svg { position: absolute; left: 4px; top: 8px; width: 46px; height: 44px; }
+  #logo .n { position: absolute; left: 56px; top: 8px; font: bold 30px/1 'Trebuchet MS', sans-serif; color: #2d5d8b; letter-spacing: -1px; }
+  #logo .n span { color: #e8892b; }
+  #logo .s { position: absolute; left: 58px; top: 40px; font: 11px Verdana, sans-serif; color: #7a92a8; letter-spacing: 1px; }
+
+  #bodybg { width: 4px; height: 220px; background: linear-gradient(#c9d9e8, #e8eef4); }
+
+  .tab { width: 400px; height: 300px; background: #e8eef4; }
+  .tab i { position: absolute; left: 0; right: 0; height: 150px; border: 1px solid #a7bccf; border-bottom: 0; }
+  .tab i:first-child { top: 0; background: linear-gradient(#f7fafc, #dde7f0 70%); }
+  .tab i:last-child { top: 150px; background: linear-gradient(#ffffff, #ffffff); border-color: #8fa9c0; }
+  #tl i { border-radius: 8px 0 0 0; border-right: 0; } #tl { width: 9px; }
+  #tr i { border-radius: 0 8px 0 0; border-left: 0; }
+
+  #faux { width: 760px; height: 4px; background: linear-gradient(90deg, #fff 0 519px, #d6e1eb 519px 520px, #f2f6fa 520px); }
+
+  .boxtop, .boxbot { width: 220px; background: #fff; }
+  .boxtop { height: 30px; } .boxbot { height: 10px; }
+  .boxtop i, .boxbot i { position: absolute; left: 0; right: 0; background: #dfe9f2; border: 1px solid #b9cbdc; }
+  .boxtop i { top: 0; height: 40px; border-radius: 10px 10px 0 0; border-bottom: 0; background: linear-gradient(#cfdeec, #dfe9f2); }
+  .boxbot i { bottom: 0; height: 30px; border-radius: 0 0 10px 10px; border-top: 0; }
+
+  #getff { width: 180px; height: 60px; background: linear-gradient(#5b8ed1, #26569b); border-radius: 6px; color: #fff; }
+  #getff .g { position: absolute; left: 10px; top: 10px; width: 40px; height: 40px; border-radius: 50%; background: radial-gradient(circle at 40% 35%, #ffd27a, #f08a24 55%, #b5470e); box-shadow: inset -4px -4px 0 rgba(0,0,0,.15); }
+  #getff .t1 { position: absolute; left: 60px; top: 12px; font: bold 17px/1 'Trebuchet MS', sans-serif; }
+  #getff .t2 { position: absolute; left: 60px; top: 34px; font: 11px Verdana, sans-serif; color: #dce8f7; }
+
+  #xml { width: 36px; height: 14px; display: grid; place-items: center; background: #f60; color: #fff; font: bold 10px/1 Verdana, sans-serif; border: 1px solid; border-color: #ffc8a4 #7c3100 #7c3100 #ffc8a4; box-sizing: border-box; }
+
+  #promo { width: 480px; height: 160px; background: url(raw/Athens.png) 50% 55% / cover; }
+  #arrow { width: 7px; height: 9px; background: #fff; }
+</style>
+</head>
+<body>
+<div id="logo" data-out="logo.gif"><svg viewBox="0 0 46 44"><path d="M4 26c8-1 12-9 21-9 4 0 7 2 9 4l8-2-5 5c0 8-7 13-16 13-10 0-15-5-17-11z" fill="#2d5d8b"/><path d="M15 26c4 3 10 3 15 0" fill="none" stroke="#e8892b" stroke-width="3" stroke-linecap="round"/><circle cx="33" cy="22" r="1.6" fill="#fff"/></svg><div class="n">halcyon <span>airways</span></div><div class="s">FLIGHTS FROM TEL AVIV</div></div>
+<div id="bodybg" data-out="body-bg.gif"></div>
+<div class="tab" id="tl" data-out="tab-left.gif"><i></i><i></i></div>
+<div class="tab" id="tr" data-out="tab-right.gif"><i></i><i></i></div>
+<div id="faux" data-out="faux.gif"></div>
+<div class="boxtop" data-out="box-top.gif"><i></i></div>
+<div class="boxbot" data-out="box-bottom.gif"><i></i></div>
+<div id="getff" data-out="getfirefox.gif"><span class="g"></span><span class="t1">Get Firefox!</span><span class="t2">Rediscover the web</span></div>
+<div id="xml" data-out="xml.gif">XML</div>
+<div id="promo" data-out="promo.jpg" data-q="5"></div>
+<div id="arrow" data-out="arrow.gif"><svg width="7" height="9"><path d="M1 0 6 4.5 1 9z" fill="#e8892b"/></svg></div>
+</body>
+</html>

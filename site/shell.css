@@ -456,3 +456,16 @@ body.dialing98 #win { visibility: hidden; }
 .nn3 .sb .key { width: 30px; justify-content: center; }
 .nn3 .sb .prog { width: 160px; }
 @media (prefers-reduced-motion: reduce) { .nn3 .bar .throb .meteor { animation: none; } }
+
+/* ---------- Firefox 1.0 on Windows XP, 2004 ---------- */
+
+.ff1 .menu span { padding: 2px 7px; }
+.ff1 .navb { display: flex; align-items: center; gap: 2px; height: 40px; padding: 0 4px; background: #ece9d8; border-bottom: 1px solid #d8d2bd; }
+.ff1 .navb .b { display: grid; place-items: center; width: 34px; height: 34px; }
+.ff1 .navb svg { width: 26px; height: 26px; }
+.ff1 .navb .url { flex: 1; display: flex; align-items: center; gap: 5px; height: 22px; margin: 0 4px; padding: 0 4px; background: #fff; border: 1px solid #7f9db9; white-space: nowrap; overflow: hidden; }
+.ff1 .navb .url svg, .ff1 .navb .srch svg { width: 16px; height: 16px; }
+.ff1 .navb .srch { display: flex; align-items: center; gap: 5px; width: 170px; height: 22px; padding: 0 4px; background: #fff; border: 1px solid #7f9db9; color: #888; }
+.ff1 .sb .feed { margin-left: auto; padding-right: 6px; }
+.ff1 .sb .feed svg { width: 16px; height: 16px; }
+.ie6 .tb > svg { width: 16px; height: 16px; flex: none; }

@@ -1,0 +1,5 @@
+/* High contrast: an alternate style sheet, switched on from the sidebar */
+@import url(main.css);
+body, #container, #header, #wrapper, #nav, .box p, .box form, .box ul, #search fieldset { background: #000 !important; color: #ff0 !important; }
+a, h2, h3, #phone strong, dl.fares strong, #search legend { color: #0ff !important; }
+#nav a { color: #fff !important; }

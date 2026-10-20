@@ -312,7 +312,115 @@ onClipEvent (data) {
       },
     ],
   },
-  { year: 2004, browser: 'FIREFOX 1.0', os: 'xp', conn: 'DSL 861K', kbps: 108, page: 93.7, built: false },
+  {
+    year: 2004, browser: 'FIREFOX 1.0', os: 'xp', chrome: 'ff1', conn: 'DSL 861K', kbps: 108, page: 93.7, built: true,
+    url: 'http://www.halcyonair.com/',
+    title: 'Halcyon Airways | Cheap flights from Tel Aviv to Europe and New York - Mozilla Firefox',
+    stack: 'XHTML 1.0 · CSS layout, no tables · A List Apart techniques',
+    xray: [
+      {
+        name: 'Layout without tables',
+        sel: '#wrapper',
+        then: 'The big change of 2003 and 2004: content in plain HTML, layout moved to CSS. Two floated columns, a clearing trick at the bottom, and a background image to fake equal-height columns, because CSS had no way to say "same height as the one next to it". It\'s called faux columns.',
+        now: 'Grid. Columns are equal height by default, and the layout can change completely without touching the HTML.',
+        code: `#wrapper {
+  background: url(../img/faux.gif) repeat-y;
+}
+#content { float: left; width: 480px; }
+#sidebar { float: right; width: 220px; }
+
+#wrapper:after {
+  content: "."; display: block; height: 0;
+  clear: both; visibility: hidden;
+}`,
+      },
+      {
+        name: 'Sliding doors',
+        sel: '#nav',
+        then: 'Tabs that stretch to fit their label, made from two images: a thin left edge on the list item and a wide right side on the link, sliding over each other. Both hover states sit in the same files, 150 pixels down. Douglas Bowman, A List Apart, 2003.',
+        now: 'border-radius and a background colour. The label can be any length and nothing needs an image.',
+        code: `#nav li {
+  float: left;
+  padding-left: 9px;
+  background: url(../img/tab-left.gif) no-repeat left top;
+}
+#nav a {
+  display: block;
+  padding: 5px 15px 4px 6px;
+  background: url(../img/tab-right.gif) no-repeat right top;
+}
+#nav li:hover { background-position: 0% -150px; }
+#nav li:hover a { background-position: 100% -150px; }`,
+      },
+      {
+        name: 'Image replacement',
+        sel: '#logo',
+        then: 'The logo is a real <h1> with real text, pushed 9999 pixels off screen and replaced by a background image. Search engines and screen readers read the text and everyone else saw the picture. There were a dozen competing versions of this trick.',
+        now: 'An inline SVG with a title, or real text in a web font. Nothing has to hide.',
+        code: `<h1 id="logo"><a href="index.html">Halcyon Airways</a></h1>
+
+#logo {
+  width: 300px;
+  height: 60px;
+  background: url(../img/logo.gif) no-repeat;
+  text-indent: -9999px;
+}`,
+      },
+      {
+        name: 'Style switcher',
+        sel: '#styles',
+        then: 'Separate the content from the look and you can swap the look. Alternate style sheets, switched with a small script and remembered in a cookie, gave readers high contrast or large text. Try it in the sidebar. Paul Sowden, A List Apart, 2001.',
+        now: 'The page follows the reader\'s system settings by itself: prefers-color-scheme, prefers-contrast, and text sized in rem so browser zoom just works.',
+        code: `<link rel="stylesheet" href="css/main.css" title="Default" />
+<link rel="alternate stylesheet" href="css/contrast.css"
+      title="High contrast" />
+
+function setActiveStyleSheet(title) {
+  for (i = 0; (a = document.getElementsByTagName("link")[i]); i++) {
+    if (a.getAttribute("rel").indexOf("style") != -1
+        && a.getAttribute("title")) {
+      a.disabled = true;
+      if (a.getAttribute("title") == title) a.disabled = false;
+    }
+  }
+  createCookie("style", title, 365);
+}`,
+      },
+      {
+        name: 'The box model hack',
+        sel: '#sidebar',
+        then: 'Internet Explorer 5 counted padding inside the width and every other browser added it outside, so the same CSS gave two different widths. Tantek Celik\'s hack hid the second width from IE5 behind a parser bug in voice-family.',
+        now: 'box-sizing: border-box, and browsers that agree with each other. Since 2021 the browser makers fix their differences together every year in Interop.',
+        code: `#sidebar {
+  width: 240px;   /* IE5 reads this, then chokes */
+  padding: 15px 10px;
+  voice-family: "\\"}\\"";
+  voice-family: inherit;
+  width: 220px;   /* everyone else */
+}
+html>body #sidebar { width: 220px; }`,
+      },
+      {
+        name: 'Web standards',
+        sel: '.getff',
+        then: '"Best viewed in" notices gave way to pages that validated, passed accessibility checks and worked in any browser. Firefox 1.0 shipped in November 2004, and its fans paid for a two-page ad in the New York Times.',
+        now: 'The browsers all follow the same specifications, and they update themselves every few weeks.',
+        code: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<p>Valid XHTML 1.0 and CSS.
+   Accessible to WCAG 1.0 AA.</p>`,
+      },
+      {
+        name: 'RSS',
+        sel: '.feed',
+        then: 'A feed of new fares that people subscribed to in a reader instead of visiting the site. Firefox 1.0 noticed the feed and showed the orange icon in its status bar, bottom right.',
+        now: 'E-mail newsletters and app notifications took most of that job. RSS still runs underneath podcasts.',
+        code: `<link rel="alternate" type="application/rss+xml"
+      title="Halcyon web fares" href="/fares.rss" />`,
+      },
+    ],
+  },
   {
     year: 2007, browser: 'FIREFOX 2', os: 'vista', chrome: 'ff2', conn: '2 MBPS', kbps: 246, page: 312, built: true,
     url: 'http://www.halcyon.com/',
