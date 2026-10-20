@@ -74,7 +74,7 @@ function clubLogin(f) {
     alert("Please enter your Halcyon Club number and PIN.");
     return false;
   }
-  alert("We're sorry, Halcyon Club online is temporarily unavailable. Please call 1-800-HALCYON.");
+  alert("We're sorry, Halcyon Club online is temporarily unavailable. Please call 1-800-555-0199.");
   return false;
 }
 
