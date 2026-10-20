@@ -107,6 +107,7 @@ body.flying.boards #board { inset: 0; height: auto; flex-direction: column; alig
 body.flying.boards .board-head, body.flying.boards .cols, body.flying.boards .foot { display: grid; }
 body.flying.boards .foot { display: block; }
 body.flying.boards #rows { display: block; }
+body.flying.boards .depart { --fs: clamp(13px, 1.62vw, 22px); margin: 0 auto; flex: none; }
 body.flying.boards #nowrow { display: none; }
 body.flying.boards .ctl { display: none; }
 
@@ -388,3 +389,54 @@ body.dialing98 #win { visibility: hidden; }
 .icons98 { position: absolute; left: 14px; top: 14px; display: grid; gap: 18px; z-index: 0; }
 .icons98 span { display: grid; justify-items: center; gap: 4px; width: 74px; font: 11px Tahoma, sans-serif; color: #fff; text-align: center; }
 .icons98 svg { width: 32px; height: 32px; }
+
+/* ---------- Windows Vista + Firefox 2, 2007 ---------- */
+
+[data-os="vista"] .wall {
+  background:
+    radial-gradient(55% 45% at 22% 68%, rgba(150, 235, 140, .55), transparent 70%),
+    radial-gradient(45% 40% at 72% 32%, rgba(90, 170, 255, .5), transparent 70%),
+    radial-gradient(90% 28% at 50% 88%, rgba(40, 140, 100, .55), transparent 70%),
+    linear-gradient(160deg, #0a2440, #0f4a3c 55%, #071a30);
+}
+.aero {
+  padding: 0 7px 7px; border-radius: 8px 8px 6px 6px; font: 12px 'Segoe UI', Tahoma, sans-serif; color: #000;
+  background: linear-gradient(rgba(150, 190, 230, .55), rgba(95, 135, 175, .5));
+  backdrop-filter: blur(12px) saturate(1.5);
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .55), inset 0 0 0 1px rgba(255, 255, 255, .45), 0 22px 60px rgba(0, 0, 0, .5);
+}
+.aero .tbv { display: flex; align-items: center; gap: 6px; height: 30px; padding-left: 2px; }
+.aero .tbv > svg { width: 16px; height: 16px; flex: none; }
+.aero .tbv .t { flex: 1; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; text-shadow: 0 0 8px #fff, 0 0 4px #fff; }
+.aero .caps { display: flex; align-self: flex-start; }
+.aero .caps i { width: 27px; height: 19px; display: grid; place-items: center; font: bold 10px/1 Tahoma, sans-serif; font-style: normal; color: #fff; text-shadow: 0 0 2px #000;
+  border: 1px solid rgba(0, 0, 0, .55); border-top: 0;
+  background: linear-gradient(rgba(255, 255, 255, .55), rgba(255, 255, 255, .15) 50%, rgba(255, 255, 255, .03) 51%, rgba(255, 255, 255, .25)); }
+.aero .caps i:first-child { border-radius: 0 0 0 5px; }
+.aero .caps i.x { width: 44px; border-radius: 0 0 5px 0; background: linear-gradient(#eeb1a2, #d4512f 50%, #b5300e 51%, #dc7050); }
+.ff2 { display: flex; flex-direction: column; flex: 1; min-height: 0; border: 1px solid #5a6f86; background: #ececec; }
+.ff2 .menu { display: flex; align-items: center; height: 22px; padding: 0 2px; background: #f2f2f2; }
+.ff2 .menu span { padding: 0 7px; }
+.ff2 .navb { display: flex; align-items: center; gap: 4px; height: 40px; padding: 0 6px; background: linear-gradient(#fafafa, #e1e1e1); border-bottom: 1px solid #a8a8a8; }
+.ff2 .navb svg { width: 26px; height: 26px; flex: none; }
+.ff2 .navb .back svg { width: 32px; height: 32px; }
+.ff2 .url { flex: 1; display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 6px; background: #fff; border: 1px solid #7f9db9; overflow: hidden; white-space: nowrap; }
+.ff2 .url svg, .ff2 .srch svg { width: 16px; height: 16px; }
+.ff2 .url .dd { margin-left: auto; color: #555; font-size: 9px; }
+.ff2 .srch { width: 190px; display: flex; align-items: center; gap: 6px; height: 24px; padding: 0 6px; background: #fff; border: 1px solid #7f9db9; color: #888; }
+.ff2 .tabs2 { display: flex; align-items: flex-end; gap: 2px; height: 27px; padding: 0 4px; background: linear-gradient(#cfcfcf, #bdbdbd); border-bottom: 1px solid #8e8e8e; }
+.ff2 .tab2 { display: flex; align-items: center; gap: 6px; width: 240px; height: 23px; padding: 0 8px; border: 1px solid #8e8e8e; border-bottom: 0; border-radius: 3px 3px 0 0; background: linear-gradient(#fff, #f0f0f0); overflow: hidden; white-space: nowrap; }
+.ff2 .tab2 svg { width: 16px; height: 16px; flex: none; }
+.ff2 .tab2 .x { margin-left: auto; width: 14px; height: 14px; display: grid; place-items: center; border-radius: 2px; background: #c6c6c6; color: #fff; font: bold 10px/1 Tahoma; }
+.ff2 .view { background: #fff; }
+.ff2 .sbar { display: flex; align-items: center; gap: 8px; height: 22px; padding: 0 8px; background: #f0f0f0; border-top: 1px solid #a8a8a8; }
+
+.task-vista { display: flex; align-items: center; gap: 10px; height: 34px; flex: none; padding: 0 0 0 52px; position: relative; font: 12px 'Segoe UI', Tahoma, sans-serif; color: #fff;
+  background: linear-gradient(rgba(60, 60, 60, .88), rgba(14, 14, 14, .94) 48%, rgba(0, 0, 0, .96)); box-shadow: inset 0 1px rgba(255, 255, 255, .22); }
+.task-vista .orb { position: absolute; left: 6px; bottom: 1px; width: 38px; height: 38px; border-radius: 50%; display: grid; place-items: center;
+  background: radial-gradient(circle at 50% 30%, #6fb7ff, #1557a8 45%, #04193a 72%); box-shadow: 0 0 0 1px #000, inset 0 1px 1px rgba(255, 255, 255, .7), 0 0 10px rgba(80, 160, 255, .45); }
+.task-vista .orb svg { width: 20px; height: 18px; }
+.task-vista .job { display: flex; align-items: center; gap: 6px; width: 200px; height: 28px; padding: 0 8px; border-radius: 3px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;
+  background: linear-gradient(rgba(255, 255, 255, .28), rgba(255, 255, 255, .08) 50%, rgba(255, 255, 255, .02)); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .25), 0 0 0 1px #000; }
+.task-vista .job svg { width: 16px; height: 16px; flex: none; }
+.task-vista .tray { margin-left: auto; height: 100%; display: flex; align-items: center; padding: 0 14px; background: rgba(255, 255, 255, .05); box-shadow: inset 1px 0 rgba(255, 255, 255, .12); }

@@ -131,6 +131,13 @@ const I = {
   flag: '<svg viewBox="0 0 18 16"><path d="M2 3c2-1 4 0 6 1v5C6 8 4 7 2 8z" fill="#e8402a"/><path d="M9 4c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#4caf3a"/><path d="M2 9c2-1 4 0 6 1v5c-2-1-4-2-6-1z" fill="#2b62d6"/><path d="M9 10c2 1 4 1 6 0v5c-2 1-4 1-6 0z" fill="#f2c230"/></svg>',
   dun: '<svg viewBox="0 0 32 32"><rect x="2" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="4" y="8" width="8" height="5" fill="#008080"/><rect x="18" y="6" width="12" height="9" fill="#c0c0c0" stroke="#000"/><rect x="20" y="8" width="8" height="5" fill="#008080"/><path d="M8 15v6h16v-6" fill="none" stroke="#000"/><rect x="12" y="22" width="8" height="6" rx="1" fill="#efe8b0" stroke="#000"/></svg>',
   speaker: '<svg viewBox="0 0 16 16"><path d="M2 6h3l4-3v10l-4-3H2z" fill="#ffd23f" stroke="#555"/></svg>',
+  ffx: '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="7" fill="#2a6fc9"/><path d="M3 9c2-3 6-4 10-2-2 0-3 2-2 4-3 1-6 0-8-2z" fill="#f2862e"/></svg>',
+  ffBack: '<svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="14" fill="#5f9e2f" stroke="#3d6d1b"/><circle cx="16" cy="11" r="10" fill="#9fd35f" opacity=".5"/><path d="M18 8 10 16l8 8v-5h6v-6h-6z" fill="#fff"/></svg>',
+  ffFwd: '<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="11" fill="#b8b8b8" stroke="#8a8a8a"/><path d="M11 7l6 6-6 6v-4H7v-4h4z" fill="#fff"/></svg>',
+  ffReload: '<svg viewBox="0 0 26 26"><path d="M19 9a7 7 0 1 0 1 6" fill="none" stroke="#3c8b21" stroke-width="3"/><path d="m21 4-.4 7-6.4-2.6z" fill="#3c8b21"/></svg>',
+  ffStop: '<svg viewBox="0 0 26 26"><circle cx="13" cy="13" r="10" fill="#c0c0c0"/><path d="m9 9 8 8m0-8-8 8" stroke="#fff" stroke-width="2.6"/></svg>',
+  ffHome: '<svg viewBox="0 0 26 26"><path d="M13 4 3 13h3v9h5v-6h4v6h5v-9h3z" fill="#e8c35a" stroke="#8a6a1a"/><path d="M13 4 3 13h3l7-6 7 6h3z" fill="#c8402a"/></svg>',
+  ffGo: '<svg viewBox="0 0 26 26"><path d="M8 6l10 7-10 7z" fill="#4c9f2a" stroke="#2f6d17"/></svg>',
   modem: '<svg viewBox="0 0 16 16"><rect x="1" y="3" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="9" y="8" width="6" height="5" fill="#c0c0c0" stroke="#000"/><rect x="2" y="4" width="4" height="2" fill="#0f0"/><rect x="10" y="9" width="4" height="2" fill="#0f0"/></svg>',
 };
 
@@ -157,6 +164,15 @@ const CHROME = {
     <div class="addr"><span>Address</span><div class="fld2 sunk">${I.page}${e.url}</div><span>Links</span></div>
     <div class="view sunk"><div class="spot"></div></div>
     <div class="sb"><span class="msg thin-sunk">${I.page}<b class="txt">Done</b></span><span class="prog thin-sunk"><i></i></span><span class="zone thin-sunk">${I.globe}Internet</span></div>`,
+  ff2: e => `
+    <div class="tbv">${I.ffx}<span class="t">${e.title}</span><span class="caps"><i>&#8211;</i><i>&#9633;</i><i class="x">&#10005;</i></span></div>
+    <div class="ff2">
+      <div class="menu"><span>File</span><span>Edit</span><span>View</span><span>History</span><span>Bookmarks</span><span>Tools</span><span>Help</span></div>
+      <div class="navb"><span class="back">${I.ffBack}</span>${I.ffFwd}${I.ffReload}${I.ffStop}${I.ffHome}<div class="url">${I.ffx}${e.url}<span class="dd">&#9660;</span></div>${I.ffGo}<div class="srch">${I.search}Search</div></div>
+      <div class="tabs2"><div class="tab2">${I.ffx}<span>${e.tab}</span><span class="x">&#10005;</span></div></div>
+      <div class="view"><div class="spot"></div></div>
+      <div class="sbar sb"><b class="txt">Done</b></div>
+    </div>`,
   now: e => `
     <div class="tabs"><span class="dots"><i></i><i></i><i></i></span><div class="tab"><i class="fav"></i><span>${e.title}</span><span class="x">&times;</span></div></div>
     <div class="bar">${I.arrowL}${I.arrowR}${I.reload}<div class="omni">${I.lock}${e.url}</div>${I.star}</div>
@@ -170,6 +186,7 @@ const ICONS98 = `<div class="icons98" aria-hidden="true">
 </div>`;
 const clock = () => new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 const TASK = {
+  vista: e => `<div class="task-vista"><span class="orb">${I.flag}</span><span class="job">${I.ffx}${e.tab}</span><span class="tray" id="clock">${clock()}</span></div>`,
   win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon"></span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
@@ -197,7 +214,7 @@ function desk(e) {
   const d = $('#desk');
   d.dataset.os = e.os;
   const win = $('#win');
-  win.className = `win ${{ ie5: 'ie5 w98', ie6: 'ie6', now: 'chrome-now' }[e.chrome]}`;
+  win.className = `win ${{ ie5: 'ie5 w98', ie6: 'ie6', ff2: 'aero', now: 'chrome-now' }[e.chrome]}`;
   win.innerHTML = CHROME[e.chrome](e);
   $('.popup')?.remove();
   hangup98?.();

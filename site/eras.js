@@ -232,7 +232,107 @@ onClipEvent (data) {
     ],
   },
   { year: 2004, browser: 'FIREFOX 1.0', os: 'xp', conn: 'DSL 861K', kbps: 108, page: 93.7, built: false },
-  { year: 2007, browser: 'FIREFOX 2', os: 'vista', conn: '2 MBPS', kbps: 246, page: 312, built: false },
+  {
+    year: 2007, browser: 'FIREFOX 2', os: 'vista', chrome: 'ff2', conn: '2 MBPS', kbps: 246, page: 312, built: true,
+    url: 'http://www.halcyon.com/',
+    tab: 'halcyon. fly smarter. (beta)',
+    title: 'halcyon. fly smarter. (beta) - Mozilla Firefox',
+    stack: 'XHTML 1.0 Strict · CSS 2.1 with hacks · jQuery 1.2.1 · AJAX',
+    xray: [
+      {
+        name: 'AJAX search',
+        sel: '#search',
+        then: 'Type two letters and the airports appear, with no page reload. Google Suggest and Google Maps made this the definition of Web 2.0 in 2005. Every keystroke went to a PHP script on the server, and the spinner was a GIF from ajaxload.info.',
+        now: 'fetch(), an AbortController so stale keystrokes cancel, and a native <datalist> or a combobox for the list itself.',
+        code: `$("#from, #to").keyup(function () {
+  var input = this;
+  clearTimeout(typing);
+  typing = setTimeout(function () { suggest(input); }, 250);
+});
+
+$.getJSON("data/airports.json", function (data) {
+  $.each(data, function (i, a) {
+    if (a.city.toLowerCase().indexOf(q) == 0)
+      html += "<li><b>" + a.code + "</b> " + a.city + "</li>";
+  });
+  list.html(html).show();
+});`,
+      },
+      {
+        name: 'jQuery 1.2.1',
+        sel: 'body',
+        then: 'This page runs the real jQuery 1.2.1, released in September 2007 and called "New Wave Javascript". One file papered over the differences between IE6, Firefox and Safari, and $() with chaining changed how people wrote JavaScript.',
+        now: 'querySelectorAll, fetch, classList and the Web Animations API are built into every browser. The differences jQuery hid are mostly gone.',
+        code: `$("#lb-overlay").css("opacity", 0).show().fadeTo(250, 0.8);
+$("#lb").fadeIn(300);
+
+// 2026
+dialog.showModal();`,
+      },
+      {
+        name: 'Gloss and reflections',
+        sel: '#header',
+        then: 'The glossy logo, its wet-floor reflection and the BETA starburst are one flat image. Gradients, shadows and reflections all came out of Photoshop, so changing a word meant re-exporting the picture.',
+        now: 'Gradients, shadows and masks are CSS, and a reflection is a few lines. Text stays text, so it can be translated, selected and read aloud.',
+        code: `<div id="header"><a href="#"><img src="img/header.png"
+  width="900" height="118"
+  alt="halcyon. fly smarter. book faster. share everything." /></a></div>`,
+      },
+      {
+        name: 'CSS sprites',
+        sel: '#nav',
+        then: 'Both states of a tab sat in one image, one above the other. Hover slid the background up 34 pixels, so the second state was already loaded and nothing flickered.',
+        now: 'CSS gradients and borders for the shape, an SVG icon if it needs one, and :hover changes a color instead of a picture.',
+        code: `#nav a {
+  width: 132px; height: 34px;
+  background: url(img/nav.png) 0 0 no-repeat;
+}
+#nav a:hover, #nav li.current a {
+  background-position: 0 -34px;
+}`,
+      },
+      {
+        name: 'Rounded corners',
+        sel: '.box',
+        then: 'Firefox and Safari each had their own property for rounded corners, and Internet Explorer had none, so IE users saw square boxes. The fallback was four corner images per box.',
+        now: 'border-radius has worked everywhere for over a decade. The last line of the snippet is the only one a browser in 2026 still reads.',
+        code: `.box {
+  -moz-border-radius: 10px;    /* Firefox 2 */
+  -webkit-border-radius: 10px; /* Safari 3 */
+  border-radius: 10px;         /* everyone, eventually */
+}`,
+      },
+      {
+        name: 'Floats and IE6 hacks',
+        sel: '#main',
+        then: 'Columns were floats, and a float didn\'t make its container grow, so every layout carried a clearfix. IE6 needed its own lines, hidden from other browsers with the * html selector, and a proprietary filter just to show a PNG with transparency.',
+        now: 'Grid and flexbox were made for layout. Every browser updates itself, so there is no IE6 to write around.',
+        code: `.clearfix:after {
+  content: "."; display: block; height: 0;
+  clear: both; visibility: hidden;
+}
+* html .clearfix { height: 1%; }  /* IE6 only */
+
+* html img.png {
+  filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+    src='img/header.png', sizingMethod='crop');
+}`,
+      },
+      {
+        name: 'Lightbox',
+        sel: '#dests',
+        then: 'Click a photo and the page dims behind it. Lightbox was the most copied script of 2006 and 2007. It was a fixed div, a black overlay at 80% opacity, and fades written by hand.',
+        now: '<dialog> with showModal(): a backdrop, focus handling and Escape to close, all built in.',
+        code: `$("#dests a").click(function () {
+  $("#lb-img").attr("src", this.href);
+  $("#lb-caption").text(this.title);
+  $("#lb-overlay").css("opacity", 0).show().fadeTo(250, 0.8);
+  $("#lb").fadeIn(300);
+  return false;
+});`,
+      },
+    ],
+  },
   { year: 2012, browser: 'CHROME 23', os: 'win7', conn: '7.4 MBPS', kbps: 925, page: 738, built: false },
   { year: 2020, browser: 'CHROME 87', os: 'win10', conn: '86 MBPS', kbps: 10755, page: 2000, built: false },
   {

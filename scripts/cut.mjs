@@ -2,7 +2,7 @@
 // agent-browser, then converts it with ffmpeg the way a designer of that year would have.
 //   node scripts/cut.mjs 1999      (art board served from scripts/art on :8200)
 import { execFileSync } from 'node:child_process';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, writeFileSync, readdirSync, rmSync } from 'node:fs';
 
 const era = process.argv[2];
 const OUT = `d:/Projects/y2k/site/eras/${era}/img`;
@@ -41,4 +41,11 @@ if (era === '1999') {
   writeFileSync(`${OUT}/spacer.gif`, Buffer.from('R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7', 'base64'));
   console.log('new.gif, spacer.gif');
 }
+// the AJAX spinner every 2007 site borrowed from ajaxload.info, eight frames at 10 fps
+if (era === '2007') {
+  ff(['-framerate', '10', '-i', `${TMP}/spin%d.png`, '-vf', 'split[a][b];[a]palettegen=max_colors=16[p];[b][p]paletteuse', '-loop', '0', `${OUT}/spinner.gif`]);
+  console.log('spinner.gif');
+}
+// frames were only needed to build the animations
+for (const f of readdirSync(OUT)) if (/^(new\d|spin\d)\.png$/.test(f)) rmSync(`${OUT}/${f}`);
 ab('close');
