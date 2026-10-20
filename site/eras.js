@@ -12,8 +12,8 @@ export const ERAS = [
       {
         name: 'The status bar ticker',
         sel: null,
-        then: 'A message crawling along the bottom of the window, written into window.status ten times a second. It was in every JavaScript tutorial of 1996. Watch the status bar of this Netscape window once the page has loaded.',
-        now: 'Browsers stopped letting pages write there, because a fake status line could hide where a link really went. The bottom of the window now only shows real link targets.',
+        then: 'A message crawling along the bottom of the window, rewritten into window.status ten times a second. Every JavaScript tutorial of 1996 had one. Watch this window\'s status bar once the page loads.',
+        now: 'Browsers stopped letting pages write there, since a fake status line could hide where a link really went. Now it only shows real link targets.',
         code: `var msg = "Welcome to Halcyon Airways!     Fly with us...";
 var pos = 0;
 
@@ -29,8 +29,8 @@ function scroller() {
       {
         name: 'Image map',
         sel: 'img[usemap]',
-        then: 'One GIF of the route map, and invisible circles drawn over it in HTML. Each circle is a link. Click a city on the map to try it.',
-        now: 'An SVG map where every city is a real element with its own link, so it scales, reads aloud, and stays sharp.',
+        then: 'One GIF of the route map with invisible circles drawn over it in HTML, each one a link. Click a city to try it.',
+        now: 'An SVG map where each city is a real element with its own link. It stays sharp at any size, and a screen reader can read it.',
         code: `<IMG SRC="img/routes.gif" WIDTH="420" HEIGHT="210"
      BORDER="0" USEMAP="#routes">
 <MAP NAME="routes">
@@ -43,7 +43,7 @@ function scroller() {
         name: 'Animated GIF',
         sel: 'img[src*="plane"]',
         then: 'Netscape 2 learned to play GIF89a animations in 1995, and the web filled up with spinning globes and flying envelopes. Six frames, 32 colors, looping forever.',
-        now: 'CSS and SVG animation, video, or Lottie. And prefers-reduced-motion, so anyone who finds it distracting can turn it off.',
+        now: 'CSS or SVG animation, video, or Lottie. If the motion bothers you, prefers-reduced-motion turns it off.',
         code: `<IMG SRC="img/plane.gif" WIDTH="160" HEIGHT="44" ALT="">
 
 GIF89a, 160 x 44, 6 frames at 5 fps,
@@ -52,7 +52,7 @@ NETSCAPE2.0 application extension: loop forever`,
       {
         name: 'Hit counter',
         sel: 'img[name="c1"]',
-        then: 'The counter was an image from a CGI program on the server, which added one to a file and drew the digits. The number on this page is real: it counts visits to this 1996 page.',
+        then: 'The counter was an image from a CGI program on the server that added one to a file and drew the digits. The number here is real and counts visits to this 1996 page.',
         now: 'Analytics, out of sight. Public counters went away, mostly because the number was embarrassing.',
         code: `You are visitor number
 <IMG SRC="/cgi-bin/Count.cgi?df=halcyon.dat&dd=A&ft=0">
@@ -61,8 +61,8 @@ since June 1, 1996.`,
       {
         name: 'The mailto form',
         sel: 'form',
-        then: 'No server code needed: the form was e-mailed to the webmaster by the visitor\'s own mail program, and Netscape warned you first. The webmaster then copied the answers out of the e-mail by hand.',
-        now: 'The form posts to the server with fetch, the server validates it and stores it, and nobody\'s mail client gets involved.',
+        then: 'No server code at all. Netscape warned you, then your own mail program e-mailed the form to the webmaster, who copied the answers out by hand.',
+        now: 'fetch posts the form to a server that checks and stores it. Nobody\'s mail client is involved.',
         code: `<FORM ACTION="mailto:webmaster@halcyonair.com"
       METHOD="POST" ENCTYPE="text/plain">
 Your name: <INPUT TYPE="text" NAME="name" SIZE="30">
@@ -73,8 +73,8 @@ Your name: <INPUT TYPE="text" NAME="name" SIZE="30">
       {
         name: 'Netscape extensions',
         sel: 'blink',
-        then: 'HTML had no way to style text, so Netscape invented its own tags: <FONT>, <CENTER> and the famous <BLINK>. Internet Explorer answered with <MARQUEE>. Pages were built for one browser and said so at the bottom.',
-        now: 'Styling lives in CSS, and HTML only says what things are. Firefox dropped <BLINK> in 2013; this one blinks because the page brings its own CSS.',
+        then: 'HTML had no way to style text, so Netscape invented its own tags, like <FONT>, <CENTER> and <BLINK>. Internet Explorer answered with <MARQUEE>. Pages were built for one browser and said so at the bottom.',
+        now: 'Styling lives in CSS, and HTML only says what things are. Firefox dropped <BLINK> in 2013. This one only blinks because the page brings its own CSS.',
         code: `<CENTER>
 <BLINK><FONT COLOR="#CC0000"><B>NEW!</B></FONT></BLINK>
 Our fares and schedules are now on the Internet!
@@ -94,7 +94,7 @@ or later at 640 x 480.`,
       {
         name: 'Dialing in',
         sel: null,
-        then: 'Every visit started with the modem: about twenty seconds of handshake, and nobody could phone the house while you were online. The sound you heard is built live from the ITU frequencies, not a recording.',
+        then: 'Every visit started with the modem. About twenty seconds of handshake, and nobody could phone the house while you were online. The sound you heard is built live from the ITU frequencies. No recording.',
         now: 'The connection is there before you open the browser. Nobody thinks about it until the Wi-Fi drops.',
         code: `; Dial-Up Networking > Halcyon Online > Properties
 AT&F1 S7=60 L2 M1
@@ -105,8 +105,8 @@ ATDT 555-1999`,
       {
         name: 'Frames',
         sel: 'frameset',
-        then: 'The banner and buttons lived in one frame and the content in another, so only the bottom half reloaded when you clicked. Bookmarks always pointed at the frameset, Back went back inside one frame, and search engines indexed the pieces separately.',
-        now: 'One document with a sticky header. History, bookmarks and search engines all see real pages.',
+        then: 'The banner and buttons lived in one frame and the content in another, so a click only reloaded the bottom half. Bookmarks always pointed at the frameset and search engines indexed the pieces separately. Back went back inside one frame.',
+        now: 'One document with a sticky header, so history, bookmarks and search engines see real pages.',
         code: `<FRAMESET ROWS="108,*" FRAMEBORDER="0" BORDER="0">
   <FRAME SRC="top.html" NAME="top" SCROLLING="no" NORESIZE>
   <FRAME SRC="home.html" NAME="main">
@@ -119,8 +119,8 @@ ATDT 555-1999`,
       {
         name: 'Rollover buttons',
         sel: 'frame[name="top"]',
-        then: 'Each button was two GIFs, cut from one Photoshop file. JavaScript swapped the picture on mouseover, and the "on" states were preloaded so the first hover didn\'t flash. Dreamweaver wrote this for you as MM_swapImage().',
-        now: 'A real link with text in it, styled with :hover and :focus-visible. One element, no images, and it works with a keyboard.',
+        then: 'Each button was two GIFs cut from one Photoshop file. JavaScript swapped the picture on mouseover, with the "on" states preloaded so the first hover didn\'t flash. Dreamweaver wrote it for you as MM_swapImage().',
+        now: 'A single text link styled with :hover and :focus-visible. No images, and it works from the keyboard.',
         code: `<A HREF="home.html#book" TARGET="main"
   onMouseOver="swapImage('nav2','img/nav_fares_on.gif')"
   onMouseOut="restoreImage()"><IMG NAME="nav2"
@@ -136,8 +136,8 @@ function swapImage(name, src) {
       {
         name: 'Tables and spacer.gif',
         sel: 'frame[name="main"]',
-        then: 'Layout was a table 760 pixels wide, because most screens were 800 by 600. Gaps were a transparent 1x1 GIF stretched to whatever size was needed. Fonts were Verdana at 11px, because it was on every PC and still readable that small.',
-        now: 'CSS grid, gap, and widths that follow the window. The spacer is gone; it was 43 bytes and it was everywhere.',
+        then: 'Layout was a table 760 pixels wide, since most screens were 800 by 600. Gaps were a transparent 1x1 GIF stretched to whatever size you needed. Text was Verdana at 11px, because every PC had it and it stayed readable that small.',
+        now: 'CSS grid, gap, and widths that follow the window. The spacer is gone. It was 43 bytes and it was everywhere.',
         code: `<TABLE WIDTH="760" BORDER="0" CELLPADDING="0"
        CELLSPACING="0" ALIGN="center">
 <TR>
@@ -168,8 +168,8 @@ function showMenu(id) {
       {
         name: 'Booking form',
         sel: 'frame[name="main"]',
-        then: 'Month and day dropdowns, no year, an alert() when you got it wrong, and a full page reload to a Perl script on the server. The results page you get here is built in the browser instead.',
-        now: 'A date input, validation the browser does itself, and results that load without leaving the page.',
+        then: 'Month and day dropdowns with no year, an alert() when you got it wrong, then a full page reload to a Perl script on the server. Here the results page is built in the browser instead.',
+        now: 'A date input the browser validates itself, and results that load without leaving the page.',
         code: `<FORM ACTION="/cgi-bin/booking.pl" METHOD="GET"
       onSubmit="return checkForm(this)">
 
@@ -185,8 +185,8 @@ function checkForm(f) {
       {
         name: 'Pop-up windows',
         sel: null,
-        then: 'Anything extra opened in a new, smaller window with the toolbars switched off. Try About Us or the Y2K badge. A real window.open would leave this page, so the pop-up is drawn on the desktop instead.',
-        now: '<dialog>, opened in the same page, closed with Escape, and never blocked by a pop-up blocker.',
+        then: 'Anything extra opened in a smaller new window with the toolbars off. Try About Us or the Y2K badge. A real window.open would leave this page, so here the pop-up is drawn on the desktop.',
+        now: 'A <dialog> in the same page. Escape closes it, and pop-up blockers leave it alone.',
         code: `window.open("y2k.html", "halcyon",
   "width=440,height=380,toolbar=no,location=no," +
   "scrollbars=yes,resizable=no");`,
@@ -194,7 +194,7 @@ function checkForm(f) {
       {
         name: 'Two-digit years',
         sel: null,
-        then: 'getYear() returned 99 in 1999. On January 1, 2000 Netscape returned 100 and Internet Explorer returned 2000, so pages that added 1900 printed the year 19100. The footer of this page still uses the old code.',
+        then: 'getYear() returned 99 in 1999. On January 1, 2000, Netscape returned 100 and Internet Explorer 2000, so pages that wrote "19" in front of it printed the year 19100. This page\'s footer still runs the old code.',
         now: 'getFullYear(), ISO 8601 dates, and Intl.DateTimeFormat to show them in the reader\'s format.',
         code: `function today() {
   var d = new Date();
@@ -215,7 +215,7 @@ function checkForm(f) {
         name: 'Preloader',
         sel: '#loader',
         then: 'The whole site was one .swf file, and nothing played until enough of it had arrived. A loop on frame 1 asked the player how many bytes were in and moved a bar. At 56K, every 100 KB of movie was about 20 more seconds of watching it.',
-        now: 'There is nothing to preload. The browser streams HTML and paints as bytes arrive, and anything heavy loads lazily, after the page is usable.',
+        now: 'Nothing to preload. The browser paints HTML as the bytes arrive, and anything heavy loads lazily once the page is usable.',
         code: `// on the loader clip, frame 1
 onClipEvent (enterFrame) {
     loaded = _root.getBytesLoaded();
@@ -231,7 +231,7 @@ onClipEvent (enterFrame) {
       {
         name: 'Skip intro',
         sel: '#skip',
-        then: 'Every agency site opened with a 20 second animated intro, so every agency site also needed a button to get out of it. "Skip intro" turned into a running joke about the whole era.',
+        then: 'Every agency site opened with a 20 second animated intro, so every agency site also needed a button to get out of it. "Skip intro" became the running joke of the era.',
         now: 'The first thing on screen is the thing you came for. Motion is a short reveal, and it stops for anyone who set prefers-reduced-motion.',
         code: `// the SKIP INTRO button
 on (release) {
@@ -242,7 +242,7 @@ on (release) {
         name: 'Rollover buttons',
         sel: '.nav',
         then: 'A Flash button was a symbol with four keyframes: Up, Over, Down and Hit. Designers dropped a "blip" sound on the Over frame. Screen readers saw nothing at all.',
-        now: 'A real <a> or <button>, styled with :hover and :focus-visible. It works with a keyboard, a screen reader and a search engine for free.',
+        now: 'A plain <a> or <button> with :hover and :focus-visible, which keyboards, screen readers and search engines already understand.',
         code: `// button symbol timeline:
 //   Up | Over | Down | Hit
 // a "blip" sound sits on the Over frame
@@ -256,8 +256,8 @@ on (release) {
       {
         name: 'Background music',
         sel: '#eq',
-        then: 'The loop was an 8-bit WAV inside the .swf, which is a big part of why the file was so heavy. The tiny equalizer bars were the mute button, and you had to find it fast.',
-        now: 'Autoplaying sound is blocked unless you clicked first. The loop you hear here is synthesized live with Web Audio, so it costs zero bytes to download.',
+        then: 'The loop was an 8-bit WAV inside the .swf, a big part of why the file was so heavy. The tiny equalizer bars were the mute button, and you had to find it fast.',
+        now: 'Browsers block autoplaying sound until you click. The loop here is synthesized live with Web Audio, so there\'s nothing to download.',
         code: `loop = new Sound();
 loop.attachSound("techno_loop"); // linkage ID in the library
 loop.start(0, 999);              // 999 loops is forever, close enough
@@ -272,7 +272,7 @@ on (release) {
         name: 'Flight search',
         sel: '#search',
         then: 'Flash 5 could talk to the server without reloading the page, years before AJAX had a name. loadVariables posted the form to an ASP script, which answered with URL-encoded text that the player turned into variables.',
-        now: 'fetch() sends JSON and gets JSON back, and the response is typed, cached and cancellable. The difference is mostly that it is plain HTML underneath, so it still works with JavaScript off.',
+        now: 'fetch() sends JSON and gets JSON back, and the response can be typed, cached or cancelled. The bigger change is plain HTML underneath, so the search still works with JavaScript off.',
         code: `on (release) {
     from = fromBox.text;
     to = toBox.text;
@@ -288,7 +288,7 @@ onClipEvent (data) {
         name: 'Embedding the movie',
         sel: '#stage',
         then: 'Two tags for one movie: OBJECT with a classid for Internet Explorer\'s ActiveX control, EMBED inside it for Netscape. If the plugin was missing you got a grey box and a link to download it.',
-        now: 'There is no plugin. Flash Player stopped running on January 12, 2021. Everything on this page is HTML, SVG and the Web Animations API.',
+        now: 'No plugin. Flash Player stopped running on January 12, 2021, and everything on this page is HTML, SVG and the Web Animations API.',
         code: `<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
   codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=5,0,0,0"
   WIDTH="760" HEIGHT="440">
@@ -321,7 +321,7 @@ onClipEvent (data) {
       {
         name: 'Layout without tables',
         sel: '#wrapper',
-        then: 'The big change of 2003 and 2004: content in plain HTML, layout moved to CSS. Two floated columns, a clearing trick at the bottom, and a background image to fake equal-height columns, because CSS had no way to say "same height as the one next to it". It\'s called faux columns.',
+        then: 'The big change of 2003 and 2004 was content in plain HTML and layout in CSS. Two floated columns, a clearing trick at the bottom, and a background image faking equal heights, because CSS had no way to say "same height as the one next to it". The fake was called faux columns.',
         now: 'Grid. Columns are equal height by default, and the layout can change completely without touching the HTML.',
         code: `#wrapper {
   background: url(../img/faux.gif) repeat-y;
@@ -355,7 +355,7 @@ onClipEvent (data) {
       {
         name: 'Image replacement',
         sel: '#logo',
-        then: 'The logo is a real <h1> with real text, pushed 9999 pixels off screen and replaced by a background image. Search engines and screen readers read the text and everyone else saw the picture. There were a dozen competing versions of this trick.',
+        then: 'The logo is a real <h1> with real text, pushed 9999 pixels off screen and swapped for a background image. Search engines and screen readers got the text, everyone else got the picture. There were a dozen competing versions of the trick.',
         now: 'An inline SVG with a title, or real text in a web font. Nothing has to hide.',
         code: `<h1 id="logo"><a href="index.html">Halcyon Airways</a></h1>
 
@@ -370,7 +370,7 @@ onClipEvent (data) {
         name: 'Style switcher',
         sel: '#styles',
         then: 'Separate the content from the look and you can swap the look. Alternate style sheets, switched with a small script and remembered in a cookie, gave readers high contrast or large text. Try it in the sidebar. Paul Sowden, A List Apart, 2001.',
-        now: 'The page follows the reader\'s system settings by itself: prefers-color-scheme, prefers-contrast, and text sized in rem so browser zoom just works.',
+        now: 'The page picks up the reader\'s system settings through prefers-color-scheme and prefers-contrast, and text sized in rem scales with browser zoom.',
         code: `<link rel="stylesheet" href="css/main.css" title="Default" />
 <link rel="alternate stylesheet" href="css/contrast.css"
       title="High contrast" />
@@ -390,7 +390,7 @@ function setActiveStyleSheet(title) {
         name: 'The box model hack',
         sel: '#sidebar',
         then: 'Internet Explorer 5 counted padding inside the width and every other browser added it outside, so the same CSS gave two different widths. Tantek Celik\'s hack hid the second width from IE5 behind a parser bug in voice-family.',
-        now: 'box-sizing: border-box, and browsers that agree with each other. Since 2021 the browser makers fix their differences together every year in Interop.',
+        now: 'box-sizing: border-box, and browsers that agree. Since 2021 the browser makers have fixed their differences together each year through Interop.',
         code: `#sidebar {
   width: 240px;   /* IE5 reads this, then chokes */
   padding: 15px 10px;
@@ -404,7 +404,7 @@ html>body #sidebar { width: 220px; }`,
         name: 'Web standards',
         sel: '.getff',
         then: '"Best viewed in" notices gave way to pages that validated, passed accessibility checks and worked in any browser. Firefox 1.0 shipped in November 2004, and its fans paid for a two-page ad in the New York Times.',
-        now: 'The browsers all follow the same specifications, and they update themselves every few weeks.',
+        now: 'Browsers follow the same specs now and update themselves every few weeks.',
         code: `<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
@@ -431,7 +431,7 @@ html>body #sidebar { width: 220px; }`,
       {
         name: 'AJAX search',
         sel: '#search',
-        then: 'Type two letters and the airports appear, with no page reload. Google Suggest and Google Maps made this the definition of Web 2.0 in 2005. Every keystroke went to a PHP script on the server, and the spinner was a GIF from ajaxload.info.',
+        then: 'Type two letters and the airports show up without a page reload. Google Suggest and Google Maps made this the definition of Web 2.0 in 2005. Each keystroke hit a PHP script on the server, and the spinner was a GIF from ajaxload.info.',
         now: 'fetch(), an AbortController so stale keystrokes cancel, and a native <datalist> or a combobox for the list itself.',
         code: `$("#from, #to").keyup(function () {
   var input = this;
@@ -450,7 +450,7 @@ $.getJSON("data/airports.json", function (data) {
       {
         name: 'jQuery 1.2.1',
         sel: 'body',
-        then: 'This page runs the real jQuery 1.2.1, released in September 2007 and called "New Wave Javascript". One file papered over the differences between IE6, Firefox and Safari, and $() with chaining changed how people wrote JavaScript.',
+        then: 'This page runs the original jQuery 1.2.1, released in September 2007 and billed as "New Wave Javascript". One file papered over the differences between IE6, Firefox and Safari, and $() with chaining changed how people wrote JavaScript.',
         now: 'querySelectorAll, fetch, classList and the Web Animations API are built into every browser. The differences jQuery hid are mostly gone.',
         code: `$("#lb-overlay").css("opacity", 0).show().fadeTo(250, 0.8);
 $("#lb").fadeIn(300);
@@ -461,8 +461,8 @@ dialog.showModal();`,
       {
         name: 'Gloss and reflections',
         sel: '#header',
-        then: 'The glossy logo, its wet-floor reflection and the BETA starburst are one flat image. Gradients, shadows and reflections all came out of Photoshop, so changing a word meant re-exporting the picture.',
-        now: 'Gradients, shadows and masks are CSS, and a reflection is a few lines. Text stays text, so it can be translated, selected and read aloud.',
+        then: 'The glossy logo, its wet-floor reflection and the BETA starburst are one flat image. Every effect came out of Photoshop, so changing one word meant re-exporting the picture.',
+        now: 'Gradients, shadows and masks are CSS, and a reflection takes a few lines. The words stay real text you can select, translate or have read aloud.',
         code: `<div id="header"><a href="#"><img src="img/header.png"
   width="900" height="118"
   alt="halcyon. fly smarter. book faster. share everything." /></a></div>`,
@@ -471,7 +471,7 @@ dialog.showModal();`,
         name: 'CSS sprites',
         sel: '#nav',
         then: 'Both states of a tab sat in one image, one above the other. Hover slid the background up 34 pixels, so the second state was already loaded and nothing flickered.',
-        now: 'CSS gradients and borders for the shape, an SVG icon if it needs one, and :hover changes a color instead of a picture.',
+        now: 'CSS draws the shape with gradients and borders, and :hover changes a color instead of a picture. Icons, if any, are SVG.',
         code: `#nav a {
   width: 132px; height: 34px;
   background: url(img/nav.png) 0 0 no-repeat;
@@ -495,7 +495,7 @@ dialog.showModal();`,
         name: 'Floats and IE6 hacks',
         sel: '#main',
         then: 'Columns were floats, and a float didn\'t make its container grow, so every layout carried a clearfix. IE6 needed its own lines, hidden from other browsers with the * html selector, and a proprietary filter just to show a PNG with transparency.',
-        now: 'Grid and flexbox were made for layout. Every browser updates itself, so there is no IE6 to write around.',
+        now: 'Grid and flexbox were made for layout. Browsers update themselves, so there\'s no IE6 left to write around.',
         code: `.clearfix:after {
   content: "."; display: block; height: 0;
   clear: both; visibility: hidden;
@@ -510,8 +510,8 @@ dialog.showModal();`,
       {
         name: 'Lightbox',
         sel: '#dests',
-        then: 'Click a photo and the page dims behind it. Lightbox was the most copied script of 2006 and 2007. It was a fixed div, a black overlay at 80% opacity, and fades written by hand.',
-        now: '<dialog> with showModal(): a backdrop, focus handling and Escape to close, all built in.',
+        then: 'Click a photo and the page dims behind it. Lightbox was the most copied script of 2006 and 2007: a fixed div, a black overlay at 80% opacity, and fades written by hand.',
+        now: '<dialog> and showModal() come with the backdrop, focus handling and Escape to close.',
         code: `$("#dests a").click(function () {
   $("#lb-img").attr("src", this.href);
   $("#lb-caption").text(this.title);
@@ -532,8 +532,8 @@ dialog.showModal();`,
       {
         name: 'Responsive design',
         sel: '.navbar',
-        then: 'Ethan Marcotte named it in A List Apart in 2010: a fluid grid, flexible images and media queries, so one page fits a phone and a desktop. Drag the bottom-right corner of this window to make it narrow. The menu folds into the three-line button and the columns stack.',
-        now: 'Mobile first is the default, since phones bring most of the traffic. Container queries let a component respond to the space it has, not just to the screen.',
+        then: 'Ethan Marcotte named it in A List Apart in 2010. A fluid grid, flexible images and media queries let one page fit a phone and a desktop. Drag this window\'s bottom-right corner to make it narrow, and the menu folds into the three-line button while the columns stack.',
+        now: 'Mobile first is the default, since phones bring most of the traffic. Container queries let a component respond to its own space instead of the whole screen.',
         code: `<meta name="viewport"
       content="width=device-width, initial-scale=1.0">
 
@@ -662,7 +662,7 @@ body { font-family: 'Open Sans', sans-serif; }`,
       {
         name: 'Single-page app',
         sel: '.top',
-        then: 'View source and the page is empty: one <div id="root"> and three scripts. React builds everything in the browser, and a search changes the address through the History API without loading a new page. Most 2020 apps started from create-react-app, written in JSX and compiled by Babel and webpack. This copy skips the build and calls React.createElement directly.',
+        then: 'View source and the page is empty, just one <div id="root"> and three scripts. React builds everything in the browser, and a search changes the address through the History API without loading a new page. Most 2020 apps started from create-react-app, in JSX compiled by Babel and webpack. This copy skips the build and calls React.createElement directly.',
         now: 'Frameworks send real HTML from the server first and only make the interactive parts live: React Server Components, Astro islands, or plain HTML with a little script.',
         code: `<div id="root"></div>
 <script src="/static/js/main.chunk.js"></script>
@@ -705,7 +705,7 @@ ReactDOM.render(<App />, document.getElementById('root'));`,
         name: 'Dark mode',
         sel: '.theme',
         then: 'macOS got a dark mode in 2018, iOS and Android in 2019, and the prefers-color-scheme media query reached every major browser the same year. Sites moved their colours into CSS custom properties so they could flip them all at once. The moon button saves your choice.',
-        now: 'light-dark() sets both colours in one declaration, so there is no second block of variables to keep in sync.',
+        now: 'light-dark() sets both colours in one declaration, so there\'s no second block of variables to keep in sync.',
         check: () => CSS.supports('color: light-dark(#000, #fff)'),
         code: `:root {
   --bg: #fafaff;
@@ -726,7 +726,7 @@ body { background: var(--bg); color: var(--text); }`,
       {
         name: 'Corporate Memphis',
         sel: '.art',
-        then: 'Bendy oversized limbs, small heads, purple skin and no outlines. The style grew out of Alegria, the illustrations Buck made for Facebook in 2017, and by 2020 every startup and bank had it. It sat in a blob, a shape made from one border-radius. This one was drawn by an image model in 2026, in that style.',
+        then: 'Bendy oversized limbs, small heads, purple skin and no outlines. The style grew out of Alegria, the illustrations Buck made for Facebook in 2017, and by 2020 every startup and bank had it. It sat in a blob, a shape made from one border-radius. This one was drawn in that style by an image model in 2026.',
         now: '3D renders, AI images and video. The 2026 page opens with a film.',
         code: `<picture class="art">
   <source srcset="img/hero.webp" type="image/webp">
@@ -758,7 +758,7 @@ return flights
         name: 'Lazy images',
         sel: '.deal img',
         then: 'loading="lazy" reached Chrome in 2019: pictures further down wait until you scroll near them. Width and height on the tag reserve the space before the image arrives, which started to matter when Google announced in May 2020 that layout shift would count toward search ranking. WebP with a JPEG fallback, because Safari only learned WebP in September 2020.',
-        now: 'AVIF, often half the size of JPEG, and every browser supports it. The 2026 page uses AVIF.',
+        now: 'AVIF, often half the size of JPEG and supported in every browser. The 2026 page uses it.',
         code: `<picture>
   <source srcset="img/lisbon.webp" type="image/webp">
   <img src="img/lisbon.jpg" alt="" width="640" height="420"
@@ -831,7 +831,7 @@ return flights
         sel: 'h1',
         check: () => CSS.supports('animation-timeline: scroll()'),
         then: 'Headlines were images, or sIFR: a tiny Flash movie per headline, so the font could be anything other than Verdana.',
-        now: 'One variable font file with weight and width axes. A registered custom property turns scroll position into a plain number, and that number drives the axes, so the headline narrows and thins as you leave the hero. No JavaScript.',
+        now: 'One variable font file with weight and width axes. A registered custom property turns scroll position into a plain number that drives both axes, so the headline narrows and thins as you leave the hero. No JavaScript.',
         code: `@property --s { syntax: '<number>'; inherits: true; initial-value: 0; }
 
 h1 {
@@ -847,7 +847,7 @@ h1 {
         name: 'Ask Halcyon',
         sel: '.ask',
         check: () => 'LanguageModel' in self,
-        then: 'Six dropdowns and a date picker, because the computer could not read a sentence. "Somewhere warm" was not a field.',
+        then: 'Six dropdowns and a date picker, because the computer couldn\'t read a sentence. "Somewhere warm" wasn\'t a field.',
         now: 'You describe the trip. If your Chrome has Gemini Nano, the model runs on your own machine through the Prompt API and nothing you type leaves the page. Without it, a plain keyword match takes over and says so.',
         code: `const ai = await LanguageModel.create({
   initialPrompts: [{ role: 'system', content: ROUTES }],
@@ -871,12 +871,12 @@ const answer = await ai.prompt(question, {
   },
 ];
 
-export const NOTE = 'Typical page is the nearest year with published data: 1996 uses 1995, 1999 uses 1997, 2004 uses 2003, 2007 uses January 2008. Download is page weight divided by connection speed, before latency and JavaScript, which is most of the wait today.';
+export const NOTE = '"Typical page" uses the nearest year with published data: 1995 for 1996, 1997 for 1999, 2003 for 2004 and January 2008 for 2007. "Download" is page weight divided by connection speed. It leaves out latency and JavaScript, which are most of the wait today.';
 
 export const SOURCES = [
   ['Page weight 1995 and 2003', 'websiteoptimization.com series, via HTTP Archive', 'https://discuss.httparchive.org/t/page-weight-in-1995/2626'],
   ['Page weight 1997', 'Nielsen Norman Group', 'https://www.nngroup.com/articles/size-limits-for-web-pages/'],
-  ['Page weight 2001, 300 top home pages', 'Byte Level Research, via Dylan Tweney', 'https://dylan.tweney.com/?p=1992'],
+  ['Page weight 2001, top 300 home pages', 'Byte Level Research, via Dylan Tweney', 'https://dylan.tweney.com/?p=1992'],
   ['Page weight January 2008', 'Gomez, via websiteoptimization.com', 'https://www.websiteoptimization.com/speed/tweak/average-web-page/'],
   ['Median desktop page 2012, 2020 and 2026', 'HTTP Archive', 'https://httparchive.org/reports/page-weight'],
   ['28.8K was the most common modem in 1996', 'GVU 6th WWW User Survey', 'https://sites.cc.gatech.edu/gvu/user_surveys/survey-10-1996/graphs/use/Connection_Speed.html'],
