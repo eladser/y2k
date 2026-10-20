@@ -224,6 +224,7 @@ function xray(e) {
     const p = t => Object.assign(document.createElement('p'), { textContent: t });
     const pre = document.createElement('pre');
     pre.textContent = x.code;
+    if (x.wrap) pre.classList.add('wrap');
     b.append(h(codeFirst ? 'Then' : 'Before'), p(x.then));
     if (codeFirst) b.append(pre);
     b.append(h('Now'), p(x.now));
@@ -306,6 +307,18 @@ addEventListener('keydown', e => {
   if (e.key === 'x' || e.key === 'X') $('#xr').click();
 });
 addEventListener('popstate', route);
+
+/* ---------- the boarding pass: what this is, for first-time visitors ---------- */
+
+const pass = $('#pass');
+document.querySelectorAll('[data-pass]').forEach(b => b.addEventListener('click', () => pass.showModal()));
+pass.addEventListener('close', () => {
+  try { localStorage.setItem('halcyon.pass', '1'); } catch { /* private mode: they'll see it again, fine */ }
+});
+pass.addEventListener('click', e => { if (e.target === pass) pass.close(); });
+let seen = false;
+try { seen = !!localStorage.getItem('halcyon.pass'); } catch { /* same */ }
+if (!seen) setTimeout(() => pass.showModal(), reduce ? 0 : 1100);
 
 /* ---------- boarding ---------- */
 

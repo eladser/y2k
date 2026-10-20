@@ -239,6 +239,7 @@ body.xr .wall { padding-right: min(488px, 100%); }
   margin: 10px 0 0; padding: 12px; overflow-x: auto; border-radius: 4px; background: #0b0d10; border: 1px solid #22262c;
   font: 12px/1.55 ui-monospace, 'Cascadia Mono', Consolas, monospace; color: #e8e2d2; font-variant-ligatures: none;
 }
+.xr-body pre.wrap { white-space: pre-wrap; font-family: Barlow, system-ui, sans-serif; font-size: 13.5px; }
 .xr-foot { padding: 12px 20px; border-top: 1px solid var(--line); color: var(--mut); font-size: 13px; }
 
 /* ---------- small screens ---------- */
@@ -265,3 +266,59 @@ body.xr .wall { padding-right: min(488px, 100%); }
   .f.flip, .desk-in { animation: none; }
   #xray { transition: none; }
 }
+
+/* ---------- boarding pass ---------- */
+
+#pass { width: min(880px, calc(100% - 24px)); max-width: none; padding: 0; border: 0; background: none; color: #15171b; overflow: visible; }
+#pass::backdrop { background: rgba(8, 9, 12, .74); backdrop-filter: blur(3px); }
+#pass[open] { animation: passin .5s cubic-bezier(.23, 1, .32, 1); }
+@keyframes passin { from { opacity: 0; transform: translateY(28px) rotate(-1.5deg); } }
+.pass {
+  --cut: 236px;
+  display: grid; grid-template-columns: 1fr var(--cut); overflow: hidden; border-radius: 14px; background: #fbfaf7;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .55);
+  /* the two notches where the stub tears off */
+  mask: radial-gradient(circle 12px at calc(100% - var(--cut)) 0, transparent 97%, #000) top / 100% 51% no-repeat,
+        radial-gradient(circle 12px at calc(100% - var(--cut)) 100%, transparent 97%, #000) bottom / 100% 51% no-repeat;
+}
+.pass-main { padding: 0 34px 30px; }
+.pass-head {
+  display: flex; align-items: center; gap: 10px; margin: 0 -34px 24px; padding: 15px 34px;
+  background: var(--ink); color: var(--amber); font: 700 14px/1 Flap, sans-serif; letter-spacing: .2em; text-transform: uppercase;
+}
+.pass-head svg { width: 18px; height: 18px; fill: var(--amber); }
+.pass-head span { margin-left: auto; color: var(--mut); }
+.route { display: grid; grid-template-columns: auto 1fr auto; align-items: end; gap: 18px; }
+.route small { display: block; font: 600 12px/1 Flap, sans-serif; letter-spacing: .18em; text-transform: uppercase; color: #7a7f87; }
+.route b { display: block; margin: 6px 0 4px; font: 700 70px/.9 Flap, sans-serif; }
+.route span { font-size: 13px; color: #555b63; }
+.route > div:last-child { text-align: right; }
+.arc { width: 100%; height: 50px; overflow: visible; margin-bottom: 26px; }
+.arc path { fill: none; stroke: #c4c7cc; stroke-width: 1.5; stroke-dasharray: 3 5; }
+.arc circle { fill: var(--amber); }
+#pass h2 { margin: 24px 0 8px; font: 700 31px/1.05 Flap, sans-serif; text-transform: uppercase; }
+.pass-what { margin: 0 0 18px; max-width: 54ch; color: #3b4048; }
+.how { display: grid; gap: 9px; margin: 0; padding: 0; list-style: none; counter-reset: s; color: #3b4048; }
+.how li { counter-increment: s; position: relative; padding: 1px 0 0 36px; }
+.how li::before { content: counter(s); position: absolute; left: 0; top: 0; width: 24px; height: 24px; border-radius: 50%; background: var(--ink); color: var(--amber); font: 700 14px/24px Flap, sans-serif; text-align: center; }
+.how b { color: #15171b; }
+.stub { display: flex; flex-direction: column; gap: 18px; padding: 26px 24px; background: #f2f0e9; border-left: 2px dashed #d3d0c7; }
+.stub dl { display: grid; grid-template-columns: 1fr 1fr; gap: 14px 10px; margin: 0; }
+.stub dt { font: 600 11px/1 Flap, sans-serif; letter-spacing: .16em; text-transform: uppercase; color: #7a7f87; }
+.stub dd { margin: 4px 0 0; font: 700 21px/1 Flap, sans-serif; }
+.barcode { height: 56px; margin-top: auto; background: repeating-linear-gradient(90deg, #15171b 0 2px, transparent 2px 4px, #15171b 4px 5px, transparent 5px 8px, #15171b 8px 11px, transparent 11px 13px, #15171b 13px 14px, transparent 14px 17px); }
+.stub form { margin: 0; }
+.board-btn { width: 100%; padding: 13px; border: 0; border-radius: 8px; cursor: pointer; background: var(--amber); color: #15120a; font: 700 19px/1 Flap, sans-serif; letter-spacing: .16em; text-transform: uppercase; }
+.board-btn:hover { background: #ffc93d; }
+.how-btn { padding: 0; border: 0; background: none; color: var(--amber); font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+
+@media (max-width: 720px) {
+  .pass { grid-template-columns: 1fr; mask: none; }
+  .stub { border-left: 0; border-top: 2px dashed #d3d0c7; }
+  .stub .barcode { display: none; }
+  .pass-main { padding: 0 20px 22px; }
+  .pass-head { margin: 0 -20px 18px; padding: 12px 20px; }
+  .route b { font-size: 46px; }
+  #pass h2 { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { #pass[open] { animation: none; } }
