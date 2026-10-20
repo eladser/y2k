@@ -187,7 +187,7 @@ const ICONS98 = `<div class="icons98" aria-hidden="true">
 const clock = () => new Date().toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' });
 const TASK = {
   vista: e => `<div class="task-vista"><span class="orb">${I.flag}</span><span class="job">${I.ffx}${e.tab}</span><span class="tray" id="clock">${clock()}</span></div>`,
-  win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon"></span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
+  win98: e => `<div class="task-98"><span class="start w98">${I.flag}Start</span><span class="job thin-sunk">${I.page}${e.title}</span><span class="tray thin-sunk"><span id="modemicon">${dialed() ? I.modem : ''}</span>${I.speaker}<span id="clock">${clock()}</span></span></div>`,
   xp: e => `<div class="task-xp"><span class="start"><i></i>start</span><span class="job">${I.page}${e.title}</span><span class="tray" id="clock">${clock()}</span></div>`,
 };
 setInterval(() => { const c = $('#clock'); if (c) c.textContent = clock(); }, 20000);
@@ -239,7 +239,7 @@ function desk(e) {
 
 /* ---------- Dial-Up Networking ---------- */
 
-let hangup98 = null;
+let hangup98 = null, dialGain = null;
 const dialed = () => { try { return !!sessionStorage.getItem('halcyon.dialed'); } catch { return false; } };
 
 function dun(done) {
@@ -266,7 +266,7 @@ function dun(done) {
     try { snd?.src.stop(); } catch { /* already over */ }
     box.remove();
     body.classList.remove('dialing98');
-    hangup98 = null;
+    hangup98 = dialGain = null;
   };
   const finish = () => {
     stop();
@@ -277,9 +277,14 @@ function dun(done) {
   box.querySelector('.c').addEventListener('click', () => {
     wake();
     snd = play(ac, build(ac.sampleRate), !sound);
+    dialGain = snd.gain;
     const b = box.querySelector('.body');
     b.innerHTML = `<div class="head">${I.dun}<span>Connecting to Halcyon Online</span></div><div class="status"><b>Status:</b><span class="st">Dialing...</span></div><div class="btns"><button type="button" class="w98 x">Cancel</button></div>`;
-    b.querySelector('.x').addEventListener('click', finish);
+    // Cancel hangs up and puts the Connect form back, like the real dialog
+    b.querySelector('.x').addEventListener('click', () => {
+      stop();
+      dun(done);
+    });
     b.querySelector('.x').focus();
     const st = t => (b.querySelector('.st').textContent = t);
     timers.push(setTimeout(() => st('Verifying user name and password...'), 3400));
@@ -312,7 +317,7 @@ addEventListener('message', ev => {
 function openPopup({ src, title = '', w = 420, h = 360 }) {
   const url = new URL(src, frame?.contentWindow?.location.href ?? location.href);
   // only our own era pages, never an arbitrary URL handed over in a message
-  if (url.origin !== location.origin || !url.pathname.includes('/eras/')) return;
+  if (url.origin !== location.origin || !url.pathname.startsWith(new URL('eras/', location.href).pathname)) return;
   $('.popup')?.remove();
   const p = document.createElement('div');
   p.className = 'popup w98';
@@ -337,6 +342,16 @@ function step(dir) {
 function route() {
   const i = ERAS.findIndex(e => `#${e.year}` === location.hash);
   if (i >= 0 && ERAS[i].built) return go(i, false);
+  land();
+}
+
+// back to the board: stop whatever the open era is doing, the 2001 music included
+function land() {
+  hangup98?.();
+  $('.popup')?.remove();
+  frame?.remove();
+  frame = null;
+  cur = -1;
   body.classList.remove('flying', 'boards');
 }
 
@@ -412,9 +427,11 @@ function spot(x) {
 }
 
 function weigh(f) {
+  if (!f.getAttribute('src')) return;
   try {
-    const p = f.contentWindow.performance;
-    const all = [...p.getEntriesByType('navigation'), ...p.getEntriesByType('resource')];
+    // 1999 is a frameset, so count what every frame inside it loaded too
+    const wins = [f.contentWindow, ...Array.from(f.contentWindow.frames)];
+    const all = wins.flatMap(w => [...w.performance.getEntriesByType('navigation'), ...w.performance.getEntriesByType('resource')]);
     const bytes = all.reduce((n, r) => n + (r.encodedBodySize || r.decodedBodySize || 0), 0);
     $('#xr-foot').textContent = `This recreation: ${Math.max(1, Math.round(bytes / 1000))} KB over ${all.length} requests, measured in your browser just now.`;
   } catch (err) {
@@ -426,7 +443,14 @@ function weigh(f) {
 
 $('#prev').addEventListener('click', () => step(-1));
 $('#next').addEventListener('click', () => step(1));
-$('#all').addEventListener('click', () => body.classList.add('boards'));
+$('#all').addEventListener('click', () => {
+  // a half-finished dial can't sit behind the board; picking 1999 again starts it over
+  if (hangup98) {
+    hangup98();
+    cur = -1;
+  }
+  body.classList.add('boards');
+});
 $('#xr').addEventListener('click', () => {
   const on = body.classList.toggle('xr');
   $('#xr').setAttribute('aria-pressed', on);
@@ -436,6 +460,7 @@ $('#xr').addEventListener('click', () => {
 });
 $('#snd').addEventListener('click', () => {
   sound = !sound;
+  if (dialGain) dialGain.value = sound ? 0.5 : 0;
   $('#snd').setAttribute('aria-pressed', sound);
   frame?.contentWindow?.postMessage({ sound }, location.origin);
 });

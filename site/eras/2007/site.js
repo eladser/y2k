@@ -32,7 +32,9 @@ function suggest(input) {
 $(document).ready(function () {
   $.getJSON("data/airports.json", function (data) { AIRPORTS = data; });
 
-  $("#from, #to").attr("autocomplete", "off").keyup(function () {
+  $("#from, #to").attr("autocomplete", "off").keyup(function (e) {
+    // Tab, Enter, Shift, Ctrl, Alt and the arrows aren't typing
+    if (e.keyCode == 9 || e.keyCode == 13 || (e.keyCode >= 16 && e.keyCode <= 18) || (e.keyCode >= 37 && e.keyCode <= 40)) return;
     var input = this;
     clearTimeout(typing);
     typing = setTimeout(function () { suggest(input); }, 250);

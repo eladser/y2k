@@ -35,8 +35,8 @@ FARE["LHR"] = 399; FARE["CDG"] = 379; FARE["JFK"] = 699; FARE["FCO"] = 349; FARE
 // this one only prints what it recognises
 function clean(s, n) { return s.replace(/[^A-Za-z0-9]/g, "").substring(0, n); }
 var from = getParam("from"), to = getParam("to");
-if (!CITY.hasOwnProperty(from)) from = "TLV";
-if (!CITY.hasOwnProperty(to)) to = "LHR";
+if (typeof CITY[from] != "string") from = "TLV";
+if (typeof CITY[to] != "string") to = "LHR";
 var pax = parseInt(getParam("pax"), 10);
 if (!(pax >= 1 && pax <= 5)) pax = 1;
 var when = clean(getParam("mon"), 3) + " " + clean(getParam("day"), 2) + ", " + clean(getParam("yy"), 2);

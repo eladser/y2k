@@ -4,7 +4,8 @@
 (() => {
   const RATE = 3000; // bytes per second; two frames share one 34 kbps line
   const host = 'http://www.halcyonair.com/';
-  const say = (status, progress) => top !== self && top.postMessage({ status, progress }, location.origin);
+  // one status bar, two frames: only the content frame reports, so they don't overwrite each other
+  const say = (status, progress) => top !== self && window.name !== 'top' && top.postMessage({ status, progress }, location.origin);
   const key = `halcyon.56k.${location.pathname}`;
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   let seen = false;
