@@ -31,6 +31,8 @@ Flash, Dial-Up Networking and the old browsers don't run anymore, so those are r
 
 The photos and the 2026 film are AI-generated. [CREDITS.md](CREDITS.md) lists the models and everything else that isn't mine.
 
+Visits are counted with [Umami](https://umami.is), which sets no cookies.
+
 The board's numbers (typical page size, connection speed, download time) come from period sources, listed on the board under "Where the numbers come from".
 
 ## Keys

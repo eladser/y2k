@@ -42,6 +42,7 @@ The period GIFs and JPEGs (logos, buttons, rollovers, counter digits, tabs) are 
 ## Services
 
 - The 1996 visitor counter uses [Abacus](https://abacus.jasoncameron.dev) by Jason Cameron.
+- Site visits are counted with [Umami](https://umami.is), without cookies.
 
 ## Sources
 
