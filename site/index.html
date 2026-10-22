@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://www.googletagmanager.com; connect-src 'self' https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com; img-src 'self' data: https://*.google-analytics.com https://*.googletagmanager.com; object-src 'none'; base-uri 'none'; form-action 'none'">
 <title>Halcyon Airways · one homepage, every era of the web</title>
 <meta name="description" content="One airline homepage, rebuilt for each era of the web from 1996 to 2026. Try any version, then X-ray it to see how it was made.">
 <meta property="og:title" content="Halcyon Airways · one homepage, every era of the web">
@@ -22,6 +22,7 @@
 <link rel="preload" href="fonts/barlow-condensed-600.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="shell.css">
 <script type="module" src="shell.js"></script>
+<script defer src="analytics.js"></script>
 <link rel="modulepreload" href="eras.js">
 <link rel="modulepreload" href="modem.js">
 <link rel="modulepreload" href="eras/2026/prompts.js">
