@@ -262,6 +262,7 @@ function go(i, push = true) {
   if (push && location.hash !== `#${e.year}`) history.pushState(null, '', `#${e.year}`);
   if (cur === i) return;
   cur = i;
+  window.umami?.track('era', { year: e.year });
   fill(now, e, "BOARDING");
   $('#nowsay').textContent = `${e.year}: ${e.browser.toLowerCase()}, ${e.conn.toLowerCase()}`;
   desk(e);
@@ -452,6 +453,7 @@ function xray(e) {
     li.addEventListener('pointerleave', () => spot(open()));
     d.addEventListener('toggle', () => {
       if (d.open) $('#xr-list').querySelectorAll('details[open]').forEach(o => o !== d && (o.open = false));
+      if (d.open) window.umami?.track('x-ray item', { year: e.year, item: x.name });
       spot(open());
     });
     li._x = x;
@@ -513,6 +515,7 @@ $('#xr').addEventListener('click', () => {
   $('#xr').setAttribute('aria-pressed', on);
   try { localStorage.setItem('halcyon.xr', on ? 'on' : 'off'); } catch {}
   spot(on ? open() : null);
+  if (on) window.umami?.track('x-ray', { year: ERAS[cur]?.year });
   // the 2026 film is still downloading at iframe load, so measure again
   if (on && frame) weigh(frame);
 });
