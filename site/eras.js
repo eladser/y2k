@@ -849,7 +849,7 @@ h1 {
         sel: '.ask',
         check: () => 'LanguageModel' in self,
         then: 'Six dropdowns and a date picker, because the computer couldn\'t read a sentence. "Somewhere warm" wasn\'t a field.',
-        now: 'You describe the trip. If your Chrome has Gemini Nano, the model runs on your own machine through the Prompt API and nothing you type leaves the page. Without it, a plain keyword match takes over and says so.',
+        now: 'You describe the trip. If your Chrome has Gemini Nano, the model runs on your own machine through the Prompt API and nothing you type leaves the page. Without it, a plain keyword match takes over and says so. Chrome\'s Language Detector API also runs locally, so a question in Japanese, Spanish, German or French gets the model\'s answer in the same language.',
         code: `const ai = await LanguageModel.create({
   initialPrompts: [{ role: 'system', content: ROUTES }],
 });

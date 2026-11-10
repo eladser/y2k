@@ -37,26 +37,31 @@ $('#bento').replaceChildren(...PLACES.map((p, i) => {
 document.querySelectorAll('.seat-pic img').forEach(img => img.addEventListener('error', () => img.remove()));
 
 const answer = $('#answer'), how = $('#how'), q = $('#q');
-let ready = null;
+const ready = {};
+let finder = null;
 
-// Chrome logs a console warning when availability() or create() gets no output language
-const langs = {
-  expectedInputs: [{ type: 'text', languages: ['en'] }],
-  expectedOutputs: [{ type: 'text', languages: ['en'] }],
-};
+// the Prompt API's languages besides English; anything else gets an English answer
+const LANGS = { ja: 'Japanese', es: 'Spanish', de: 'German', fr: 'French' };
 
-// shared promise, so a double click doesn't see "no model" while it's still loading
-function model() {
-  return (ready ??= (async () => {
+// Chrome logs a console warning when availability() or create() gets no output language.
+// The system prompt is English, so English is always an input too
+const langs = lang => ({
+  expectedInputs: [{ type: 'text', languages: lang === 'en' ? ['en'] : ['en', lang] }],
+  expectedOutputs: [{ type: 'text', languages: [lang] }],
+});
+
+// one shared promise per language, so a double click doesn't see "no model" while it's still loading
+function model(lang) {
+  return (ready[lang] ??= (async () => {
     if (!('LanguageModel' in self)) return null;
     try {
       // only if it's already downloaded; the first download is gigabytes
-      if ((await LanguageModel.availability(langs)) !== 'available') return null;
+      if ((await LanguageModel.availability(langs(lang))) !== 'available') return null;
       return await LanguageModel.create({
-        ...langs,
+        ...langs(lang),
         initialPrompts: [{
           role: 'system',
-          content: `You are the trip finder for Halcyon, an airline flying from Tel Aviv. Pick exactly one destination for the traveller from this list and say why in one short, plain sentence. Destinations: ${PLACES.map(p => `${p.city} (${p.hours} non-stop, from $${p.fare}; ${p.tags.join(', ')})`).join('; ')}.`,
+          content: `You are the trip finder for Halcyon, an airline flying from Tel Aviv. Pick exactly one destination for the traveller from this list and say why in one short, plain sentence. Destinations: ${PLACES.map(p => `${p.city} (${p.hours} non-stop, from $${p.fare}; ${p.tags.join(', ')})`).join('; ')}.${LANGS[lang] ? ` Write that sentence in ${LANGS[lang]}.` : ''}`,
         }],
       });
     } catch (e) {
@@ -64,6 +69,31 @@ function model() {
       return null;
     }
   })());
+}
+
+// English unless the detector is already on this machine and fairly sure of one of LANGS
+async function language(text) {
+  finder ??= (async () => {
+    if (!('LanguageDetector' in self)) return null;
+    try {
+      // same rule as the model: never start a download
+      if ((await LanguageDetector.availability()) !== 'available') return null;
+      return await LanguageDetector.create();
+    } catch (e) {
+      console.warn('language detector unavailable', e);
+      return null;
+    }
+  })();
+  const d = await finder;
+  if (!d) return 'en';
+  try {
+    const [top] = await d.detect(text);
+    // short questions can come back unsure, and a wrong guess is worse than English
+    return top?.confidence >= 0.7 && LANGS[top.detectedLanguage] ? top.detectedLanguage : 'en';
+  } catch (e) {
+    console.warn('language detection failed', e);
+    return 'en';
+  }
 }
 
 const cheapest = list => list.reduce((a, b) => (a.fare < b.fare ? a : b));
@@ -91,7 +121,10 @@ async function ask(text) {
   if (!text.trim()) return;
   answer.hidden = false;
   answer.textContent = 'Thinking...';
-  const ai = await model();
+  let lang = await language(text);
+  let ai = await model(lang);
+  // if that language's session won't start, answer in English like before
+  if (!ai && lang !== 'en') ai = await model(lang = 'en');
   let pick, byModel = false;
   if (ai) {
     let s;
@@ -113,7 +146,7 @@ async function ask(text) {
   const place = PLACES.find(p => p.city === pick.city) ?? PLACES[0];
   answer.replaceChildren(Object.assign(document.createElement('b'), { textContent: `${place.city}. ` }), `${pick.why} ${place.hours} non-stop, from ${usd.format(place.fare)}.`);
   how.textContent = byModel
-    ?'Answered on your device by Gemini Nano through the Prompt API. Nothing you typed left this page.'
+    ? `Answered${LANGS[lang] ? ` in ${LANGS[lang]}` : ''} on your device by Gemini Nano through the Prompt API. Nothing you typed left this page.`
     : 'This browser has no on-device model ready, so that answer is a keyword match. In Chrome with Gemini Nano, the same box runs a real language model locally.';
   document.querySelectorAll('.tile').forEach(t => t.classList.toggle('pick', t.dataset.city === place.city));
 }
