@@ -39,14 +39,21 @@ document.querySelectorAll('.seat-pic img').forEach(img => img.addEventListener('
 const answer = $('#answer'), how = $('#how'), q = $('#q');
 let ready = null;
 
+// Chrome logs a console warning when availability() or create() gets no output language
+const langs = {
+  expectedInputs: [{ type: 'text', languages: ['en'] }],
+  expectedOutputs: [{ type: 'text', languages: ['en'] }],
+};
+
 // shared promise, so a double click doesn't see "no model" while it's still loading
 function model() {
   return (ready ??= (async () => {
     if (!('LanguageModel' in self)) return null;
     try {
       // only if it's already downloaded; the first download is gigabytes
-      if ((await LanguageModel.availability()) !== 'available') return null;
+      if ((await LanguageModel.availability(langs)) !== 'available') return null;
       return await LanguageModel.create({
+        ...langs,
         initialPrompts: [{
           role: 'system',
           content: `You are the trip finder for Halcyon, an airline flying from Tel Aviv. Pick exactly one destination for the traveller from this list and say why in one short, plain sentence. Destinations: ${PLACES.map(p => `${p.city} (${p.hours} non-stop, from $${p.fare}; ${p.tags.join(', ')})`).join('; ')}.`,
